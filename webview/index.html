@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>一品粮味</title>
+    <!-- <link rel="stylesheet" href="./styles/base.css"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_9v34j5td9qu.css">
+    <link rel="stylesheet" href="/webview/commonPage/header.css"><link rel="stylesheet" href="/webview/commonPage/footer.css">
+    <style>
+        .fp-controlArrow.fp-prev {
+            left: 50px;
+        }
+        .fp-controlArrow.fp-next {
+            right: 50px;
+        }
+
+        @media only screen and (min-width:1200px) {
+          .webview-img {
+            width: auto;
+            height: 100%;
+            background: url(/webview/images/index/websit.jpg) no-repeat center center;
+            background-size: cover;
+          }
+        }
+        @media only screen and (max-width:1199px) and (min-width: 768px){ 
+          .webview-img {
+            width: auto;
+            height: 100%;
+            background: url(/webview/images/index/websit.jpg) no-repeat center center;
+            background-size: cover;
+          }
+        }
+        @media only screen and (max-width:768px) { 
+          .webview-img {
+            width: auto;
+            height: 100%;
+            background: url(/webview/images/index/yidong.jpg) no-repeat center center;
+            background-size: cover;
+          }
+        }
+    </style>
+</head>
+<body>
+    <div class="header color-main">
+
+    </div>
+    <div class="container" style="margin-top: 50px;width: 100%;">
+      <div>
+        <div id="fullpage">
+          <div class="section">
+            <div class="webview-img">
+            </div>
+          </div>
+          <div class="section">
+            <div class="slide">slide1</div>
+            <div class="slide">slide2</div>
+            <div class="slide">slide3</div>
+            <div class="slide">slide</div>
+          </div>
+          <div class="section">
+            <div class="our-img"></div>
+          </div>
+          <div class="section">section4312</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script>
+      $(document).ready(function(){
+        //jquery load方法加载公共头部
+        $(".header").load("./commonPage/header.html");
+        $('#fullpage').fullpage({
+          navigation: true,//导航
+          autoScrolling:true,
+          scrollHorizontally: true,
+          sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+        });
+      });
+    </script>
+</body>
+</html>

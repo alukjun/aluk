@@ -1,0 +1,16 @@
+{
+  "id": "2242864",
+  "name": "一品粮味",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "一品粮味",
+  "glyphs": [
+    {
+      "icon_id": "15644370",
+      "name": "商标",
+      "font_class": "shangbiao",
+      "unicode": "e6c8",
+      "unicode_decimal": 59080
+    }
+  ]
+}
