@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <!-- <link rel="stylesheet" href="./styles/base.css"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
+    <!-- Bootstrap -->
+     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
+    <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_9v34j5td9qu.css">
+    <link rel="stylesheet" href="/webview/commonPage/header.css">
+    <link rel="stylesheet" href="/webview/commonPage/footer.css">
+    <style>
+      .eats {
+        padding: 0 45px;
+      }
+      .gray-color {
+        color: gray;
+      }
+      
+      .eats-item {
+        height: 90px;
+        width: 100%;
+      }
+      .eats-item .en {
+        margin-right: 30px;
+        font: 900 52px/60px "Lato";
+      }
+      .eats-item .cn {
+        font-size: 42px;
+        line-height: 50px;
+      }
+
+      .swiper-container {
+        height: 329px;
+      }
+      .swiper-slide img {
+        width: 90%;
+        height: 90%;
+        box-shadow: 0 0 20px 0 rgba(102,102,102,0.1);
+        border-radius: 30px;
+      }
+      .swiper-slide .title {
+        text-align: center;
+        width: 257px;
+      }
+    </style>
+  </head>
+  <body>
+     <div class="header color-main">
+
+    </div>
+
+    <div class="eats pages">
+      <div>
+        <div class="eats-item"></div>
+        <div class="eats-item">
+          <span class="en gray-color">MEAT SNACKS</span>
+          <span class="cn gray-color">肉类零食</span>
+        </div>
+        <div class="eats-item">
+          <span class="en main-color">ROASTED SEEDS</span>
+          <span class="cn main-color">炒货系列</span>
+        </div>
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <img src="/webview/images/eats/eat-item1.png" alt="..."/>
+                <div class="title">精选良品山核桃</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="/webview/images/eats/eat-item1.png" alt="..."/>
+                <div class="title">开心果</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="/webview/images/eats/eat-item1.png" alt="..."/>
+                <div class="title">手剥松子</div>
+              </div>
+              <div class="swiper-slide">
+                <img src="/webview/images/eats/eat-item1.png" alt="..."/>
+                <div class="title">巴旦木</div>
+              </div>
+          </div>
+        </div>
+        <!-- <div class="eats-item">
+          <span class="en main-color">ROASTED SEEDS</span>
+          <span class="cn main-color">炒货系列</span>
+        </div> -->
+      </div>
+    </div>
+    <div class="footer">
+
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+     
+    <script>
+      $(document).ready(function(){
+        //jquery load方法加载公共头部
+        $(".header").load("../../commonPage/header.html");
+        $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
+
+        });
+
+        var mySwiper = new Swiper ('.swiper-container', {
+          // loop: true, // 循环模式选项
+          direction : 'horizontal',
+          autoplay: true,
+          slidesPerView : 4,
+          // centeredSlides : true,
+          // centeredSlidesBounds: true,
+        })        
+        
+
+        $('#myTab a').click(function (e) {
+            console.log(e)
+            e.preventDefault()
+            $(this).tab('show')
+        });
+    });
+    </script>
+  </body>
+</html>

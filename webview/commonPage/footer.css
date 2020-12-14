@@ -1,6 +1,6 @@
 .footer {
     position: fixed;
-    background-color: #002957;
+    background-color:#012A57;
     color: #fff;
     left: 0;
     bottom: 0;
@@ -12,11 +12,12 @@
     margin-right: 7.5%;
     margin-left: 7.5%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
   }
   .footer-wrap>div {
-    line-height: 75px;
+    line-height: 70px;
   }
   
   .main-color {

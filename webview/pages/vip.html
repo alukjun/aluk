@@ -15,16 +15,394 @@
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_9v34j5td9qu.css">
     <link rel="stylesheet" href="/webview/commonPage/header.css"><link rel="stylesheet" href="/webview/commonPage/footer.css">
     <style>
-      
+      .pages {
+        padding: 0 5%;
+      }
+      .vip {
+        margin-top: 40px;
+        overflow: scroll;
+        margin-bottom: 75px;
+      }
+
+      .vip .vip-card {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .vip .vip-card .item {
+        width: 32%;
+        border-radius: 5px;
+        margin-right: 1.3%;
+        margin-top: 24px;
+      }
+      .vip .vip-card .item .pic {
+        width: 100%;
+        border-radius: 15px;
+      }
+      .vip .vip-card .item .pic img {
+        width: 100%;
+        border-radius: 15px;
+      }
+      .vip-remark {
+        width: 100%;
+        background-color: #F7F7F7;
+        padding: 16px;
+        margin: 24px 0;
+        color: #808080;
+        font-size: 16px;
+      }
+      .vip .vip-standard {
+        width: 100%;
+        padding: 16px 0;
+      }
+      .vip .vip-standard table {
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+      }
+      .vip .vip-standard table thead tr{
+        height: 50px;
+        background-color: #FF8500;
+        font-size: 16px;
+        color: #FFF;
+      }
+      .vip .vip-standard table tbody tr{
+        height: 40px;
+      }
+
+      .vip .vip-rules {
+        margin: 20px 0;
+      }
+      .vip .vip-rules .rules-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        min-height: 220px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+      }
+      .vip .vip-rules .rules-content .item{
+        width: 20%;
+        min-width: 220px;
+        min-height: 220px;
+        border: 2px solid #FF8500;
+        border-radius: 50%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .vip .vip-rules .rules-text-content {
+        display: flex;
+        justify-content: space-between;
+      }
+      .vip .vip-rules .rules-text-content .item {
+        width: 32%;
+        height: 240px;
+        background: #F2F2F2;
+        color: #808080;
+        padding: 32px;
+      }
     </style>
   </head>
   <body>
-     <div class="header color-main">
+    <div class="header color-main">
 
     </div>
 
-    <div class="ours pages">
-      1111
+    <div class="vip pages">
+      <div class="common-title">
+        <div class="item">
+          MEMBER RATING CRITERIA
+        </div>
+        <div class="item">
+          会员评定标准
+        </div>
+      </div>
+      <div class="vip-card">
+        <div class="item">
+          <div class="pic" style="margin-bottom: 24px;">
+            <img src="/webview/images/vip/vip_card.png" alt="">
+          </div>
+          <div class="discription">
+            <div style="color: #FF8500; font-size: 24px;margin-bottom: 16px;">
+              0元至159元
+            </div>
+            <div style="color: #808080;font-size: 16px;">
+              评级前365天内的消费金额达到0-159元可以评
+              定为钻卡会员，自次日起365天内享受钻卡会员
+              级别的优惠。
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pic" style="margin-bottom: 24px;">
+            <img src="/webview/images/vip/vip_card.png" alt="">
+          </div>
+          <div class="discription">
+            <div style="color: #FF8500; font-size: 24px;margin-bottom: 16px;">
+              160元至399元
+            </div>
+            <div style="color: #808080;font-size: 16px;">
+              评级前365天内的消费金额达到160-399元可以
+              评定为钻卡会员，自次日起365天内享受钻卡会
+              员级别的优惠。
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pic" style="margin-bottom: 24px;">
+            <img src="/webview/images/vip/vip_card.png" alt="">
+          </div>
+          <div class="discription">
+            <div style="color: #FF8500; font-size: 24px;margin-bottom: 16px;">
+              400元至999元
+            </div>
+            <div style="color: #808080;font-size: 16px;">
+              评级前365天内的消费金额达到400-999元可以
+              评定为钻卡会员，自次日起365天内享受钻卡会
+              员级别的优惠
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pic" style="margin-bottom: 24px;">
+            <img src="/webview/images/vip/vip_card.png" alt="">
+          </div>
+          <div class="discription">
+            <div style="color: #FF8500; font-size: 24px;margin-bottom: 16px;">
+              1000元至2999元
+            </div>
+            <div style="color: #808080;font-size: 16px;">
+              评级前365天内的消费金额达到1000-2999元可
+              以评定为钻卡会员，自次日起365天内享受钻卡
+              会员级别的优惠。
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="pic" style="margin-bottom: 24px;">
+            <img src="/webview/images/vip/vip_card.png" alt="">
+          </div>
+          <div class="discription">
+            <div style="color: #FF8500; font-size: 24px;margin-bottom: 16px;">
+              3000元及以上
+            </div>
+            <div style="color: #808080;font-size: 16px;">
+              评级前365天内的消费金额达到3000元以上可以
+              评定为黑钻会员，自次日起365天内享受钻卡会
+              员级别的优惠。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vip-remark">
+        <p style="margin-bottom: 16px;">备注：</p>
+        <p>
+          自会员注册日期，自动成为金卡会员，在每日营业结束时，积分系统将会根据会员此前365天内的消费金额累计来评定会员级别，如达到级别调整的条件，会员
+          评级次日调整到新的级别。    
+        </p>
+      </div>
+
+      <div class="vip-standard">
+        <div class="common-title">
+          <div class="item">
+            MEMBER RATING CRITERIA
+          </div>
+          <div class="item">
+            会员评定标准
+          </div>
+        </div>
+        <div>
+          <table border="0">
+            <thead>
+              <th></th>
+              <th>金卡会员</th>
+              <th>钻卡会员</th>
+              <th>黑钻卡会员</th>
+            </thead>
+            <tr style="background-color: #F7F7F7;">
+              <td>积分兑豪礼</td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr>
+              <td>天天会员价</td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr style="background-color: #F7F7F7;">
+              <td>会员日</td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr>
+              <td>生日多倍积分</td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr style="background-color: #F7F7F7;">
+              <td>周年庆感恩礼</td>
+              <td></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr>
+              <td>APP试吃包</td>
+              <td></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr style="background-color: #F7F7F7;">
+              <td>生日礼盒</td>
+              <td></td>
+              <td></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr>
+              <td>春节定制礼</td>
+              <td></td>
+              <td></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            <tr style="background-color: #F7F7F7;">
+              <td>至尊体验机会</td>
+              <td></td>
+              <td></td>
+              <td><span class="icon iconfont color-main">&#xe607;</span></td>
+            </tr>
+            
+          </table>
+        </div>
+      </div>
+
+      <div class="vip-remark">
+        <p style="margin-bottom: 16px;">会员卡使用规范：</p>
+        <p>
+          1、会员在使用会员卡时应按照以上内容享受会员权益  
+        </p>
+        <p>
+          2、此会员积分与优惠仅可在线下门店与良品铺子APP同时享有，第三方平台（天猫、京东、1号店等）不享受本公约会员权益，以第三方会员权益制度为准。           
+        </p>
+        <p>
+          3、若在监控会员卡使用轨迹时发现有异常消费与积分记录，良品铺子有权对该会员卡进行冻结与调查处理。  
+        </p>
+        <p>
+          4、以上所有权益与规范仅对在良平铺子现在门店、良品铺子APP、支付宝、良品铺子公众号、良品铺子品牌号、良品铺子小程序注册会员有效。 
+        </p>
+      </div>
+
+      <div class="vip-rules">
+        <div class="common-title">
+          <div class="item">
+            MEMBER POINTS PULES
+          </div>
+          <div class="item">
+            会员积分规则
+          </div>
+        </div>
+        <div class="rules-tips">
+          <div class="tips" style="font-size: 20px;margin-bottom: 16px;">
+            <span class="icon iconfont color-main">&#xe607;</span>
+            会员积分使用规则
+          </div>
+          <div class="rules-content">
+            <div class="item">
+              <div class="color-main" style="font-size: 64px;font-weight: bolder;">
+                01
+              </div>
+              <div style="font-size: 14px;color: #808080;width: 75%;">
+                会员没现金消费1元即可
+                得一个积分。
+              </div>
+            </div>
+            <div class="item">
+              <div class="color-main" style="font-size: 64px;font-weight: bolder;">
+                02
+              </div>
+              <div style="font-size: 14px;color: #808080;width: 75%;">
+                办会员卡时的消费以及新
+                店开页、团购活动的消费
+                不产生积分。
+              </div>
+            </div>
+            <div class="item">
+              <div class="color-main" style="font-size: 64px;font-weight: bolder;">
+                03
+              </div>
+              <div style="font-size: 14px;color: #808080;width: 75%;">
+                会员可以使用积分兑换相
+                应分值的产品或礼品。兑
+                换后积分余额会相应的减少。
+              </div>
+            </div>
+            <div class="item">
+              <div class="color-main" style="font-size: 64px;font-weight: bolder;">
+                04
+              </div>
+              <div style="font-size: 14px;color: #808080;width: 75%;">
+                积分的积累与使用以会员
+                卡为单位，同一名会员持
+                有多张会员卡的，每张卡
+                内的积分余额不能合并，
+                      只能分别使用。
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="rules-tips">
+          <div class="tips" style="font-size: 20px;margin-bottom: 16px;">
+            <span class="icon iconfont color-main">&#xe607;</span>
+            会员积分规则
+          </div>
+          <div class="rules-text-content">
+            <div class="item">
+              <span style="font-size: 32px;">
+                1.
+              </span>
+              <span style="font-size: 16px;">
+                每年7月31日营业时间结束时积分
+                系统会将上一年度1月1日至12月31日
+                期间消费所积的积分自动清零，当年1
+                月1日至7月31日期间所积积分保留至次
+                年7月31日清零。
+              </span>
+            </div>
+            <div class="item">
+              <span style="font-size: 32px;">
+                2.
+              </span>
+              <span style="font-size: 16px;">
+                当一品粮味积分系统第一次启动清 零程序时，除清零当年1月1日至7月31 日期间所积积分保留外，会员卡开通以 来消费所积积分
+              </span>
+            </div>
+            <div class="item">
+              <span style="font-size: 32px;">
+                3.
+              </span>
+              <span style="font-size: 16px;">
+                会员卡开通后至首个7月31日未满
+                12个月的，该期间所有积积分暂不清零，
+                至下一年度的7月31日在清零。
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="vip-remark">
+          <p style="margin-bottom: 16px;">注：</p>
+          <p>
+            每年6/7两个月将在门店提示会员清零时限将至。积分清零不影响会员的等级身份及其可享受到的相关权益。 
+          </p>
+        </div>
+
+      </div>
     </div>
     <div class="footer">
 

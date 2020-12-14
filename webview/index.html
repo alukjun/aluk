@@ -12,8 +12,10 @@
     <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
     <!-- Bootstrap -->
     <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_9v34j5td9qu.css">
-    <link rel="stylesheet" href="/webview/commonPage/header.css"><link rel="stylesheet" href="/webview/commonPage/footer.css">
+    <link rel="stylesheet" href="/webview/commonPage/header.css">
+    <link rel="stylesheet" href="/webview/commonPage/footer.css">
     <style>
         .fp-controlArrow.fp-prev {
             left: 50px;
@@ -22,11 +24,23 @@
             right: 50px;
         }
 
+        .position-left {
+          position: absolute;
+          left: 0;
+          bottom: 5%;
+        }
+        .position-right {
+          position: absolute;
+          right: 0;
+          bottom: 5%;
+        }
+        
+
         @media only screen and (min-width:1200px) {
           .webview-img {
             width: auto;
             height: 100%;
-            background: url(/webview/images/index/websit.jpg) no-repeat center center;
+            background: url(/webview/images/index/websit.png) no-repeat center center;
             background-size: cover;
           }
         }
@@ -34,7 +48,7 @@
           .webview-img {
             width: auto;
             height: 100%;
-            background: url(/webview/images/index/websit.jpg) no-repeat center center;
+            background: url(/webview/images/index/websit.png) no-repeat center center;
             background-size: cover;
           }
         }
@@ -45,6 +59,110 @@
             background: url(/webview/images/index/yidong.jpg) no-repeat center center;
             background-size: cover;
           }
+        }
+
+        .gift {
+          height: 810px;
+          width: 100%;
+          position: relative;
+          padding: 0 10%;
+          /* margin-top: 50px; */
+        }
+  
+        .gift-text-left {
+          /* background-color: aqua; */
+          width: 506px;
+          position: absolute;
+          top: 10%;
+          left: 5%;
+          display: flex;
+          flex-direction: column;
+          z-index: 10;
+        }
+
+        .gift-image {
+          background-color: #F7F7F7;
+          width: 100%;
+          height: 810px;
+          position: relative;
+          /* padding: 0 5%; */
+        }
+
+        .gift-text-right {
+          /* background-color: #F7F7F7; */
+          width: 310px;
+          height: 810px;
+          position: absolute;
+          top: 10%;
+          right: 5%;
+        }
+        .gift-image .image-item {
+          max-width: 595px;
+          width: 45%;
+          height: 524px;
+          display: inline-block;
+        }
+        .gift-image .image-item img {
+          max-width: 595px;
+          width: 100%;
+          height: 524px;
+          display: inline-block;
+        }
+        .gift-image .image-item .image-text {
+          height: 400px;
+          width: 311px;
+          opacity: 0.95;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding: 10px;
+        }
+
+        .section-eats {
+          padding: 0 10%;
+        }
+        .section-eats .eats-images {
+          display: flex;
+        }
+        .section-eats .eats-text {
+          display: flex;
+          flex-direction: column;
+          text-align: center;
+          font-size: 30px;
+        }
+        .section-eats .swiper-slide img{
+          width: 100%;
+          height: 100%;
+          /* height: 530px; */
+        }
+        .swiper-container {
+          height: 329px;
+          width: 100%;
+        }
+
+        .section-other-item .wrap{
+          display: flex;
+          width: 100%;
+          height: 559px;
+          padding: 0 10%;
+          justify-content: space-between;
+          flex-direction: row;
+          flex-wrap: nowrap;
+        }
+        .section-other-item .wrap .item{
+          display: flex;
+          flex-direction: column;
+          padding: 32px 10px 0 20px;
+          height: 559px;
+          width: 24.5%;
+          background-color: #F7F7F7;
+          color: #808080;
+          position: relative;
+        }
+        .section-other-item .wrap .item-logo{
+          position: absolute;
+          left: 20px;
+          bottom: 32px;
         }
     </style>
 </head>
@@ -59,34 +177,221 @@
             <div class="webview-img">
             </div>
           </div>
-          <div class="section">
-            <div class="slide">slide1</div>
-            <div class="slide">slide2</div>
-            <div class="slide">slide3</div>
-            <div class="slide">slide</div>
+          <div class="section gift">
+            <div class="gift-text-left color-main">
+              <div style="margin-bottom: 40px;font-size: 30px;">
+                高端零食
+              </div>
+              <div style="font-size: 20px;">
+                关于我们
+              </div>
+            </div>
+            <div class="gift-image">
+              <div class="image-item position-left">
+                <img src="/webview/images/index/gift_2.jpeg" alt="">
+                <div class="image-text" style="text-align: left;font-size: 20px;color: white;background-color: #FF8500;position: absolute;left: -15%;bottom: 0;">
+                  <div style="margin-bottom: 16px;">
+                    一品粮味，高端零食
+                  </div>
+                  <div style="margin-bottom: 16px;">
+                    连续5年高端零食全国销售领先
+                  </div>
+                  <div style="margin-bottom: 16px;">
+                    2020年于上交所主板上市
+                  </div>
+                  <div>
+                    more
+                  </div>
+                </div>
+              </div>
+              <div class="image-item position-right">
+                <img src="/webview/images/index/gift_1.png" alt="">
+                <div class="image-text" style="text-align: right;font-size: 20px;color: white;background-color: #FF8500;position: absolute;right: -15%;bottom: 0;">
+                  <div style="margin-bottom: 16px;">
+                    2019.08.03
+                  </div>
+                  <div style="margin-bottom: 16px;">
+                    一品粮味“保护千年敦煌”中秋
+                  </div>
+                  <div style="margin-bottom: 16px;">
+                    节捐赠事项的活动细则
+                  </div>
+                  <div>
+                    more
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="gift-text-right color-main" style="text-align: right;">
+              <div style="margin-bottom: 40px;font-size: 30px;">
+                品质 快乐 家
+              </div>
+              <div style="font-size: 20px;">
+                最新动态
+              </div>
+            </div>
           </div>
-          <div class="section">
-            <div class="our-img"></div>
+          <div class="section section-eats">
+            <div class="eats-text color-main">
+              <div style="margin-bottom: 10px;">
+                SNACK KINGDOM
+              </div>
+              <div style="margin-bottom: 10px;">
+                KINGDOM
+              </div>
+              <div style="margin-bottom: 10px;">
+                |
+              </div>
+            </div>
+            <div class="swiper-container">
+              <div class="swiper-wrapper">
+                  <div class="swiper-slide">
+                    <img src="/webview/images/index/eats_1.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/webview/images/index/eats_2.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/webview/images/index/eats_3.jpg" alt="">
+                  </div>
+                  <div class="swiper-slide">
+                    <img src="/webview/images/index/eats_4.jpg" alt="">
+                  </div>
+              </div>
+            </div>
+            <!-- <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div> -->
+            <!-- <div class="eats-images">
+              <img src="/webview/images/index/eats_1.jpg" alt="">
+              <img src="/webview/images/index/eats_2.jpg" alt="">
+              <img src="/webview/images/index/eats_3.jpg" alt="">
+              <img src="/webview/images/index/eats_4.jpg" alt="">
+            </div> -->
           </div>
-          <div class="section">section4312</div>
+          <div class="section section-other-item">
+            <div class="wrap">
+              <div class="item">
+                <div style="font-size: 30px;margin-bottom: 20px;">
+                  FRANCHISE
+                </div>
+                <div style="font-size: 20px;margin-bottom: 50px;">
+                  加盟专区
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  玩出生产力
+                </div>
+                <div style="font-size: 16px;margin-bottom: 90px;">
+                  线上线下高度融合，每一个渠道，都是良品
+                  铺子与消费者连通的触点，让我们找到满足
+                  消费者需求的同时。客户也可随时、随地、
+                  随意的享受良品铺子的产品和服务。
+                </div>
+                <div class="item-logo">
+                  <span class="icon iconfont" style="font-size: 32px;">&#xe6da;</span>
+                </div>
+              </div>
+              <div class="item">
+                <div style="font-size: 30px;margin-bottom: 20px;">
+                  VIP
+                </div>
+                <div style="font-size: 20px;margin-bottom: 50px;">
+                  会员专区
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  吃货联盟
+                </div>
+                <div style="font-size: 16px;margin-bottom: 90px;">
+                  成为会员后，良妹会依据您的累计消费情况
+                  给您定级。
+                </div>
+                <div class="item-logo">
+                  <span class="icon iconfont" style="font-size: 32px;">&#xe605;</span>
+                </div>
+              </div>
+              <div class="item">
+                <div style="font-size: 30px;margin-bottom: 20px;">
+                  JOIN US
+                </div>
+                <div style="font-size: 20px;margin-bottom: 50px;">
+                  招聘
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  尊重人、培养人、成就人
+                </div>
+                <div style="font-size: 16px;margin-bottom: 90px;">
+                  我们是新零售的“食尚先锋”,是引起美味潮
+                  流的“创想家”,是健康品质管理的“食力
+                  派”。美食由你定制 ，未来由你定义。
+                </div>
+                <div class="item-logo">
+                  <span class="icon iconfont" style="font-size: 32px;">&#xe617;</span>
+                </div>
+              </div>
+              <div class="item">
+                <div style="font-size: 30px;margin-bottom: 20px;">
+                  HOW TO BUY
+                </div>
+                <div style="font-size: 20px;margin-bottom: 50px;">
+                  购买方式
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  全国门店
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  京东旗舰店
+                </div>
+                <div style="font-size: 20px;margin-bottom: 34px;">
+                  <span class="icon iconfont">&#xe607;</span>
+                  天猫旗舰店
+                </div>
+                
+                <div class="item-logo">
+                  <span class="icon iconfont" style="font-size: 32px;">&#xe623;</span>
+                </div>
+              </div>
+            </div>
+            <div class="footer" style="bottom: 50px;"></div>
+          </div>
         </div>
       </div>
+
     </div>
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
     <script>
       $(document).ready(function(){
         //jquery load方法加载公共头部
         $(".header").load("./commonPage/header.html");
+        $(".footer").load("./commonPage/footer.html",function(){//加载完成后设置高亮
+
+        });
         $('#fullpage').fullpage({
           navigation: true,//导航
           autoScrolling:true,
           scrollHorizontally: true,
-          sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+          // sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
         });
+        var mySwiper = new Swiper ('.swiper-container', {
+          loop: true, // 循环模式选项
+          direction : 'horizontal',
+          autoplay: true,
+          slidesPerView : 4,
+          // navigation: {
+          //   nextEl: '.swiper-button-next',
+          //   prevEl: '.swiper-button-prev',
+          // },
+          // centeredSlides : true,
+          // centeredSlidesBounds: true,
+        })    
       });
     </script>
 </body>
