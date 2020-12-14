@@ -25,7 +25,7 @@ body {
 }
 
 .header .header-contain{
-    height: 50px;
+    height: 75px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -184,7 +184,7 @@ display: none
 display: block 
 }
 .pages {
-    margin-top: 50px;
+    margin-top: 75px;
 }
 
 .common-title{
