@@ -211,6 +211,15 @@ margin-bottom: 16px;
 .flex-between {
     justify-content: space-between;
 }
+.flex-around {
+    justify-content: space-around;
+}
+.flex-start {
+    justify-content: start;
+}
+.flex-center {
+    justify-content: center;
+}
 .flex-align-center {
     align-items: center;
 }
