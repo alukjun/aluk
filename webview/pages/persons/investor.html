@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>Bootstrap 101 Template</title>
+    <!-- <link rel="stylesheet" href="./styles/base.css"> -->
+    <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
+    <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_9v34j5td9qu.css">
+    <link rel="stylesheet" href="/webview/commonPage/header.css"><link rel="stylesheet" href="/webview/commonPage/footer.css">
+    <style>
+      .investor {
+        margin-top: 75px;
+      }
+      .content {
+        margin-top: 30px;
+        padding: 0 5%;
+      }
+      .investor .content .item{
+        padding: 64px 5%;
+      }
+      .content-form {
+        margin-top: 50px;
+        width: 100%;
+        padding: 2% 5%;
+        color: #333333;
+        font-size: 16px;
+        margin-bottom: 75px;
+      }
+      .content-form input {
+        height: 64px;
+        line-height: 64px;
+        padding-left: 8px;
+        margin-top: 16px;
+        border: none;
+      }
+      .content-form textarea  {
+        height: 100px;
+        padding: 16px 16px;
+        margin-top: 16px;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+     <div class="header color-main">
+
+    </div>
+
+    <div class="investor pages">
+      <div class="common-title">
+        <div class="item">
+          INVESTOR VISIT
+        </div>
+        <div class="item">
+          投资者来访
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="item flex flex-column flex-between" style="background-color: #F7F7F7;">
+          <div style="color: #333333;font-size: 24px;margin-bottom: 30px;">
+            <span class="icon iconfont color-main">&#xe607;</span>
+            尊敬的投资者
+          </div>
+          <div style="color: #848584;">
+            欢迎您到一品粮味参观调研，为了妥善安排您的来访，烦请至少提前5天预约来访，预约来访请填写如下来访信息，感谢您对良品铺子的
+            关注！
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="content-form" style="background-color: #F7F7F7;">
+        <form action="form_action.asp" method="get"></form>
+          <div class="flex flex-row flex-between" style="margin-bottom: 30px;">
+            <div class="flex flex-column flex-between" style="width: 30%">
+              <span style="font-weight: 400;">来访人员</span>
+              <input type="text" name="name" placeholder="姓名">
+            </div>
+            <div class="flex flex-column flex-between" style="width: 33%">
+              <span style="font-weight: 400;">人数</span>
+              <input type="text" name="number" placeholder="人数">
+            </div>
+            <div class="flex flex-column flex-between" style="width: 33%">
+              <span style="font-weight: 400;">机构</span>
+              <input type="text" name="institutions" placeholder="机构">
+            </div>
+          </div>
+          <div class="flex flex-column flex-between">
+            <span style="font-weight: 400;">来访需求</span>
+            <textarea cols="5" name="need" placeholder="来访需求"></textarea>
+          </div>
+          <div style="width: 100%;text-align: center;">
+            <input type="submit" value="提交" style="font-size: 20px;width: 200px;height: 64px;background-color: #FF8500;color: #FFFFFF;text-align: center;"/>
+          </div>
+        </form>
+      </div>
+      
+      <div class="item flex flex-column flex-between" style="margin-bottom: 195px;padding: 16px 5%;">
+        <div style="color: #333333;font-size: 24px;margin-bottom: 30px;">
+          <span class="icon iconfont color-main">&#xe607;</span>
+          联系我们
+        </div>
+        <div style="color: #848584;">
+          Tel:027-85793003 (主要处理投资者接待及股票证券相关业务，其他业务咨询请联系：400-1177-517)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E-mail:dongban@1plw.com<br/>
+          Fax:027-85793003<br/>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+     
+    <script>
+      $(document).ready(function(){
+        //jquery load方法加载公共头部
+        $(".header").load("../../commonPage/header.html");
+        $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
+
+        });
+
+        $('#myTab a').click(function (e) {
+            console.log(e)
+            e.preventDefault()
+            $(this).tab('show')
+        });
+    });
+    </script>
+  </body>
+</html>
