@@ -29,11 +29,17 @@ const updateStatus = {
   atherUrl: null
 }
 
+const detail = {
+  url: '/user/admin/selectUserById.do',
+  method: 'get'
+}
+
 export default {
   loginServer,
   list,
   create,
   update,
   del,
-  updateStatus
+  updateStatus,
+  detail
 }

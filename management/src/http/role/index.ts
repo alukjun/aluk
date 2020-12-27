@@ -23,10 +23,15 @@ const create = {
   method: 'post'
 }
 
+const detail = {
+  url: '/role/admin/selectRoleById',
+  method: 'get'
+}
 export default {
   list,
   update,
   updateStatus,
   del,
-  create
+  create,
+  detail
 }

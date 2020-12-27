@@ -22,14 +22,14 @@
 						:after-visible-change="afterVisibleChange"
 					>
 						<a-form :model="formData" ref="ruleForm" :rules="rules">
-							<a-form-item label="父菜单" name="name">
+							<a-form-item label="父菜单" name="parentId">
 								<a-tree-select
 									v-model:value="formData.parentId"
 									:tree-data="data"
 									:replaceFields="{
 										children: 'childMenus',
 										title:'name',
-										key:'key', 
+										key:'name', 
 										value: 'id'
 									}"
 									style="width: 100%"
@@ -38,18 +38,6 @@
 									allow-clear
 									tree-default-expand-all
 								>
-									<a-tree-select-node key="0-1" value="parent 1" title="parent 1">
-										<a-tree-select-node key="0-1-1" value="parent 1-0" title="parent 1-0">
-											<a-tree-select-node key="random" value="leaf1" title="my leaf" />
-											<a-tree-select-node key="random1" value="leaf2" title="your leaf" />
-										</a-tree-select-node>
-										<a-tree-select-node key="random2" value="parent 1-1" title="parent 1-1">
-											<a-tree-select-node key="random3" value="sss" title="my leaf">
-												
-											</a-tree-select-node>
-										</a-tree-select-node>
-									</a-tree-select-node>
-								</a-tree-select>
 							</a-form-item>
 							<a-form-item label="菜单名字" name="name">
 								<a-input v-model:value="formData.name" />
@@ -138,7 +126,6 @@ export default {
 			search: {
         name: '',
 			},
-			roleIds: ["1","2","3","4","5"],
 			formData: {
 				name:"",
 				parentId: null,
@@ -190,7 +177,6 @@ export default {
 				menuSort: [
           { required: true, message: '请输入菜单排序', trigger: 'blur' },
 				],
-				// roleIds: [{ required: true, message: '请选择角色', trigger: 'change' }],
 			},
 		};
 	},
@@ -342,7 +328,7 @@ export default {
 
 <style lang="scss">
 	.ant-drawer-content-wrapper {
-		width: 390px!important;
+		width: 420px!important;
 		.ant-form-item-control-wrapper {
 			width: 70%;
 		}

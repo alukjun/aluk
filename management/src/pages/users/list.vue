@@ -36,16 +36,16 @@
 									placeholder="Please select"
 									@change="handleChange"
 								>
-									<a-select-option v-for="i in roleIds" :key="i">
-										{{i}}
+									<a-select-option v-for="i in roleList" :key="i.id">
+										{{i.name}}
 									</a-select-option>
 								</a-select>
 							</a-form-item>
-							<a-form-item label="密码" name="password">
+							<a-form-item label="密码" name="password" v-if="title === '新增用户'">
 								<a-input v-model:value="formData.password" />
 							</a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
-								<a-button type="primary" @click="onSubmit">
+								<a-button type="primary" @click.native="onSubmit">
 									确定
 								</a-button>
 								<a-button style="margin-left: 10px;" @click="resetForm">
@@ -79,8 +79,10 @@
 						禁用
 					</span>
 				</template>
-				<template #roles="{text}">
-					{{text}}
+				<template #roles="{record}">
+					<span v-for="(item, index) in record.roles">
+						{{item.name + ' '}}
+					</span>
 				</template>
 				<template #operation="{record}">
           <span class="table-operation">
@@ -98,6 +100,7 @@
 <script>
 import { SmileOutlined, DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import userMgr from '/@/http/user';
+import roleMgr from '/@/http/role';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');
@@ -115,13 +118,14 @@ export default {
 	data() {
 		return {
 			data: [],
+			roleList: [],
 			title: '新增用户',
 			curId: null,
 			visible: false,
 			search: {
         account: '',
 			},
-			roleIds: ["1","2","3","4","5"],
+			roleIds: [],
 			formData: {
 				account:"",
 				name:"",
@@ -185,7 +189,7 @@ export default {
           { required: true, message: '请输入密码', trigger: 'blur' },
 				],
 				roleIds: [
-          { validator: validateRoles, message: '请选择角色', trigger: 'change' },
+          { required: true, validator: validateRoles, message: '请选择角色', trigger: 'change' },
 				],
 				// roleIds: [{ required: true, message: '请选择角色', trigger: 'change' }],
       },
@@ -193,10 +197,12 @@ export default {
 	},
 	created() {
 		this.fetch();
+		this.fetchRole();
 	},
 	methods: {
 		handleChange(value) {
-      console.log(`selected ${value}`);
+			console.log(value)
+			// this.formData.roleIds 
     },
 		handleSubmit(e) {
 			if (this.search.account === '') {
@@ -235,7 +241,10 @@ export default {
 			})
 		},
 		onSubmit() {
-			let password = this.$md5(this.formData.password);
+			let password = "";
+			if (this.formData.password) {
+				password = this.$md5(this.formData.password);
+			}
 			let params = {
 				...userMgr.create,
 				data: {
@@ -260,6 +269,7 @@ export default {
 						params.data.id = this.curId;
 						params.url = userMgr.update.url
 						params.method = userMgr.update.method
+						Reflect.deleteProperty(params.data, "password");
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
 							this.visible = false;
@@ -285,7 +295,12 @@ export default {
 		updateUser(row) {
 			this.visible = true;
 			this.title = '编辑用户';
-			this.formData = row;
+			this.formData = {
+				...row,
+				roleIds: row.roles.map(item=>{
+					return item.id
+				})
+			};
 			this.curId = row.id;
 		},
 		resetForm() {
@@ -330,6 +345,25 @@ export default {
         this.pagination = pagination;
       });
     },
+		fetchRole(params = {}) {
+			let data = {
+					...roleMgr.list,
+					data: {
+						pageNum: 1,
+						pageSize: 20,
+						...params
+					}
+				}
+      this.$http(data).then(data => {
+        this.loading = false;
+        this.roleList = data.items.map((item, key)=>{
+					return {
+						...item,
+						key
+					}
+				});
+      });
+    },
 	},
 		
 };
@@ -337,7 +371,7 @@ export default {
 
 <style lang="scss">
 	.ant-drawer-content-wrapper {
-		width: 390px!important;
+		width: 420px!important;
 		.ant-form-item-control-wrapper {
 			width: 80%;
 		}

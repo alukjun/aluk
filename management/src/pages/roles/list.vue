@@ -22,17 +22,36 @@
 						:after-visible-change="afterVisibleChange"
 					>
 						<a-form :model="formData" ref="ruleForm" :rules="rules">
-							<a-form-item label="用户名" name="name">
+							<a-form-item label="角色名" name="name">
 								<a-input v-model:value="formData.name" />
 							</a-form-item>
               <a-form-item label="描述" name="description">
 								<a-input v-model:value="formData.description" />
 							</a-form-item>
+							<a-form-item label="菜单" name="menuIds">
+								<a-tree-select
+									v-model:value="formData.menuIds"
+									:tree-data="menuList"
+									:replaceFields="{
+										children: 'childMenus',
+										title:'name',
+										key:'name', 
+										value: 'id'
+									}"
+									style="width: 100%"
+									:dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+									placeholder="Please select"
+									allow-clear
+									multiple
+									tree-checkable
+									@change="selectChange"
+								>
+							</a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
-								<a-button type="primary" @click="onSubmit">
+								<a-button type="primary" @click.native="onSubmit">
 									确定
 								</a-button>
-								<a-button style="margin-left: 10px;" @click="resetForm">
+								<a-button style="margin-left: 10px;" @click.native="resetForm">
 									取消
 								</a-button>
 							</a-form-item>
@@ -82,6 +101,7 @@
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import roleMgr from '/@/http/role'
+import menuMgr from '/@/http/menu';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');
@@ -97,6 +117,8 @@ export default {
 	data() {
 		return {
 			data: [],
+			menuList: [],
+			menuSelectIds: [],
 			title: '新增用户',
 			curId: null,
 			visible: false,
@@ -106,6 +128,7 @@ export default {
 			formData: {
 				description:"",
 				name:"",
+				menuIds: []
 			},
 			columns: [
         {
@@ -159,6 +182,7 @@ export default {
 	},
 	created() {
 		this.fetch()
+		this.fetchMenu()
 	},
 	methods: {
 		handleChange(value) {
@@ -170,6 +194,11 @@ export default {
 			} else {
 				this.fetch({...this.search})
 			}
+		},
+		selectChange(value, label, extra) {
+			console.log(value)
+			console.log(this.curRoleList)
+			
 		},
 		deleteUser(row) {
 			let params = {
@@ -201,11 +230,32 @@ export default {
 			})
 		},
 		onSubmit() {
+			this.menuSelectIds = [];
+			this.curRoleList.forEach(item=> {
+				if (item.children) {
+					item.forEach(child=> {
+						this.formData.menuIds.forEach(el=> {
+							if (el === child.id) {
+								this.menuSelectIds.push(child.parentId)
+							}
+						})
+					})
+				} else {
+					this.formData.menuIds.forEach(el=> {
+						if (el === item.id) {
+							this.menuSelectIds.push(item.parentId)
+						}
+					})
+				}
+			})
+			this.menuSelectIds = [...(new Set(this.menuSelectIds))]
+			console.log(this.menuSelectIds)
 			let params = {
 				...roleMgr.create,
 				data: {
 					description:this.formData.description,
 					name:this.formData.name,
+					menuIds:this.formData.menuIds.concat(this.menuSelectIds),
 				}
 			}
 			this.$refs.ruleForm
@@ -219,10 +269,11 @@ export default {
 						}).catch(err=> {
 							console.log('新增角色')
 						})
-					} else if (this.title === '编辑用户') {
+					} else if (this.title === '编辑角色') {
             params.data.id = this.curId;
 						params.url = roleMgr.update.url;
 						params.method = roleMgr.update.method;
+						console.log(params)
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
 							this.visible = false;
@@ -241,13 +292,20 @@ export default {
 			this.formData = {
 				description:"",
 				name:"",
+				menuIds: []
 			}
 		},
 		updateUser(row) {
 			this.visible = true;
 			this.title = '编辑角色';
-			this.formData = row;
+			this.formData = {
+				...row,
+				menuIds: row.menus.map(item=>{
+					return item.id
+				})
+			};
 			this.curId = row.id;
+			this.curRoleList = row.menus;
 		},
 		resetForm() {
 			this.visible = false;
@@ -291,6 +349,24 @@ export default {
         this.pagination = pagination;
       });
     },
+		fetchMenu(params = {}) {
+			let data = {
+					...menuMgr.list,
+					data: {
+						pageNum: 1,
+						pageSize: 20,
+						...params
+					}
+				}
+      this.$http(data).then(data => {
+        this.menuList = data.items.map((item, key)=>{
+					return {
+						...item,
+						key
+					}
+				});
+      });
+    },
 	},
 		
 };
@@ -298,7 +374,7 @@ export default {
 
 <style lang="scss">
 	.ant-drawer-content-wrapper {
-		width: 390px!important;
+		width: 420px!important;
 		.ant-form-item-control-wrapper {
 			width: 80%;
 		}

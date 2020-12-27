@@ -7,7 +7,7 @@ function pathResolve(dir) {
 module.exports = {
   proxy: {
     '/api': {
-      target: 'http://122.51.47.42:8080/',
+      target: 'http://122.51.47.42:8081/',
       changeOrigin: true,
       secure: false,
       rewrite: path => path.replace(/^\/api/, '')

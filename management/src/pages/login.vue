@@ -45,7 +45,7 @@ export default {
 				params.data
 			).then(response => {
 				localStorage.setItem('token', response.data);
-      	this.$router.push('/user')
+      	this.$router.push('/')
 			}).catch((err)=>{
 				console.log(err)
 			})

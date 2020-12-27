@@ -4,7 +4,7 @@
 			<a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
 				<div class="logo">
           <span v-if="!collapsed">
-            一品良味
+            一品粮味
           </span>
 					<span v-else>
             <PieChartOutlined />
@@ -67,7 +67,8 @@ import {
 	MenuFoldOutlined
 } from "@ant-design/icons-vue";
 import { message } from 'ant-design-vue';
-import { ref, provide, reactive } from 'vue'
+import { ref, provide, reactive, watch} from 'vue';
+import { useRouter } from "vue-router";
 export default {
 	components: {
 		UserOutlined,
@@ -77,23 +78,29 @@ export default {
 		MenuFoldOutlined
 	},
   setup(props, context) {
-		let selectedKeys = reactive(["/user"])
+		//实例化路由
+    const router = useRouter();
+		let selectedKeys = reactive([router.currentRoute._value.href])
     let collapsed = ref(false)
     let logoutShow = ref(false)
+		function menuClick({ item, key, keyPath }) {
+			console.log(item,'-----',key,'-----',keyPath)
+      // 获取到当前的key,并且跳转
+			selectedKeys[0] = key;
+      router.push({
+        path: key
+      })
+    }
+			
     return {
 			selectedKeys,
       collapsed,
-      logoutShow
+      logoutShow,
+			menuClick
     }
 	},
   methods: {
-    menuClick({ key }) {
-			console.log(key)
-      // 获取到当前的key,并且跳转
-      this.$router.push({
-        path: key
-      })
-    },
+    
   },
 };
 </script>
