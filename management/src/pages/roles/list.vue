@@ -46,6 +46,7 @@
 									tree-checkable
 									@change="selectChange"
 								>
+								</a-tree-select>
 							</a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
 								<a-button type="primary" @click.native="onSubmit">
