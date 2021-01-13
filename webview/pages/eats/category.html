@@ -12,11 +12,129 @@
      
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
     <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
-    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_8yupq2jrjeq.css">
+    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_w7vbld6no4h.css">
     <link rel="stylesheet" href="/webview/commonPage/header.css">
     <link rel="stylesheet" href="/webview/commonPage/footer.css">
+    <link rel="stylesheet" href="/webview/plugin/8-jiandanshiyong/src/jquery.page.css">
     <style>
-      
+      @media only screen and (min-width:750px) {
+        body {
+          background: white;
+          color: #FF9D02;
+          height: 1000%;
+        }
+        .search {
+          margin-top: 66px;
+          margin-bottom: 40px;
+        }
+        .search input {
+          width: 655px;
+          height: 60px;
+          border: 4px solid #FF9D02;
+          outline: none;
+        }
+        .search input:focus{
+          border: 4px solid #FF9D02;
+        }
+        .search button {
+          font-size: 20px;
+          font-family: Source Han Sans SC;
+          font-weight: 500;
+          color: #FFFFFF;
+          width: 200px;
+          height: 60px;
+          background: #FF9D02;
+          border: none;
+          vertical-align: top;
+          outline: none;
+          cursor: pointer;
+        }
+        .header-image {
+          width: 100%;
+          height: 400px;
+        }
+        .header-image img{
+          width: 100%;
+          height: 400px;
+        }
+        .first, .last {
+          width: 45px;
+        }
+
+        .content {
+          padding: 0 144px;
+          margin-top: 60px;
+        }
+
+        .content .left-category{
+          margin-right: 9px;
+          cursor: pointer;
+        }
+
+        .content .right-detail {
+          
+        }
+
+        .content .right-detail .image-item {
+          width: 254px;
+          height: 254px;
+        }
+
+        .content .right-detail .image-item img{
+          width: 254px;
+          height: 254px;
+        }
+
+        .content .right-detail .item {
+          width: 320px;
+          height: 410px;
+          background: rgba(104, 105, 104, 0);
+          border: 1px solid #BBBBBB;
+          padding: 29px 33px;
+          margin: 0 5px 22px 5px;
+        }
+
+        /*手风琴*/
+        .left-category ul {
+          list-style-type: none;
+        }
+
+        .left-category .parentWrap {
+          width: 274px;
+          text-align: center;
+        }
+
+        .left-category .menuGroup {
+            border: 1px solid #999;
+            background-color: #FF9D02;
+            color: #FFFFFF;
+        }
+
+        .left-category .groupTitle {
+            display: block;
+            width: 274px;
+            height: 84px;
+            line-height: 84px;
+            font-size: 18px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        .left-category .menuGroup>div {
+            background-color: #fff;
+            display: none;
+        }
+        .left-category .menuGroup>div>ul>li {
+          background-color: #686968;
+          line-height: 66px;
+          color: white;
+          height: 66px;
+        }
+        /*手风琴*/
+      }
+      @media only screen and (max-width:750px) {
+
+      }
     </style>
   </head>
   <body>
@@ -25,7 +143,234 @@
     </div>
 
     <div class="category pages">
-      
+      <div class="search flex flex-row flex-center">
+        <div>
+          <input type="text"><button>搜  索</button>
+        </div>
+      </div>
+      <div class="header-image">
+        <img src="/webview/images/eats/header.png" alt="">
+      </div>
+      <div class="content flex">
+        <div class="left-category">
+          <ul class="parentWrap">
+            <li class="menuGroup">
+                <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe613;</span>&nbsp;&nbsp;新品NEW</span>
+                <!-- <div>
+                  <ul>
+                    <li>标题1-1</li>
+                    <li>标题1-2</li>
+                    <li>标题1-3</li>
+                    <li>标题1-4</li>
+                    <li>标题1-5</li>
+                  </ul>
+                </div> -->
+            </li>
+            <li class="menuGroup">
+                <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe6ad;</span>&nbsp;&nbsp;类别分类</span>
+                <div>
+                  <ul>
+                    <li>食材干货</li>
+                    <li>坚果零食</li>
+                    <li>调味香料</li>
+                    <li>调味香料</li>
+                  </ul>
+                </div>
+            </li>
+            <li class="menuGroup">
+              <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe6ad;</span>&nbsp;&nbsp;地域分类</span>
+                <div>
+                  <ul>
+                    <li>上海 崇明</li>
+                    <li>山东 济宁</li>
+                    <li>山东 临沂</li>
+                  </ul>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <div class="right-detail">
+          <div class="flex flex-row flex-wrap">
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_1.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_2.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_3.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_4.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_1.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_2.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_3.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_4.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_1.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_2.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_3.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_4.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_1.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_2.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_3.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+            <div class="item flex flex-column flex-between" style="align-items: center;">
+              <div class="image-item">
+                <img src="/webview/images/eats/category_4.png" alt="">
+              </div>
+              <div style="padding: 0 32px;color: #333333;text-align: center;">
+                一品粮味开心果新米 2021新小米五谷杂粮
+              </div>
+              <div>
+                ¥19.9
+              </div>
+            </div>
+          </div>
+          <div id="page"></div>
+        </div>
+      </div>
     </div>
     <div class="footer">
 
@@ -33,7 +378,7 @@
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <script type="text/javascript" src="/webview/plugin/8-jiandanshiyong/src/jquery.page.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
      
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
@@ -43,6 +388,22 @@
         //jquery load方法加载公共头部
         $(".header").load("../../commonPage/header.html");
         $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
+
+        $("#page").Page({
+          totalPages: 9,//分页总数
+          liNums: 3,//分页的数字按钮数(建议取奇数)
+          activeClass: 'activP', //active 类样式定义
+          callBack : function(page){
+            console.log(page)
+          }
+        });
+
+        $('.groupTitle').click(function () {
+          // slideToggle:实现展开和合并的切换,如果是展开的,就合并,如果是合并的就展开
+          $(this).next().slideToggle();
+          //让除了当前div元素外的其他div元素收回去
+          $(this).parent().siblings().find('div').slideUp();   //查找自己父亲元素的兄弟元素下面的所有div后代元素
+        })
       });
 
     });
