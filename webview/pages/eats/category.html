@@ -93,7 +93,10 @@
           height: 254px;
         }
         .content .right-detail #page-item .text{
-          padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;
+          padding: 0 32px;color: #333333;
+          text-align: center;
+          margin-top: 24px;
+          margin-bottom: 17px;
         }
 
         .content .right-detail .item {
@@ -181,7 +184,6 @@
         body {
           background: white;
           color: #FF9D02;
-          height: 200%;
         }
         .rules-tips {
           position: relative;
@@ -217,6 +219,11 @@
           background: #F2F2F2;
           background-color: #FF8500;
           padding: 32px;
+        }
+        .page-min-content {
+          height: 100%;
+          overflow-y: scroll;
+          margin-bottom: 170px;
         }
         .page-min-content #page-min .image-item {
           width: 140px;
@@ -500,6 +507,11 @@
             "margin": "0"
           })
           $('.page-min-content #page-min .item .price').hide()
+        })
+
+        $('#pageList>.item').click(function(e) {
+          console.log(e)
+          location.href ='./category_detail.html';
         })
       });
 
