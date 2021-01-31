@@ -1,5 +1,4 @@
 import server from '/@/http/api'
-
 function http(params: any) {
   return new Promise((resolve, reject) => {
     let body = {}
@@ -10,11 +9,18 @@ function http(params: any) {
       }
       params.url = path
     }
+    console.log(params.data)
     if (params.method === 'get') {
       body = {
         method: params.method,
         url: params.url,
         params: params.data,
+      }
+    } else if (params.type === 'upload') {
+      body = {
+        method: params.method,
+        url: params.url,
+        data: params.data,
       }
     } else {
       body = {
@@ -23,7 +29,8 @@ function http(params: any) {
         data: params.data,
       }
     }
-    server.service(body).then(res => {
+    server.service({...body}).then(res => {
+      console.log(res)
         resolve(res.data);
       })
       .catch(err =>{

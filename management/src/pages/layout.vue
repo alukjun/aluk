@@ -23,6 +23,10 @@
 						<DesktopOutlined />
 						<span>菜单管理</span>
 					</a-menu-item>
+					<a-menu-item key="/category">
+						<DesktopOutlined />
+						<span>分类管理</span>
+					</a-menu-item>
 				</a-menu>
 			</a-layout-sider>
 			<a-layout>
@@ -106,40 +110,40 @@ export default {
 </script>
 <style lang="scss">
 .layout {
-  height: 100%;
+	height: 100%;
 }
 
 .ant-layout {
-  height: 100%;
+	height: 100%;
 }
 
 .logout {
-  position: relative;
-  .logout_model {
-    display: inline-block;
-    text-align: center;
-    position: absolute;
-    top: 44px;
-    right: -14px;
-    width: 70px;
-    padding: 5px;
-    border: 1px solid black;
-    background-color: white;
-    line-height: 32px;
-  }
+	position: relative;
+	.logout_model {
+		display: inline-block;
+		position: absolute;
+		right: -14px;
+		top: 44px;
+		padding: 5px;
+		border: 1px solid black;
+		width: 70px;
+		background-color: white;
+		line-height: 32px;
+		text-align: center;
+	}
 }
 
-.ant-layout-header{
-  padding: 0 16px!important;
-  display: flex;
-  justify-content: space-between;
+.ant-layout-header {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 16px!important;
 }
 
 #components-layout-demo-custom-trigger .trigger {
-	font-size: 18px;
-	line-height: 64px;
 	cursor: pointer;
-	transition: color 0.3s;
+	line-height: 64px;
+	font-size: 18px;
+	transition: color .3s;
 }
 
 #components-layout-demo-custom-trigger .trigger:hover {
@@ -147,13 +151,13 @@ export default {
 }
 
 #components-layout-demo-custom-trigger .logo {
+	margin: 16px;
 	height: 32px;
-	background: rgba(255, 255, 255, 0.2);
-  margin: 16px;
-  text-align: center;
-  line-height: 32px;
-  color: rgb(24, 144, 255);
-  font-size: 18px;
-  font-family:"Times New Roman",Georgia,Serif;
+	background: rgba(255, 255, 255, .2);
+	line-height: 32px;
+	text-align: center;
+	font-family: "Times New Roman",Georgia,Serif;
+	font-size: 18px;
+	color: rgb(24, 144, 255);
 }
 </style>

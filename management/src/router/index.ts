@@ -18,7 +18,11 @@ const routes = [
       path: "/menu",
       name: "Menu",
       component: () => import("../pages/menus/list.vue"),
-    }]
+    },{
+      path: "/category",
+      name: "Category",
+      component: () => import("../pages/categorys/list.vue"),
+    },]
   },
   {
     path: "/login",
@@ -34,7 +38,6 @@ const router = createRouter({
 localStorage.setItem('token', '123');
 router.beforeEach((to, from, next) => {
   const isLogin = localStorage.getItem('token') ? true : false;
-  console.log(to, from, next)
   if (to.path === '/login') {
     next();
   } else {

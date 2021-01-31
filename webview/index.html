@@ -11,191 +11,197 @@
     <!-- <link rel="stylesheet" href="./styles/base.css"> -->
     <link rel="icon" href="/webview/images/index/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/webview/images/index/favicon.ico" type="image/x-icon">
-    <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
+    <!-- <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet"> -->
     <!-- Bootstrap -->
     <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css"> -->
     <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_w7vbld6no4h.css">
     <link rel="stylesheet" href="/webview/commonPage/header.css">
     <link rel="stylesheet" href="/webview/commonPage/footer.css">
     <style>
         @media only screen and (min-width:750px) {
-          .section {
-            height: 100%;
-          }
-          .section-eats .eats-images {
-            display: flex;
-          }
-          .section-eats .eats-text {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 82px;
-          }
-          .section-eats .swiper-slide img{
-            width: 100%;
-            height: 100%;
-            /* height: 530px; */
-          }
-          .section-other-item {
-            height: 100%;
-          }
-          .section-other-item .wrap{
-            display: flex;
-            width: 100%;
-            height: 559px;
-            padding: 0 10%;
-            justify-content: space-between;
-            flex-direction: row;
-            flex-wrap: wrap;
-          }
-          .section-other-item .wrap .item{
-            display: flex;
-            flex-direction: column;
-            padding: 32px 10px 0 20px;
-            background-color: #F7F7F7;
-            color: #808080;
-            position: relative;
-            font-size: 30px;
-            width: 24.5%;
-            height: 559px;
-          }
-          .section-other-item .wrap .item-logo{
-            position: absolute;
-            left: 20px;
-            bottom: 32px;
-          }
-          .webview-img {
-            width: auto;
-            height: 100%;
-            background: url(/webview/images/index/websit.png) no-repeat center center;
-            background-size: cover;
-            background-attachment:fixed;
-          }
-          .section .content {
-            height: 937px;
-          }
-          .section .content .text-item{
-            width: 544px;
-            padding: 24px 24px;
-          }
-          .section .content .image-item {
-            width: 1088px;
-          }
-          .section .content .text-item .text{
-            line-height: 32px;
-          }
-          .section .content,.section-eats {
-            padding: 0 144px;
-          }
-          .image-box {
-            width: 25%;
-            height: 530px;
-          }
-          .image-box img {
-            display: inline-block;
-            width: 100%;
-            height: 530px;
-          }
+        	.webview-img-min {
+        		display: none;
+        	}
+        	.section {
+        		/* height: 100%; */
+        		margin-bottom: 120px;
+        	}
+        	.section-eats .eats-images {
+        		display: flex;
+        	}
+        	.section-eats .eats-text {
+        		display: flex;
+        		flex-direction: column;
+        		margin-bottom: 82px;
+        		text-align: center;
+        		font-size: 28px;
+        	}
+        	.section-eats .swiper-slide img {
+        		width: 100%;
+        		height: 100%;
+        		/* height: 530px; */
+        	}
+        	/* .section-other-item {
+                                                                                                        		height: 100%;
+                                                                                                        	} */
+        	.section-other-item .wrap {
+        		display: flex;
+        		flex-direction: row;
+        		flex-wrap: wrap;
+        		justify-content: space-between;
+        		padding: 0 10%;
+        		width: 100%;
+        		/* height: 559px; */
+        	}
+        	.section-other-item .wrap .item {
+        		display: flex;
+        		position: relative;
+        		flex-direction: column;
+        		padding: 32px 10px 0 20px;
+        		width: 24.5%;
+        		height: 559px;
+        		background-color: #f7f7f7;
+        		font-size: 30px;
+        		color: #808080;
+        	}
+        	.section-other-item .wrap .item-logo {
+        		position: absolute;
+        		left: 20px;
+        		bottom: 32px;
+        	}
+        	.webview-img {
+        		/* margin-top: 75px; */
+        		width: auto;
+        		height: 100%;
+        	}
+        	.section .content {
+        		height: 937px;
+        	}
+        	.section .content .text-item {
+        		padding: 24px 24px;
+        		width: 544px;
+        	}
+        	.section .content .image-item {
+        		width: 1088px;
+        	}
+        	.section .content .text-item .text {
+        		line-height: 32px;
+        	}
+        	.section .content,
+        	.section-eats {
+        		padding: 0 144px;
+        	}
+        	.image-box {
+        		width: 25%;
+        		height: 530px;
+        	}
+        	.image-box img {
+        		display: inline-block;
+        		width: 100%;
+        		height: 530px;
+        	}
         }
-        @media only screen and (max-width:750px) { 
-          .fp-tableCell {
-            vertical-align: inherit;
-          }
-          .section {
-            height: 100%;
-          }
-          .section-eats .eats-images {
-            display: flex;
-          }
-          
-          .section-eats .eats-text {
-            display: flex;
-            flex-direction: column;
-            text-align: center;
-            font-size: 16px;
-            margin-bottom: 10px;
-            margin-top: 16px;
-          }
-          .section-eats .swiper-slide img{
-            width: 100%;
-            height: 100%;
-            /* height: 530px; */
-          }
-          .section-other-item {
-            height: 100%;
-          }
-          .section-other-item .wrap{
-            display: flex;
-            width: 100%;
-            height: 420px;
-            padding: 16px 10%;
-            justify-content: space-between;
-            flex-direction: row;
-            flex-wrap: wrap;
-          }
-          .section-other-item .wrap .item{
-            display: flex;
-            flex-direction: column;
-            padding: 32px 10px 0 20px;
-            background-color: #F7F7F7;
-            color: #808080;
-            position: relative;
-          }
-          .section-other-item .wrap .item-logo{
-            position: absolute;
-            left: 16px;
-            bottom: -10px;
-          }
-          .webview-img {
-            width: auto;
-            height: 100%;
-            background: url(/webview/images/index/header.png) no-repeat center center;
-            background-size: cover;
-            background-attachment:fixed;
-          }
-          .section .content {
-            height: 667px;
-            font-size: 12px;
-          }
-          .section .content .text-item{
-            width: 223px;
-            padding: 16px 16px;
-          }
-          .section .content .image-item {
-            width: 447px;
-          }
-          .section .content .text-item .text{
-            line-height: 18px;
-          }
-          .section .content,.section-eats {
-            padding: 0 40px;
-            height: 667px;
-          }
-          .image-box {
-            width: 50%;
-            height: 240px;
-          }
-          .image-box img {
-            display: inline-block;
-            width: 100%;
-            height: 240px;
-          }
-          .wrap .item {
-            width: 49%;
-            height: 190px;
-            padding: 16px!important;
-          }
-          .wrap .item div{
-            margin-bottom: 10px!important;
-            font-size: 16px!important;
-          }
-          .hide-min {
-            display: none;
-          }
+        @media only screen and (max-width:750px) {
+        	.webview-img {
+        		display: none;
+        	}
+        	.fp-tableCell {
+        		vertical-align: inherit;
+        	}
+        	.section {
+        		margin-bottom: 32px;
+        		/* height: 100%; */
+        	}
+        	.section-eats .eats-images {
+        		display: flex;
+        	}
+
+        	.section-eats .eats-text {
+        		display: flex;
+        		flex-direction: column;
+        		margin-top: 16px;
+        		margin-bottom: 10px;
+        		text-align: center;
+        		font-size: 16px;
+        	}
+        	.section-eats .swiper-slide img {
+        		width: 100%;
+        		height: 100%;
+        		/* height: 530px; */
+        	}
+        	/* .section-other-item {
+                                                                                		height: 100%;
+                                                                                	} */
+        	.section-other-item .wrap {
+        		display: flex;
+        		flex-direction: row;
+        		flex-wrap: wrap;
+        		justify-content: space-between;
+        		padding: 16px 10%;
+        		width: 100%;
+        		/* height: 420px; */
+        	}
+        	.section-other-item .wrap .item {
+        		display: flex;
+        		position: relative;
+        		flex-direction: column;
+        		margin-bottom: 16px;
+        		padding: 32px 10px 0 20px;
+        		background-color: #f7f7f7;
+        		color: #808080;
+        	}
+        	.section-other-item .wrap .item-logo {
+        		position: absolute;
+        		left: 16px;
+        		bottom: -10px;
+        	}
+        	.webview-img-min {
+        		width: auto;
+        		height: 100%;
+        	}
+        	.section .content {
+        		height: 667px;
+        		font-size: 12px;
+        	}
+        	.section .content .text-item {
+        		padding: 16px 16px;
+        		width: 223px;
+        	}
+        	.section .content .image-item {
+        		width: 447px;
+        	}
+        	.section .content .text-item .text {
+        		line-height: 18px;
+        	}
+        	.section .content,
+        	.section-eats {
+        		padding: 0 40px;
+        		/* height: 667px; */
+        	}
+        	.image-box {
+        		width: 50%;
+        		height: 240px;
+        	}
+        	.image-box img {
+        		display: inline-block;
+        		width: 100%;
+        		height: 240px;
+        	}
+        	.wrap .item {
+        		padding: 16px!important;
+        		width: 49%;
+        		height: 210px;
+        	}
+        	.wrap .item div {
+        		margin-bottom: 10px!important;
+        		font-size: 16px!important;
+        	}
+        	.hide-min {
+        		display: none;
+        	}
         }
-        
+
     </style>
 </head>
 <body>
@@ -203,9 +209,13 @@
 
     </div>
     <div class="container" style="margin-top: 75px;width: 100%;">
-      <div id="fullpage">
+      <!-- <div id="fullpage"> -->
         <div class="section">
           <div class="webview-img">
+            <img src="/webview/images/index/websit.png" alt="">
+          </div>
+          <div class="webview-img-min">
+            <img src="/webview/images/index/header_min.png" alt="">
           </div>
         </div>
         <div class="section">
@@ -364,16 +374,17 @@
               </div>
             </div>
           </div>
-          <div class="footer" style="bottom: 70px;"></div>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
+
+    <div class="footer"></div>
 
     <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.js"></script> -->
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script> -->
     <script>
       $(document).ready(function(){
         //jquery load方法加载公共头部
@@ -381,12 +392,12 @@
         $(".footer").load("./commonPage/footer.html",function(){//加载完成后设置高亮
 
         });
-        $('#fullpage').fullpage({
-          // navigation: true,//导航
-          autoScrolling:true,
-          scrollHorizontally: true,
-          // sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
-        });  
+        // $('#fullpage').fullpage({
+        //   // navigation: true,//导航
+        //   autoScrolling:true,
+        //   scrollHorizontally: true,
+        //   // sectionsColor: ['#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],
+        // });  
       });
     </script>
 </body>

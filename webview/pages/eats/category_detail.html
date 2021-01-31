@@ -25,175 +25,178 @@
     <script src="/webview/plugin/template/template.js"></script> 
     <style>
       @media only screen and (min-width:750px) {
-        .category-min {
-            display: none;
-        }
-        body {
-          background: white;
-          color: #FF9D02;
-          height: 300%;
-        }
-        .search {
-          margin-top: 66px;
-          margin-bottom: 40px;
-        }
-        .search input {
-          width: 655px;
-          height: 60px;
-          border: 4px solid #FF9D02;
-          outline: none;
-        }
-        .search input:focus{
-          border: 4px solid #FF9D02;
-        }
-        .search button {
-          font-size: 20px;
-          font-family: Source Han Sans SC;
-          font-weight: 500;
-          color: #FFFFFF;
-          width: 200px;
-          height: 60px;
-          background: #FF9D02;
-          border: none;
-          vertical-align: top;
-          outline: none;
-          cursor: pointer;
-        }
-        .header-image {
-          width: 100%;
-          height: 400px;
-        }
-        .header-image img{
-          width: 100%;
-          height: 400px;
-        }
+      	.category-min {
+      		display: none;
+      	}
+      	body {
+      		height: 300%;
+      		background: white;
+      		color: #ff9d02;
+      	}
+      	.search {
+      		margin-top: 66px;
+      		margin-bottom: 40px;
+      	}
+      	.search input {
+      		border: 4px solid #ff9d02;
+      		width: 655px;
+      		height: 60px;
+      		outline: none;
+      	}
+      	.search input:focus {
+      		border: 4px solid #ff9d02;
+      	}
+      	.search button {
+      		border: none;
+      		width: 200px;
+      		height: 60px;
+      		outline: none;
+      		background: #ff9d02;
+      		cursor: pointer;
+      		vertical-align: top;
+      		font-family: Source Han Sans SC;
+      		font-weight: 500;
+      		font-size: 20px;
+      		color: #fff;
+      	}
+      	.header-image {
+      		width: 100%;
+      		height: 400px;
+      	}
+      	.header-image img {
+      		width: 100%;
+      		height: 400px;
+      	}
 
-        .detail {
-            padding: 0 146px;
-            margin-top: 148px;
-            color: #999999;
-            font-size: 20px;
-        }
-        .detail .content .left {
-            width: 710px;
-            margin-right: 100px;
-        }
+      	.detail {
+      		margin-top: 148px;
+      		padding: 0 146px;
+      		font-size: 20px;
+      		color: #999;
+      	}
+      	.detail .content .left {
+      		margin-right: 100px;
+      		width: 710px;
+      	}
 
-        .detail .content .left img{
-            width: 100%;
-            height: 710px;
-            margin-bottom: 40px;
-        }
+      	.detail .content .left img {
+      		margin-bottom: 40px;
+      		width: 100%;
+      		height: 710px;
+      	}
 
-        .detail .content .left .min-image {
-            padding: 0 56px;
-        }
+      	.detail .content .left .min-image {
+      		padding: 0 56px;
+      	}
 
-        .detail .content .left .min-image>div{
-            width: 100px;
-            height: 100px;
-        }
+      	.detail .content .left .min-image > div {
+      		width: 100px;
+      		height: 100px;
+      	}
 
-        .detail .content .left img {
-            width: 100%;
-            height: 100%;
-        }
+      	.detail .content .left img {
+      		width: 100%;
+      		height: 100%;
+      	}
 
-        .detail-info {
-            margin-top: 187px;
-            padding: 0 146px;
-            margin-bottom: 100px;
-        }
+      	.detail-info {
+      		margin-top: 187px;
+      		margin-bottom: 100px;
+      		padding: 0 146px;
+      	}
 
-        .detail-info .left{
-            margin-top: 60px;
-            margin-right: 35px;
-        }
+      	.detail-info .left {
+      		margin-right: 35px;
+      		margin-top: 60px;
+      	}
 
-        .detail-info .image-item {
-          width: 254px;
-          height: 254px;
-        }
+      	.detail-info .image-item {
+      		width: 254px;
+      		height: 254px;
+      	}
 
-        .detail-info .image-item img{
-          width: 254px;
-          height: 254px;
-        }
-        .detail-info #page-item .text{
-          padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;
-        }
+      	.detail-info .image-item img {
+      		width: 254px;
+      		height: 254px;
+      	}
+      	.detail-info #page-item .text {
+      		margin-top: 24px;
+      		margin-bottom: 17px;
+      		padding: 0 32px;
+      		text-align: center;
+      		color: #333;
+      	}
 
-        .detail-info .item {
-          width: 320px;
-          height: 410px;
-          background: rgba(104, 105, 104, 0);
-          border: 1px solid #BBBBBB;
-          padding: 29px 33px;
-          margin-bottom: 21px;
-        }
+      	.detail-info .item {
+      		margin-bottom: 21px;
+      		padding: 29px 33px;
+      		border: 1px solid #bbb;
+      		width: 320px;
+      		height: 410px;
+      		background: rgba(104, 105, 104, 0);
+      	}
       }
       @media only screen and (max-width:750px) {
-        body {
-          background: white;
-          color: #FF9D02;
-          height: 500%;
-        }
-        .category-web {
-          display: none;
-        }
+      	body {
+      		background: white;
+      		color: #ff9d02;
+      		/* height: 500%; */
+      	}
+      	.category-web {
+      		display: none;
+      	}
 
-        .category-min {
-          width: 100%;
-          height: 100%;
-          overflow-y: scroll;
-          margin-top: 75px;
-          margin-bottom: 180px;
-        }
-        .category-min .min-img {
-          width: 375px;
-          height: 375px;
-        }
-        .category-min .min-img img {
-          width: 100%;
-          height: 100%;
-        }
-        .detail-main-min {
-          width: 375px;
-          height: 400px;
-        }
-        .detail-main-min img {
-          width: 100%;
-          height: 100%;
-        }
-        .page {
-          margin-top: 27px;
-        }
-        .page .image-item {
-          width: 140px;
-          height: 140px;
-        }
+      	.category-min {
+      		margin-top: 75px;
+      		width: 100%;
+      	}
+      	.category-min .min-img {
+      		/* width: 375px; */
+      		height: 375px;
+      	}
+      	.category-min .min-img img {
+      		width: 100%;
+      		height: 100%;
+      	}
+      	.detail-main-min {
+      		/* width: 375px; */
+      		height: 400px;
+      	}
+      	.detail-main-min img {
+      		width: 100%;
+      		height: 100%;
+      	}
+      	.page {
+      		margin-top: 27px;
+      	}
+      	.page .image-item {
+      		margin: auto;
+      		width: 140px;
+      		height: 140px;
+      	}
 
-        .page .image-item img{
-          width: 100%;
-          height: 100%;
-        }
+      	.page .image-item img {
+      		width: 100%;
+      		height: 100%;
+      	}
 
-        .page .item {
-          width: 176px;
-          height: 225px;
-          background: rgba(104, 105, 104, 0);
-          border: 1px solid #BBBBBB;
-          padding: 10px 17px;
-          margin: 0 5px 4px 5px;
-        }
-        .page .item .text{
-          padding: 0 32px;color: #333333;
-          text-align: center;
-          font-size: 12px;
-          margin-top: 7px;
-          margin-bottom: 10px;
-        }
-
+      	.page .item {
+      		margin: 0 5px 4px 5px;
+      		padding: 10px 0;
+      		border: 1px solid #bbb;
+      		width: 47%;
+      		height: 225px;
+      		background: rgba(104, 105, 104, 0);
+      	}
+      	.page .item .text {
+      		margin-top: 7px;
+      		margin-bottom: 6px;
+      		padding: 0 auto;
+      		padding: 0 17px;
+      		text-align: center;
+      		font-size: 12px;
+      		color: #333;
+      	}
       }
     </style>
   </head>
@@ -440,12 +443,12 @@
       <div class="detail-text flex flex-row flex-between flex-align-center" style="height: 40px;color: #333333;padding: 0 116px;background-color: #F2F2F2;">
         <div style="border-top: 2px solid #333333;width: 42px;"></div>  <div>推荐</div>  <div style="border-top: 2px solid #333333;width: 42px;"></div>
       </div>
-      <div class="page flex flex-row flex-wrap pageItem">
+      <div class="page flex flex-row flex-wrap flex-between pageItem">
         <div class="item" style="align-items: center;">
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">
@@ -456,7 +459,7 @@
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">
@@ -467,7 +470,7 @@
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">
@@ -478,7 +481,7 @@
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">
@@ -489,7 +492,7 @@
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">
@@ -500,7 +503,7 @@
           <div class="image-item">
             <img src="/webview/images/eats/category_1.png" alt="">
           </div>
-          <div class="text" style="padding: 0;color: #333333;text-align: center;">
+          <div class="text" style="color: #333333;text-align: center;">
             一品粮味黄小米新米2021新小米五谷杂粮
           </div>
           <div style="text-align: center;">

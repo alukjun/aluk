@@ -25,275 +25,281 @@
     <script src="/webview/plugin/template/template.js"></script> 
     <style>
       @media only screen and (min-width:750px) {
-        body {
-          background: white;
-          color: #FF9D02;
-          height: 300%;
-        }
-        .search {
-          margin-top: 66px;
-          margin-bottom: 40px;
-        }
-        .search input {
-          width: 655px;
-          height: 60px;
-          border: 4px solid #FF9D02;
-          outline: none;
-        }
-        .search input:focus{
-          border: 4px solid #FF9D02;
-        }
-        .search button {
-          font-size: 20px;
-          font-family: Source Han Sans SC;
-          font-weight: 500;
-          color: #FFFFFF;
-          width: 200px;
-          height: 60px;
-          background: #FF9D02;
-          border: none;
-          vertical-align: top;
-          outline: none;
-          cursor: pointer;
-        }
-        .header-image {
-          width: 100%;
-          height: 400px;
-        }
-        .header-image img{
-          width: 100%;
-          height: 400px;
-        }
-        .first, .last {
-          width: 45px;
-        }
+      	body {
+      		/* height: 300%; */
+      		background: white;
+      		color: #ff9d02;
+      	}
+      	.search {
+      		margin-top: 66px;
+      		margin-bottom: 40px;
+      	}
+      	.search input {
+      		border: 4px solid #ff9d02;
+      		width: 655px;
+      		height: 60px;
+      		outline: none;
+      	}
+      	.search input:focus {
+      		border: 4px solid #ff9d02;
+      	}
+      	.search button {
+      		border: none;
+      		width: 200px;
+      		height: 60px;
+      		outline: none;
+      		background: #ff9d02;
+      		cursor: pointer;
+      		vertical-align: top;
+      		font-family: Source Han Sans SC;
+      		font-weight: 500;
+      		font-size: 20px;
+      		color: #fff;
+      	}
+      	.header-image {
+      		width: 100%;
+      		height: 400px;
+      	}
+      	.header-image img {
+      		width: 100%;
+      		height: 400px;
+      	}
+      	.first,
+      	.last {
+      		width: 45px;
+      	}
 
-        .content {
-          padding: 0 144px;
-          margin-top: 60px;
-        }
+      	.content {
+      		margin-top: 60px;
+      		margin-bottom: 75px;
+      		padding: 0 144px;
+      		min-height: 800px;
+      	}
 
-        .content .left-category{
-          margin-right: 9px;
-          cursor: pointer;
-        }
+      	.content .left-category {
+      		margin-right: 9px;
+      		cursor: pointer;
+      	}
 
-        .content .right-detail {
-          width: 100%;
-          height: 100%;
-        }
+      	.content .right-detail {
+      		width: 100%;
+      		height: 100%;
+      	}
 
-        .content .right-detail .image-item {
-          width: 254px;
-          height: 254px;
-        }
+      	.content .right-detail .image-item {
+      		width: 254px;
+      		height: 254px;
+      	}
 
-        .content .right-detail .image-item img{
-          width: 254px;
-          height: 254px;
-        }
-        .content .right-detail #page-item .text{
-          padding: 0 32px;color: #333333;
-          text-align: center;
-          margin-top: 24px;
-          margin-bottom: 17px;
-        }
+      	.content .right-detail .image-item img {
+      		width: 254px;
+      		height: 254px;
+      	}
+      	.content .right-detail #page-item .text {
+      		margin-top: 24px;
+      		margin-bottom: 17px;
+      		padding: 0 32px;
+      		text-align: center;
+      		color: #333;
+      	}
 
-        .content .right-detail .item {
-          width: 320px;
-          height: 410px;
-          background: rgba(104, 105, 104, 0);
-          border: 1px solid #BBBBBB;
-          padding: 29px 33px;
-          margin: 0 5px 22px 5px;
-        }
+      	.content .right-detail .item {
+      		margin: 0 5px 22px 5px;
+      		padding: 29px 33px;
+      		border: 1px solid #bbb;
+      		width: 320px;
+      		height: 410px;
+      		background: rgba(104, 105, 104, 0);
+      	}
 
-        /*手风琴*/
-        .left-category ul {
-          list-style-type: none;
-        }
+      	/*手风琴*/
+      	.left-category ul {
+      		list-style-type: none;
+      	}
 
-        .left-category .parentWrap {
-          width: 274px;
-          text-align: center;
-        }
+      	.left-category .parentWrap {
+      		width: 274px;
+      		text-align: center;
+      	}
 
-        .left-category .menuGroup {
-            border: 1px solid #999;
-            background-color: #FF9D02;
-            color: #FFFFFF;
-        }
+      	.left-category .menuGroup {
+      		border: 1px solid #999;
+      		background-color: #ff9d02;
+      		color: #fff;
+      	}
 
-        .left-category .groupTitle {
-            display: block;
-            width: 274px;
-            height: 84px;
-            line-height: 84px;
-            font-size: 18px;
-            border-bottom: 1px solid #ccc;
-            cursor: pointer;
-        }
+      	.left-category .groupTitle {
+      		display: block;
+      		border-bottom: 1px solid #ccc;
+      		width: 274px;
+      		height: 84px;
+      		cursor: pointer;
+      		line-height: 84px;
+      		font-size: 18px;
+      	}
 
-        .left-category .menuGroup>div {
-            background-color: #fff;
-            display: none;
-        }
-        .left-category .menuGroup>div>ul>li {
-          background-color: #686968;
-          line-height: 66px;
-          color: white;
-          height: 66px;
-        }
-        /*手风琴*/
-        /* .pageItem>div{
-          display: none;
-        } */
-        .rules-tips,.page-min-content{
-          display: none;
-        }
+      	.left-category .menuGroup > div {
+      		display: none;
+      		background-color: #fff;
+      	}
+      	.left-category .menuGroup > div > ul > li {
+      		height: 66px;
+      		background-color: #686968;
+      		line-height: 66px;
+      		color: white;
+      	}
+      	/*手风琴*/
+      	.rules-tips,
+      	.page-min-content {
+      		display: none;
+      	}
       }
       @media only screen and (max-width:750px) {
-        .search {
-          padding: 12px 8px;
-        }
-        .search input {
-          width: 288px;
-          height: 40px;
-          border: 4px solid #FF9D02;
-          outline: none;
-        }
-        .search input:focus{
-          border: 4px solid #FF9D02;
-        }
-        .search button {
-          font-size: 18px;
-          font-family: Source Han Sans SC;
-          font-weight: 500;
-          color: #FFFFFF;
-          width: 66px;
-          height: 40px;
-          background: #FF9D02;
-          border: none;
-          vertical-align: top;
-          outline: none;
-          cursor: pointer;
-        }
-        .header-image,#page,.left-category,.right-detail{
-          display: none;
-        }
-        body {
-          background: white;
-          color: #FF9D02;
-        }
-        .rules-tips {
-          position: relative;
-          width: 100%;
-          padding: 24px 22.5px 12px 22.5px;
-        }
-        .rules-content {
-          display: flex;
-          justify-content: space-between;
-          width: 100%;
-          min-height: 50px;
-          margin-bottom: 20px;
-        }
-        .rules-content .item {
-          width: 50px;
-          height: 50px;
-          background-color: #FF8500;
-          border-radius: 50%;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          text-align: center;
-          margin-bottom: 20px;
-        }
-        .rules-text-content {
-          display: flex;
-          justify-content: space-between;
-        }
-        .rules-text-content .item {
-          width: 20%;
-          height: 240px;
-          background: #F2F2F2;
-          background-color: #FF8500;
-          padding: 32px;
-        }
-        .page-min-content {
-          height: 100%;
-          overflow-y: scroll;
-          margin-bottom: 170px;
-        }
-        .page-min-content #page-min .image-item {
-          width: 140px;
-          height: 140px;
-        }
+      	.search {
+      		padding: 12px 8px;
+      	}
+      	.search input {
+      		border: 4px solid #ff9d02;
+      		width: 288px;
+      		height: 40px;
+      		outline: none;
+      	}
+      	.search input:focus {
+      		border: 4px solid #ff9d02;
+      	}
+      	.search button {
+      		border: none;
+      		width: 66px;
+      		height: 40px;
+      		outline: none;
+      		background: #ff9d02;
+      		cursor: pointer;
+      		vertical-align: top;
+      		font-family: Source Han Sans SC;
+      		font-weight: 500;
+      		font-size: 18px;
+      		color: #fff;
+      	}
+      	.header-image,
+      	#page,
+      	.left-category,
+      	.right-detail {
+      		display: none;
+      	}
+      	body {
+      		background: white;
+      		color: #ff9d02;
+      	}
+      	.rules-tips {
+      		position: relative;
+      		padding: 24px 22.5px 12px 22.5px;
+      		width: 100%;
+      	}
+      	.rules-content {
+      		display: flex;
+      		justify-content: space-between;
+      		margin-bottom: 20px;
+      		width: 100%;
+      		min-height: 50px;
+      	}
+      	.rules-content .item {
+      		display: flex;
+      		flex-direction: column;
+      		justify-content: center;
+      		align-items: center;
+      		margin-bottom: 20px;
+      		border-radius: 50%;
+      		width: 50px;
+      		height: 50px;
+      		background-color: #ff8500;
+      		text-align: center;
+      	}
+      	.rules-text-content {
+      		display: flex;
+      		justify-content: space-between;
+      	}
+      	.rules-text-content .item {
+      		padding: 32px;
+      		width: 20%;
+      		height: 240px;
+      		background: #f2f2f2;
+      		background-color: #ff8500;
+      	}
+      	.page-min-content {
+      		overflow-y: scroll;
+      		/* margin-bottom: 170px; */
+      		height: 100%;
+      	}
+      	.page-min-content #page-min .image-item {
+      		margin: auto;
+      		width: 140px;
+      		height: 140px;
+      	}
 
-        .page-min-content #page-min .image-item img{
-          width: 100%;
-          height: 100%;
-        }
+      	.page-min-content #page-min .image-item img {
+      		width: 100%;
+      		height: 100%;
+      	}
 
-        .page-min-content #page-min .item {
-          width: 176px;
-          height: 225px;
-          background: rgba(104, 105, 104, 0);
-          border: 1px solid #BBBBBB;
-          padding: 15px 18px;
-          margin: 0 5px 22px 5px;
-        }
-        .page-min-content #page-min .item .text{
-          padding: 0 8px;
-          color: #333333;
-          text-align: center;
-          margin-top: 12px;
-          margin-bottom: 4px;
-          font-size: 12px;
-        }
-        /*手风琴*/
-        .left-category span {
-          display: none;
-        }
-        .left-category>ul {
-          list-style-type: none;
-          margin-right: 17px;
-          margin-left: 8px;
-          font-size: 12px;
-        }
+      	.page-min-content #page-min .item {
+      		margin: 0 5px 22px 5px;
+      		padding: 10px 17px;
+      		border: 1px solid #bbb;
+      		width: 47%;
+      		height: 225px;
+      		background: rgba(104, 105, 104, 0);
+      	}
+      	.page-min-content #page-min .item .text {
+      		margin-top: 12px;
+      		margin-bottom: 4px;
+      		padding: 0 8px;
+      		text-align: center;
+      		font-size: 12px;
+      		color: #333;
+      	}
+      	/*手风琴*/
+      	.left-category span {
+      		display: none;
+      	}
+      	.left-category > ul {
+      		list-style-type: none;
+      		margin-left: 8px;
+      		margin-right: 17px;
+      		font-size: 12px;
+      	}
 
-        .left-category .parentWrap {
-          width: 74px;
-          text-align: center;
-        }
+      	.left-category .parentWrap {
+      		width: 74px;
+      		text-align: center;
+      	}
 
-        .left-category .menuGroup {
-            border: 1px solid #999;
-            background-color: #FF9D02;
-            color: #FFFFFF;
-        }
+      	.left-category .menuGroup {
+      		border: 1px solid #999;
+      		background-color: #ff9d02;
+      		color: #fff;
+      	}
 
-        .left-category .groupTitle {
-            display: block;
-            width: 75px;
-            height: 40px;
-            line-height: 40px;
-            font-size: 12px;
-            border-bottom: 1px solid #ccc;
-            cursor: pointer;
-        }
+      	.left-category .groupTitle {
+      		display: block;
+      		border-bottom: 1px solid #ccc;
+      		width: 75px;
+      		height: 40px;
+      		cursor: pointer;
+      		line-height: 40px;
+      		font-size: 12px;
+      	}
 
-        .left-category .menuGroup>div {
-            background-color: #fff;
-            display: none;
-        }
-        .left-category .menuGroup>div>ul>li {
-          background-color: #686968;
-          line-height: 30px;
-          color: white;
-          height: 30px;
-        }
-        /*手风琴*/
+      	.left-category .menuGroup > div {
+      		display: none;
+      		background-color: #fff;
+      	}
+      	.left-category .menuGroup > div > ul > li {
+      		height: 30px;
+      		background-color: #686968;
+      		line-height: 30px;
+      		color: white;
+      	}
+      	/*手风琴*/
       }
     </style>
   </head>
@@ -338,7 +344,7 @@
                   地域
                 </div>
             </div>
-            <div class="item category">
+            <div class="item categorys">
                 <div class="flex flex-column" style="font-size: 14px; color: white;width: 75%;">
                     <i class="icon iconfont" style="font-size: 32px;color: white;">&#xe6ad;</i>
                 </div>
@@ -351,9 +357,9 @@
       <div class="content flex">
         <div class="left-category">
           <ul class="parentWrap">
-            <li class="menuGroup">
-                <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe613;</span>&nbsp;&nbsp;新品NEW</span>
-                <!-- <div>
+            <!-- <li class="menuGroup">
+                <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe613;</span>新品NEW</span>
+                <div>
                   <ul>
                     <li>标题1-1</li>
                     <li>标题1-2</li>
@@ -361,29 +367,8 @@
                     <li>标题1-4</li>
                     <li>标题1-5</li>
                   </ul>
-                </div> -->
-            </li>
-            <li class="menuGroup">
-                <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe6ad;</span>&nbsp;&nbsp;类别分类</span>
-                <div>
-                  <ul>
-                    <li>食材干货</li>
-                    <li>坚果零食</li>
-                    <li>调味香料</li>
-                    <li>调味香料</li>
-                  </ul>
                 </div>
-            </li>
-            <li class="menuGroup">
-              <span class="groupTitle"><span class="icon iconfont" style="font-size: 20px;">&#xe6ad;</span>&nbsp;&nbsp;地域分类</span>
-                <div>
-                  <ul>
-                    <li>上海 崇明</li>
-                    <li>山东 济宁</li>
-                    <li>山东 临沂</li>
-                  </ul>
-                </div>
-            </li>
+            </li> -->
         </ul>
         </div>
         
@@ -424,6 +409,47 @@
         $(".header").load("../../commonPage/header.html");
         $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
         // $('#page-item>#page-temp>div').show()
+        $.ajax({
+          type: "GET",
+          url: "http://122.51.47.42:8081/category/admin/pageCategory.do",
+          data: {pageNum:1,pageSize:10,status:true},
+          dataType: "json",
+          success: function(data){
+            console.log(data.data)
+            let list = data.data
+            $('.left-category .parentWrap').html(template("category",list));
+            $('.menuGroup .groupTitle').click(function () {
+              console.log($(this).data("flag"))
+              if ($(this).data("flag")) {
+                $(this).next().slideToggle();
+                $(this).parent().siblings().find('div').slideUp();
+              } else {
+                $.ajax({
+                  type: "GET",
+                  url: "http://122.51.47.42:8081/product/selectProductByCategoryId",
+                  data: {pageNum:1,pageSize:10,categoryId:$(this).data("id")},
+                  dataType: "json",
+                  success: function(data){
+                    console.log(data)
+                  }
+                })
+              }
+              
+            })
+            $('.menuGroup li').click(function () {
+              console.log($(this).data("id"))
+              $.ajax({
+                type: "GET",
+                url: "http://122.51.47.42:8081/product/selectProductByCategoryId",
+                data: {pageNum:1,pageSize:10,categoryId:$(this).data("id")},
+                dataType: "json",
+                success: function(data){
+                  console.log(data)
+                }
+              })
+            })
+          }
+        })
         let data = {list: [[
             {
                 url: '/webview/images/eats/category_1.png',
@@ -482,19 +508,13 @@
             $('#page-item').html(template("page-temp",data));
           }
         });
-
-        $('.groupTitle').click(function () {
-          // slideToggle:实现展开和合并的切换,如果是展开的,就合并,如果是合并的就展开
-          $(this).next().slideToggle();
-          //让除了当前div元素外的其他div元素收回去
-          $(this).parent().siblings().find('div').slideUp();   //查找自己父亲元素的兄弟元素下面的所有div后代元素
-        })
-        $('.category').click(function() {
+        $('.categorys').click(function() {
+          console.log($(this))
           $('.rules-tips').hide()
           console.log(111)
           $('.left-category').show()
           $('.page-min-content .item').css({
-            "width":"122.5px",
+            "width":"46%",
             "height":"164px",
             "padding": "4px 17px"
           })
@@ -521,7 +541,7 @@
   </body>
 </html>
 <script id="page-temp" type="text/html">
-  {{each list item index}}
+  {{each data item index}}
   <div id="pageList" class="flex flex-row flex-wrap">
     {{each item el i}}
       <div class="item" style="align-items: center;">
@@ -538,4 +558,18 @@
     {{/each}}
   </div>
 {{/each}}
+</script>
+<script id="category" type="text/html">
+  {{each items item index}}
+  <li class="menuGroup">
+    <span class="groupTitle" data-id="{{item.id}}" data-flag="{{item.childCategory}}"><span class="icon iconfont" style="font-size: 20px;">&#xe6ad;</span>{{item.name}}</span>
+    <div>
+      {{each item.childCategory el i}}
+      <ul>
+        <li data-id="{{el.id}}">{{el.name}}</li>
+      </ul>
+      {{/each}}
+    </div>
+  </li>
+  {{/each}}
 </script>

@@ -45,7 +45,7 @@ export default {
 				params.data
 			).then(response => {
 				localStorage.setItem('token', response.data);
-      	this.$router.push('/')
+      	this.$router.push('/user')
 			}).catch((err)=>{
 				console.log(err)
 			})
@@ -56,14 +56,14 @@ export default {
 
 <style lang="scss">
 .login_page {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(0,0,255,0.5)), url("/@/assets/login_bg.jpeg");
-  .content {
-    width: 500px;
-  }
+	height: 100%;
+	background-image: linear-gradient(to bottom, rgba(255,255,0,.5), rgba(0,0,255,.5)), url("/@/assets/login_bg.jpeg");
+	.content {
+		width: 500px;
+	}
 }
 </style>
