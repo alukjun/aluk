@@ -13,10 +13,10 @@ const updateStatus = {
   method: 'put'
 }
 
-const del = {
-  url: '/menu/admin/deleteMenuById/[id]',
-  method: 'delete'
-}
+// const del = {
+//   url: '/menu/admin/deleteMenuById/[id]',
+//   method: 'delete'
+// }
 
 const create = {
   url: '/category/admin/createCategory.do',
@@ -28,6 +28,6 @@ export default {
   list,
   update,
   updateStatus,
-  del,
+  // del,
   create
 }

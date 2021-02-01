@@ -27,6 +27,10 @@
 						<DesktopOutlined />
 						<span>分类管理</span>
 					</a-menu-item>
+					<a-menu-item key="/product">
+						<DesktopOutlined />
+						<span>商品管理</span>
+					</a-menu-item>
 				</a-menu>
 			</a-layout-sider>
 			<a-layout>

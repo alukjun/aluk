@@ -89,7 +89,7 @@
             <a style="marginRight: 10px" @click="updateUser(record)">编辑</a>
 						<a style="marginRight: 10px" @click="updateStatus(record)" v-if="record.status">禁用</a>
 						<a style="marginRight: 10px" @click="updateStatus(record)" v-else>启用</a>
-						<a @click="deleteUser(record)">删除</a>
+						<!-- <a @click="deleteUser(record)">删除</a> -->
           </span>
         </template>
 			</a-table>
@@ -211,20 +211,20 @@ export default {
 				this.fetch({...this.search})
 			}
 		},
-		deleteUser(row) {
-			let params = {
-				...userMgr.del,
-				data: {
-					id: row.id
-				}
-			}
-			this.$http(params).then(res=>{
-				console.log('删除成功')
-				this.fetch()
-			}).catch(err=> {
-				console.log('删除失败')
-			})
-		},
+		// deleteUser(row) {
+		// 	let params = {
+		// 		...userMgr.del,
+		// 		data: {
+		// 			id: row.id
+		// 		}
+		// 	}
+		// 	this.$http(params).then(res=>{
+		// 		console.log('删除成功')
+		// 		this.fetch()
+		// 	}).catch(err=> {
+		// 		console.log('删除失败')
+		// 	})
+		// },
 		updateStatus(row) {
 			let params = {
 				...userMgr.updateStatus,

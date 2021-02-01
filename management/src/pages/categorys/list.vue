@@ -51,9 +51,8 @@
 									list-type="picture-card"
 									:remove="handleRemove"
 									:before-upload="beforeUpload"
-									multiple
 								>
-									<a-button v-if="fileList.length < 9"> <a-icon type="upload" /> 选择图片 </a-button>
+									<a-button v-if="fileList.length === 0"> 选择图片 </a-button>
 								</a-upload>
               </a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
@@ -179,7 +178,8 @@ export default {
           { required: true, message: '请输入菜单名字', trigger: 'blur' },
 				],
 			},
-      fileList: [],
+			fileList: [],
+			flag: false
 		};
 	},
 	created() {
@@ -196,20 +196,6 @@ export default {
 				this.fetch({...this.search})
 			}
 		},
-		// deleteUser(row) {
-		// 	let params = {
-		// 		...category.del,
-		// 		data: {
-		// 			id: row.id
-		// 		}
-		// 	}
-		// 	this.$http(params).then(res=>{
-		// 		console.log('删除成功')
-		// 		this.fetch()
-		// 	}).catch(err=> {
-		// 		console.log('删除失败')
-		// 	})
-		// },
 		updateStatus(row) {
 			let params = {
 				...categoryMgr.updateStatus,
@@ -229,21 +215,22 @@ export default {
 			if (!this.formData.parentId) {
 				this.formData.parentId = 0
 			}
-			let formDatas = new FormData()
-			this.fileList.forEach(item=> {
-				formDatas.append('image' ,item)//图片
-			})
-			Object.keys(this.formData).forEach(item=> {
-				formDatas.append(item ,this.formData[item])//图片
-			})
-			let params = {
-				...categoryMgr.create,
-				data: formDatas
-			}
+			
 			this.$refs.ruleForm
         .validate()
         .then(() => {
 					if (this.title === '新增分类') {
+						let formDatas = new FormData()
+						this.fileList.forEach(item=> {
+							formDatas.append('image' ,item)//图片
+						})
+						Object.keys(this.formData).forEach(item=> {
+							formDatas.append(item ,this.formData[item])//图片
+						})
+						let params = {
+							...categoryMgr.create,
+							data: formDatas
+						}
 						this.$http(params).then(res=>{
 							console.log('新增成功')
 							this.visible = false;
@@ -252,9 +239,19 @@ export default {
 							console.log('新增失败')
 						})
 					} else if (this.title === '编辑分类') {
-						params.data.id = this.curId;
-						params.url = categoryMgr.update.url
-						params.method = categoryMgr.update.method
+						let formDatas = new FormData()
+						if (this.flag) {
+							this.fileList.forEach(item=> {
+								formDatas.append('image' ,item)//图片
+							})
+						}
+						Object.keys(this.formData).forEach(item=> {
+							formDatas.append(item ,this.formData[item])//图片
+						})
+						let params = {
+							...categoryMgr.update,
+							data: formDatas
+						}
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
 							this.visible = false;
@@ -270,6 +267,8 @@ export default {
 		showModel() {
 			this.visible = true; 
 			this.title='新增分类';
+			this.fileList = [];
+			this.flag = false;
 			this.formData = {
 				name:"",
 				parentId: null,
@@ -279,11 +278,25 @@ export default {
 		updateUser(row) {
 			this.visible = true;
 			this.title = '编辑分类';
+			this.flag = false;
 			this.formData = {
 				name: row.name,
 				parentId: row.parentId,
-				sort: row.sort
+				sort: row.sort,
+				id: row.id
 			}
+			if (row.image) {
+				this.fileList = [{
+					uid: '-1',
+					name: 'image.png',
+					status: 'done',
+					url: 'http:/' + row.image,
+					thumbUrl: 'http:/' + row.image,
+				}]
+			} else {
+				this.fileList = []
+			}
+			
 			this.curId = row.id;
 		},
 		resetForm() {
@@ -291,7 +304,7 @@ export default {
       this.$refs.ruleForm.resetFields();
     },
 		afterVisibleChange(val) {
-      console.log('visible', val);
+      // console.log('visible', val);
     },
 		handleTableChange(pagination, filters, sorter) {
       const pager = { ...this.pagination };
@@ -335,6 +348,7 @@ export default {
 			this.fileList = newFileList;
 		},
 		beforeUpload(file) {
+			this.flag = true;
 			this.fileList = [...this.fileList, file];
 			return false;
 		},

@@ -13,10 +13,10 @@ const updateStatus = {
   method: 'put'
 }
 
-const del = {
-  url: '/role/admin/deleteRoleById/[id]',
-  method: 'delete'
-}
+// const del = {
+//   url: '/role/admin/deleteRoleById/[id]',
+//   method: 'delete'
+// }
 
 const create = {
   url: '/role/admin/createRole',
@@ -31,7 +31,7 @@ export default {
   list,
   update,
   updateStatus,
-  del,
+  // del,
   create,
   detail
 }
