@@ -2,8 +2,8 @@
 	<div>
 		<div style="marginBottom: 32px">
 			<a-form layout="inline" :model="search" @submit="handleSubmit" @submit.native.prevent>
-				<a-form-item label="roleName" name="roleName">
-					<a-input v-model:value="search.roleName" placeholder="roleName">
+				<a-form-item label="name" name="name">
+					<a-input v-model:value="search.name" placeholder="name">
 					</a-input>
 				</a-form-item>
 				<a-form-item>
@@ -21,35 +21,67 @@
 						v-model:visible="visible"
 						:after-visible-change="afterVisibleChange"
 					>
-						<a-form :model="formData" ref="ruleForm" :rules="rules">
-							<a-form-item label="角色名" name="name">
+						<a-form :model="formData" layout="vertical" ref="ruleForm" :rules="rules">
+							<a-form-item label="商品名称" name="name">
 								<a-input v-model:value="formData.name" />
 							</a-form-item>
-              <a-form-item label="描述" name="description">
+              <a-form-item label="商品描述" name="description">
 								<a-input v-model:value="formData.description" />
 							</a-form-item>
-							<a-form-item label="菜单" name="menuIds">
+							<a-form-item label="商品文章" name="articles">
+								<!-- <div v-if="formData.articles && formData.articles.length > 0" v-for="(item, index) in formData.articles" :key="index"> -->
+									<a-input v-model:value="formData.articles" />
+								<!-- </div> -->
+							</a-form-item>
+							<a-form-item label="商品价格" name="price">
+								<a-input v-model:value="formData.price"/>
+							</a-form-item>
+							<a-form-item label="是否新品" name="type">
+								<a-switch v-model:checked="formData.type" @change="onChange" />
+							</a-form-item>
+							<a-form-item label="商品规格" name="detailDescriptions">
+								<div v-if="formData.detailDescriptions && formData.detailDescriptions.length > 0">
+									<div class="detailDescriptions" v-for="(item, index) in formData.detailDescriptions" :key="index">
+										<span>key:</span>&nbsp;<a-input size="small" v-model:value="item.key" />&nbsp;&nbsp;
+										<span>value:</span>&nbsp;<a-input size="small" v-model:value="item.value" />&nbsp;&nbsp;
+										<a-button type="primary" size="small" @click="addDescription">添加</a-button>&nbsp;
+										<a-button type="primary" size="small" @click="delDescription(index)">删除</a-button>
+									</div>
+								</div>
+								<div v-else>
+									<a-button type="primary" size="small" @click="addDescription">添加</a-button>&nbsp;
+								</div>
+							</a-form-item>
+							<a-form-item label="分类" name="categoryId">
 								<a-tree-select
-									v-model:value="formData.menuIds"
-									:tree-data="menuList"
+									v-model:value="formData.categoryId"
+									:tree-data="cateList"
 									:replaceFields="{
-										children: 'childMenus',
+										children: 'childCategory',
 										title:'name',
-										key:'name', 
+										key:'id', 
 										value: 'id'
 									}"
 									style="width: 100%"
 									:dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
 									placeholder="Please select"
 									allow-clear
-									multiple
-									tree-checkable
-									@change="selectChange"
+									tree-default-expand-all
 								>
-								</a-tree-select>
 							</a-form-item>
+							<a-form-item label="图片" name="images">
+                <a-upload
+									:file-list="fileList"
+									list-type="picture-card"
+									:remove="handleRemove"
+									:before-upload="beforeUpload"
+									:change="handleChangePic"
+								>
+									<a-button v-if="fileList && fileList.length < 9"> 选择图片 </a-button>
+								</a-upload>
+              </a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
-								<a-button type="primary" @click.native="onSubmit">
+								<a-button type="primary" @click.native="handleUpload">
 									确定
 								</a-button>
 								<a-button style="margin-left: 10px;" @click.native="resetForm">
@@ -83,6 +115,10 @@
 						禁用
 					</span>
 				</template>
+				<template #detailDescriptions="{record}">
+					{{record.detailDescriptions && record.detailDescriptions.length > 0 ? record.detailDescriptions : ''}}
+				</template>
+				
 				<template #roles="{text}">
 					{{text}}
 				</template>
@@ -101,8 +137,8 @@
 
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import roleMgr from '/@/http/role'
-import menuMgr from '/@/http/menu';
+import productMgr from '/@/http/product';
+import categoryMgr from '/@/http/category';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');
@@ -118,18 +154,26 @@ export default {
 	data() {
 		return {
 			data: [],
-			menuList: [],
-			menuSelectIds: [],
+			cateList: [],
+			fileList: [],
 			title: '新增用户',
 			curId: null,
 			visible: false,
 			search: {
-        roleName: '',
+        name: '',
 			},
 			formData: {
 				description:"",
 				name:"",
-				menuIds: []
+				articles: '',
+				categoryId: '',
+				type: 1,
+				detailDescriptions: [{
+					key: '',
+					value: ''
+				}],
+				price: 0,
+				images: [],
 			},
 			columns: [
         {
@@ -143,9 +187,19 @@ export default {
 					key: "description",
 				},
 				{
+					title: "categoryId",
+					dataIndex: "categoryId",
+					key: "categoryId",
+				},
+				{
 					title: "status",
 					key: "status",
 					slots: { customRender: "status" },
+				},
+				{
+					title: "detailDescriptions",
+					key: "detailDescriptions",
+					slots: { customRender: "detailDescriptions" },
 				},
 				{
 					title: "createTime",
@@ -164,6 +218,7 @@ export default {
 					dataIndex: 'operation',
 					key: 'operation',
 					slots: { customRender: 'operation' },
+					width: 140
 				},
 			],
 			pagination: {
@@ -183,14 +238,27 @@ export default {
 	},
 	created() {
 		this.fetch()
-		this.fetchMenu()
+		this.fetchCategory()
 	},
 	methods: {
+		onChange(checked) {
+      console.log(`${checked}`);
+		},
+		addDescription() {
+			this.formData.detailDescriptions.push({
+				key: '',
+				value: ''
+			})
+		},
+		delDescription(index) {
+			console.log(index)
+			this.formData.detailDescriptions.splice(index,1)
+		},
 		handleChange(value) {
       console.log(`selected ${value}`);
     },
 		handleSubmit(e) {
-			if (this.search.account === '') {
+			if (this.search.name === '') {
 				this.fetch()
 			} else {
 				this.fetch({...this.search})
@@ -199,25 +267,10 @@ export default {
 		selectChange(value, label, extra) {
 			console.log(value)
 			console.log(this.curRoleList)
-			
 		},
-		// deleteUser(row) {
-		// 	let params = {
-		// 		...roleMgr.del,
-		// 		data: {
-		// 			id: row.id
-		// 		}
-		// 	}
-		// 	this.$http(params).then(res=>{
-		// 		console.log('删除成功')
-		// 		this.fetch()
-		// 	}).catch(err=> {
-		// 		console.log('删除失败')
-		// 	})
-		// },
 		updateStatus(row) {
 			let params = {
-				...roleMgr.updateStatus,
+				...productMgr.updateStatus,
 				data: {
 					id: row.id,
 					status: !row.status
@@ -230,50 +283,57 @@ export default {
 				console.log('修改状态失败')
 			})
 		},
-		onSubmit() {
-			this.menuSelectIds = [];
-			this.curRoleList.forEach(item=> {
-				if (item.children) {
-					item.forEach(child=> {
-						this.formData.menuIds.forEach(el=> {
-							if (el === child.id) {
-								this.menuSelectIds.push(child.parentId)
-							}
-						})
-					})
-				} else {
-					this.formData.menuIds.forEach(el=> {
-						if (el === item.id) {
-							this.menuSelectIds.push(item.parentId)
-						}
-					})
-				}
-			})
-			this.menuSelectIds = [...(new Set(this.menuSelectIds))]
-			console.log(this.menuSelectIds)
-			let params = {
-				...roleMgr.create,
-				data: {
-					description:this.formData.description,
-					name:this.formData.name,
-					menuIds:this.formData.menuIds.concat(this.menuSelectIds),
-				}
-			}
+		handleUpload() {
+			let {fileList} = this;
 			this.$refs.ruleForm
         .validate()
         .then(() => {
-					if (this.title === '新增角色') {
+					if (this.title === '新增商品') {
+						let formDatas = new FormData()
+						fileList.forEach(item=> {
+							formDatas.append('images' ,item)//图片
+						})
+						this.formData.type = this.formData.type ? 1 : 0
+						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
+						Object.keys(this.formData).forEach(item=> {
+							formDatas.append(item ,this.formData[item])//图片
+						})
+						let params = {
+							...productMgr.create,
+							data: formDatas
+						}
 						this.$http(params).then(res=>{
 							console.log('新增成功')
 							this.visible = false;
 							this.fetch()
 						}).catch(err=> {
-							console.log('新增角色')
+							console.log('新增商品')
 						})
-					} else if (this.title === '编辑角色') {
-            params.data.id = this.curId;
-						params.url = roleMgr.update.url;
-						params.method = roleMgr.update.method;
+					} else if (this.title === '编辑商品') {
+						let formDatas = new FormData()
+						let imageIds = [];
+						console.log(this.formData)
+						this.formData.price = +this.formData.price;
+						fileList.forEach(item=> {
+							formDatas.append('images' ,item)//图片
+							imageIds.push(item.id)//图片
+						})
+						formDatas.append('imageIds' ,imageIds.join('&'))//图片
+						this.formData.type = this.formData.type ? 1 : 0
+						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
+						Object.keys(this.formData).forEach(item=> {
+							if (item !== 'images') {
+								formDatas.append(item,this.formData[item])//图片
+							}
+							if (item === 'articles') {
+								formDatas.append('content',this.formData[item])//图片
+							}
+						})
+						let params = {
+							...productMgr.update,
+							data: formDatas
+						}
+						params.data.id = this.curId;
 						console.log(params)
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
@@ -289,24 +349,44 @@ export default {
 		},
 		showModel() {
 			this.visible = true; 
-			this.title='新增角色';
+			this.title='新增商品';
+			this.fileList = [];
 			this.formData = {
 				description:"",
 				name:"",
-				menuIds: []
+				articles: '',
+				categoryId: '',
+				type: 1,
+				detailDescriptions: [{
+					key: '',
+					value: ''
+				}],
+				price: 0,
 			}
 		},
 		updateUser(row) {
 			this.visible = true;
-			this.title = '编辑角色';
+			this.title = '编辑商品';
 			this.formData = {
 				...row,
-				menuIds: row.menus.map(item=>{
-					return item.id
-				})
+				articles: row.articles && row.articles.length > 0 ? row.articles[0].content : ''
 			};
+			console.log(this.formData)
+			if (row.images && row.images.length > 0) {
+				this.fileList = row.images.map(item=>{
+					return {
+						uid: item.id,
+						id: item.id,
+						name: item.name,
+						url: 'https://api.1pinliangwei.com' + item.imageUrl,
+						thumbUrl: 'https://api.1pinliangwei.com' + item.imageUrl,
+						status: 'done',
+					}
+				})
+			} else {
+				this.fileList = []
+			}
 			this.curId = row.id;
-			this.curRoleList = row.menus;
 		},
 		resetForm() {
 			this.visible = false;
@@ -329,7 +409,7 @@ export default {
     },
     fetch(params = {},pageNum= 1, pageSize=10) {
 			let data = {
-				...roleMgr.list,
+				...productMgr.list,
 				data: {
 					pageNum,
 					pageSize,
@@ -342,32 +422,61 @@ export default {
         pagination.total = data._meta.totalCount;
         this.loading = false;
         this.data = data.items.map((item, key)=>{
-					return {
-						...item,
-						key
+					console.log(JSON.parse(item.detailDescription) instanceof Object)
+					if (item.detailDescription) {
+						let detailDescriptions = []
+						if (JSON.parse(item.detailDescription) instanceof Array) {
+							detailDescriptions = JSON.parse(item.detailDescription)
+						} else {
+							detailDescriptions.push(JSON.parse(item.detailDescription))
+						}
+						return {
+							...item,
+							detailDescriptions,
+							key
+						}
+					} else {
+						return {
+							...item,
+							detailDescriptions:[],
+							key
+						}
 					}
+					
 				});
         this.pagination = pagination;
       });
-    },
-		fetchMenu(params = {}) {
-			let data = {
-					...menuMgr.list,
+		},
+		fetchCategory(params = {}) {
+			let param = {
+					...categoryMgr.list,
 					data: {
 						pageNum: 1,
 						pageSize: 20,
 						...params
 					}
 				}
-      this.$http(data).then(data => {
-        this.menuList = data.items.map((item, key)=>{
+      this.$http(param).then(data => {
+				console.log('data=>',data)
+        this.cateList = data.items.map((item, key)=>{
 					return {
 						...item,
 						key
 					}
 				});
       });
-    },
+		},
+		handleRemove(file) {
+			const index = this.fileList.indexOf(file);
+			const newFileList = this.fileList.slice();
+			newFileList.splice(index, 1);
+			this.fileList = newFileList;
+		},
+		beforeUpload(file) {
+			this.flag = true;
+			this.fileList = [...this.fileList, file];
+			return false;
+		},
 	},
 		
 };
@@ -378,6 +487,15 @@ export default {
 		width: 420px!important;
 		.ant-form-item-control-wrapper {
 			width: 80%;
+		}
+	}
+	.detailDescriptions {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		margin-bottom: 10px;
+		.ant-input {
+			
 		}
 	}
 </style>

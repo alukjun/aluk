@@ -35,7 +35,7 @@
 									:replaceFields="{
 										children: 'childCategory',
 										title:'name',
-										key:'name', 
+										key:'id', 
 										value: 'id'
 									}"
 									style="width: 100%"
@@ -145,6 +145,11 @@ export default {
 					key: "name",
 				},
 				{
+					title: "sort",
+					dataIndex: "sort",
+					key: "sort",
+				},
+				{
 					title: "status",
 					key: "status",
 					slots: { customRender: "status" },
@@ -186,9 +191,6 @@ export default {
 		this.fetch();
 	},
 	methods: {
-		handleChange(value) {
-      console.log(`selected ${value}`);
-    },
 		handleSubmit(e) {
 			if (this.search.name === '') {
 				this.fetch()
