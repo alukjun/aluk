@@ -46,15 +46,38 @@
 								>
 							</a-form-item>
               <a-form-item label="分类图片" name="image">
-                <a-upload
-									:file-list="fileList"
-									list-type="picture-card"
-									accept=".png,.jpeg,.jpg"
-									:remove="handleRemove"
-									:before-upload="beforeUpload"
-								>
-									<a-button v-if="fileList.length === 0"> 选择图片 </a-button>
-								</a-upload>
+                <div v-if="title === '新增分类'">
+									<a-upload
+										:file-list="fileList"
+										list-type="picture-card"
+										accept=".png,.jpeg,.jpg"
+										:remove="handleRemove"
+										:before-upload="beforeUpload"
+									>
+										<a-button v-if="fileList && fileList.length === 0"> 选择图片 </a-button>
+									</a-upload>
+									
+								</div>
+                
+								<div class="clearfix" v-if="title === '编辑分类'">
+									<a-upload
+										action="https://api.1pinliangwei.com/category/admin/updateCategoryImagesById.do"
+										list-type="picture-card"
+										accept=".png,.jpeg,.jpg"
+										method="put"
+										name="image"
+										:file-list="fileList"
+										:remove="handleRemove"
+										@preview="handlePreview"
+										@change="handleChange"
+										:data="{'id': formData.id,'isUpdate': false}"
+									>
+									<a-button v-if="fileList && fileList.length === 0"> 选择图片 </a-button>
+									</a-upload>
+									<a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+										<img alt="example" style="width: 100%" :src="previewImage" />
+									</a-modal>
+								</div>
               </a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
 								<a-button type="primary" @click="onSubmit">
@@ -118,6 +141,14 @@ let validateRoles = async (rule, value) => {
 		return Promise.resolve();
 	}
 };
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 export default {
 	components: {
 		SmileOutlined,
@@ -215,6 +246,7 @@ export default {
 			})
 		},
 		onSubmit() {
+			let {fileList} = this;
 			if (!this.formData.parentId) {
 				this.formData.parentId = 0
 			}
@@ -246,18 +278,17 @@ export default {
 							console.log('新增失败')
 						})
 					} else if (this.title === '编辑分类') {
-						let formDatas = new FormData()
-						if (this.flag) {
-							this.fileList.forEach(item=> {
-								formDatas.append('image' ,item)//图片
-							})
-						}
-						Object.keys(this.formData).forEach(item=> {
-							formDatas.append(item ,this.formData[item])//图片
-						})
+						// let formDatas = new FormData()
+						// formDatas.append('isUpdate', fileList.length > 0 ? false: true)
+						// this.fileList.forEach(item=> {
+						// 	formDatas.append('image' ,item)//图片
+						// })
+						// Object.keys(this.formData).forEach(item=> {
+						// 	formDatas.append(item ,this.formData[item])
+						// })
 						let params = {
 							...categoryMgr.update,
-							data: formDatas
+							data: this.formData
 						}
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
@@ -349,6 +380,16 @@ export default {
       });
     },
 		handleRemove(file) {
+			let formDatas = new FormData()
+			formDatas.append('isUpdate' ,true)//图片
+			formDatas.append('id' ,this.formData.id)//图片
+			let updateImageParams = {
+				...categoryMgr.updateImage,
+				data: formDatas
+			}
+			this.$http(updateImageParams).then(res=>{
+			}).catch(err=> {
+			})
 			const index = this.fileList.indexOf(file);
 			const newFileList = this.fileList.slice();
 			newFileList.splice(index, 1);
@@ -359,6 +400,19 @@ export default {
 			this.fileList = [...this.fileList, file];
 			return false;
 		},
+		handleCancel() {
+      this.previewVisible = false;
+    },
+    async handlePreview(file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
+      }
+      this.previewImage = file.url || file.preview;
+      this.previewVisible = true;
+    },
+		handleChange({ fileList }) {
+      this.fileList = fileList;
+    },
 	},
 		
 };

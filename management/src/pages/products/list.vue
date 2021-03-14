@@ -29,9 +29,12 @@
 								<a-input v-model:value="formData.description" />
 							</a-form-item>
 							<a-form-item label="商品文章" name="articles">
-								<!-- <div v-if="formData.articles && formData.articles.length > 0" v-for="(item, index) in formData.articles" :key="index"> -->
+								<div v-if="title === '新增商品'">
+									<a-input v-model:value="formData.articles" />
+								</div>
+								<div v-if="title === '编辑商品'">
 									<a-input v-model:value="formData.articles.content" />
-								<!-- </div> -->
+								</div>
 							</a-form-item>
 							<a-form-item label="商品价格" name="price">
 								<a-input v-model:value="formData.price"/>
@@ -70,17 +73,39 @@
 								>
 							</a-form-item>
 							<a-form-item label="图片" name="images">
-                <a-upload
-									:file-list="fileList"
-									list-type="picture-card"
-									accept=".png,.jpeg,.jpg"
-									:remove="handleRemove"
-									:before-upload="beforeUpload"
-									:change="handleChangePic"
-								>
+								<div v-if="title === '新增商品'">
+									<a-upload
+										:file-list="fileList"
+										list-type="picture-card"
+										accept=".png,.jpeg,.jpg"
+										:remove="handleRemove"
+										:before-upload="beforeUpload"
+									>
+										<a-button v-if="fileList && fileList.length < 9"> 选择图片 </a-button>
+									</a-upload>
+									
+								</div>
+                
+								<div class="clearfix" v-if="title === '编辑商品'">
+									<a-upload
+										action="https://api.1pinliangwei.com/product/admin/updateProductImageById.do"
+										list-type="picture-card"
+										accept=".png,.jpeg,.jpg"
+										method="put"
+										name="images"
+										:file-list="fileList"
+										:remove="handleRemove"
+										@preview="handlePreview"
+										@change="handleChange"
+										:data="{'id': formData.id}"
+									>
 									<a-button v-if="fileList && fileList.length < 9"> 选择图片 </a-button>
-								</a-upload>
-              </a-form-item>
+									</a-upload>
+									<a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
+										<img alt="example" style="width: 100%" :src="previewImage" />
+									</a-modal>
+								</div>
+							</a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
 								<a-button type="primary" @click.native="handleUpload">
 									确定
@@ -145,13 +170,14 @@ import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { message } from 'ant-design-vue';
 import productMgr from '/@/http/product';
 import categoryMgr from '/@/http/category';
-let validateRoles = async (rule, value) => {
-	if (value.length === 0) {
-		return Promise.reject('请选择角色');
-	} else {
-		return Promise.resolve();
-	}
-};
+function getBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = error => reject(error);
+  });
+}
 export default {
 	components: {
 		UserOutlined,
@@ -161,8 +187,9 @@ export default {
 		return {
 			data: [],
 			cateList: [],
+			previewVisible: false,
 			fileList: [],
-			title: '新增用户',
+			title: '新增商品',
 			curId: null,
 			visible: false,
 			search: {
@@ -171,10 +198,7 @@ export default {
 			formData: {
 				description:"",
 				name:"",
-				articles:{
-					id:"",
-					content:""
-				},
+				articles: "",
 				categoryId: '',
 				type: 1,
 				detailDescriptions: [{
@@ -256,7 +280,6 @@ export default {
 	},
 	methods: {
 		onChange(checked) {
-      console.log(`${checked}`);
 		},
 		addDescription() {
 			this.formData.detailDescriptions.push({
@@ -265,22 +288,14 @@ export default {
 			})
 		},
 		delDescription(index) {
-			console.log(index)
 			this.formData.detailDescriptions.splice(index,1)
 		},
-		handleChange(value) {
-      console.log(`selected ${value}`);
-    },
 		handleSubmit(e) {
 			if (this.search.name === '') {
 				this.fetch()
 			} else {
 				this.fetch({...this.search})
 			}
-		},
-		selectChange(value, label, extra) {
-			console.log(value)
-			console.log(this.curRoleList)
 		},
 		updateStatus(row) {
 			let params = {
@@ -291,10 +306,8 @@ export default {
 				}
 			}
 			this.$http(params).then(res=>{
-				console.log('修改状态成功')
 				this.fetch()
 			}).catch(err=> {
-				console.log('修改状态失败')
 			})
 		},
 		handleUpload() {
@@ -312,10 +325,6 @@ export default {
 							formDatas.append('images' ,item)//图片
 						})
 						this.formData.type = this.formData.type ? 1 : 0
-						this.formData.articles = {
-							id: this.formData.articles.id,
-							content: this.formData.articles.content
-						}
 						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
 						Object.keys(this.formData).forEach(item=> {
 							formDatas.append(item ,this.formData[item])//图片
@@ -325,66 +334,35 @@ export default {
 							data: formDatas
 						}
 						this.$http(params).then(res=>{
-							console.log('新增成功')
 							this.visible = false;
 							this.fetch()
 						}).catch(err=> {
-							console.log('新增商品')
 						})
 					} else if (this.title === '编辑商品') {
 						let formDatas = new FormData()
 						let imageId = [];
-						console.log(this.formData)
-						this.formData.price = +this.formData.price;
 						fileList.forEach(item=> {
-							// formDatas.append('images', item)//图片
-							formDatas.append('images', this.dataURItoBlob(item.url))
 							imageId.push(item.id)//图片
 						})
-						formDatas.append('imageId' ,imageId.join('&'))//图片
-						formDatas.append('id' ,this.formData.id)//图片
+						this.formData.price = +this.formData.price;
 						this.formData.articles = {
 							id: this.formData.articles.id,
 							content: this.formData.articles.content
 						}
 						this.formData.type = this.formData.type ? 1 : 0
 						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
-						// Object.keys(this.formData).forEach(item=> {
-						// 	if (item !== 'images') {
-						// 		formDatas.append(item,this.formData[item])//图片
-						// 	}
-						// 	if (item === 'articles') {
-						// 		formDatas.append('content',this.formData[item])//图片
-						// 	}
-						// })
-						
 						let params = {
 							...productMgr.update,
 							data: {...this.formData,imageIds: imageId}
 						}
-						let updateImageParams = {
-							...productMgr.updateImage,
-							data: formDatas
-						}
-						this.$http(updateImageParams).then(res=>{
-							console.log('编辑成功')
-							// this.visible = false;
-							this.fetch()
-						}).catch(err=> {
-							console.log('编辑失败')
-						})
 						params.data.id = this.curId;
-						console.log(params)
 						this.$http(params).then(res=>{
-							console.log('编辑成功')
 							this.visible = false;
 							this.fetch()
 						}).catch(err=> {
-							console.log('编辑失败')
 						})
 					}
         }).catch(error => {
-          console.log('error', error);
 				});
 		},
 		// base64 转 blob
@@ -415,10 +393,7 @@ export default {
 			this.formData = {
 				description:"",
 				name:"",
-				article:{
-					id:"",
-					content:""
-				},
+				articles: "",
 				categoryId: '',
 				type: 1,
 				detailDescriptions: [{
@@ -429,15 +404,12 @@ export default {
 			}
 		},
 		updateUser(row) {
-			console.log(row)
 			this.visible = true;
 			this.title = '编辑商品';
-			console.log(row?.articles.length > 0)
 			this.formData = {
 				...row,
 				articles: row?.articles.length > 0 ? row.articles[0] : {}
 			};
-			console.log(this.formData)
 			if (row.images && row.images.length > 0) {
 				this.fileList = row.images.map(item=>{
 					return {
@@ -459,7 +431,6 @@ export default {
       this.$refs.ruleForm.resetFields();
     },
 		afterVisibleChange(val) {
-      console.log('visible', val);
     },
 		handleTableChange(pagination, filters, sorter) {
       const pager = { ...this.pagination };
@@ -488,7 +459,6 @@ export default {
         pagination.total = data._meta.totalCount;
         this.loading = false;
         this.data = data.items.map((item, key)=>{
-					console.log(JSON.parse(item.detailDescription) instanceof Object)
 					if (item.detailDescription) {
 						let detailDescriptions = []
 						if (JSON.parse(item.detailDescription) instanceof Array) {
@@ -523,7 +493,6 @@ export default {
 					}
 				}
       this.$http(param).then(data => {
-				console.log('data=>',data)
         this.cateList = data.items.map((item, key)=>{
 					return {
 						...item,
@@ -533,6 +502,18 @@ export default {
       });
 		},
 		handleRemove(file) {
+			let formDatas = new FormData()
+			let imageId = [];
+			imageId.push(file.id)//图片
+			formDatas.append('imageId' ,imageId.join('&'))//图片
+			formDatas.append('id' ,this.formData.id)//图片
+			let updateImageParams = {
+				...productMgr.updateImage,
+				data: formDatas
+			}
+			this.$http(updateImageParams).then(res=>{
+			}).catch(err=> {
+			})
 			const index = this.fileList.indexOf(file);
 			const newFileList = this.fileList.slice();
 			newFileList.splice(index, 1);
@@ -543,6 +524,19 @@ export default {
 			this.fileList = [...this.fileList, file];
 			return false;
 		},
+		handleCancel() {
+      this.previewVisible = false;
+    },
+    async handlePreview(file) {
+      if (!file.url && !file.preview) {
+        file.preview = await getBase64(file.originFileObj);
+      }
+      this.previewImage = file.url || file.preview;
+      this.previewVisible = true;
+    },
+		handleChange({ fileList }) {
+      this.fileList = fileList;
+    },
 	},
 		
 };
