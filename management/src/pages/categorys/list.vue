@@ -49,6 +49,7 @@
                 <a-upload
 									:file-list="fileList"
 									list-type="picture-card"
+									accept=".png,.jpeg,.jpg"
 									:remove="handleRemove"
 									:before-upload="beforeUpload"
 								>
@@ -222,6 +223,10 @@ export default {
         .validate()
         .then(() => {
 					if (this.title === '新增分类') {
+						if (fileList.length == 0) {
+							message.warning('请选择一张图片');
+							return fasle;
+						}
 						let formDatas = new FormData()
 						this.fileList.forEach(item=> {
 							formDatas.append('image' ,item)//图片

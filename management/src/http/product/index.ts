@@ -1,17 +1,23 @@
 
 const list = {
-    url: '/product/admin/pageProduct',
+    url: '/product/admin/pageProduct.do',
     method: 'get'
   }
   const update = {
-    url: '/product/admin/updateProductById',
+    url: '/product/admin/updateProductById.do',
     method: 'put'
   }
   
   const updateStatus = {
-    url: '/category/admin/updateCategoryStatusById.do',
+    url: '/product/admin/updateCategoryStatusById.do',
     method: 'put'
   }
+  const updateImage = {
+    url: '/product/admin/updateProductImageById.do',
+    method: 'put'
+  }
+
+  
   
   // const del = {
   //   url: '/menu/admin/deleteMenuById/[id]',
@@ -19,7 +25,7 @@ const list = {
   // }
   
   const create = {
-    url: '/product/admin/createProduct',
+    url: '/product/admin/createProduct.do',
     method: 'post',
     type: 'upload'
   }
@@ -29,5 +35,6 @@ const list = {
     update,
     updateStatus,
     // del,
-    create
+    create,
+    updateImage
   }

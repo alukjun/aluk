@@ -13,6 +13,11 @@ const updateStatus = {
   method: 'put'
 }
 
+const updateImage = {
+  url: '/category/admin/updateCategoryImagesById.do',
+  method: 'put'
+}
+
 // const del = {
 //   url: '/menu/admin/deleteMenuById/[id]',
 //   method: 'delete'
@@ -29,5 +34,6 @@ export default {
   update,
   updateStatus,
   // del,
-  create
+  create,
+  updateImage
 }

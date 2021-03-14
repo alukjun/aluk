@@ -30,7 +30,7 @@
 							</a-form-item>
 							<a-form-item label="商品文章" name="articles">
 								<!-- <div v-if="formData.articles && formData.articles.length > 0" v-for="(item, index) in formData.articles" :key="index"> -->
-									<a-input v-model:value="formData.articles" />
+									<a-input v-model:value="formData.articles.content" />
 								<!-- </div> -->
 							</a-form-item>
 							<a-form-item label="商品价格" name="price">
@@ -73,6 +73,7 @@
                 <a-upload
 									:file-list="fileList"
 									list-type="picture-card"
+									accept=".png,.jpeg,.jpg"
 									:remove="handleRemove"
 									:before-upload="beforeUpload"
 									:change="handleChangePic"
@@ -116,7 +117,10 @@
 					</span>
 				</template>
 				<template #detailDescriptions="{record}">
-					{{record.detailDescriptions && record.detailDescriptions.length > 0 ? record.detailDescriptions : ''}}
+					{{record?.detailDescriptions.length > 0 ? record.detailDescriptions : ''}}
+				</template>
+				<template #articles="{record}">
+					{{record?.articles.length > 0 ? record.articles[0].content : ''}}
 				</template>
 				
 				<template #roles="{text}">
@@ -125,6 +129,7 @@
 				<template #operation="{record}">
           <span class="table-operation">
             <a style="marginRight: 10px" @click="updateUser(record)">编辑</a>
+						<!-- <a style="marginRight: 10px" @click="updateImage(record)">编辑</a> -->
 						<a style="marginRight: 10px" @click="updateStatus(record)" v-if="record.status">禁用</a>
 						<a style="marginRight: 10px" @click="updateStatus(record)" v-else>启用</a>
 						<!-- <a @click="deleteUser(record)">删除</a> -->
@@ -137,6 +142,7 @@
 
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
+import { message } from 'ant-design-vue';
 import productMgr from '/@/http/product';
 import categoryMgr from '/@/http/category';
 let validateRoles = async (rule, value) => {
@@ -165,7 +171,10 @@ export default {
 			formData: {
 				description:"",
 				name:"",
-				articles: '',
+				articles:{
+					id:"",
+					content:""
+				},
 				categoryId: '',
 				type: 1,
 				detailDescriptions: [{
@@ -181,10 +190,15 @@ export default {
 					dataIndex: "name",
 					key: "name",
 				},
+				// {
+				// 	title: "description",
+				// 	dataIndex: "description",
+				// 	key: "description",
+				// },
 				{
-					title: "description",
-					dataIndex: "description",
-					key: "description",
+					title: "articles",
+					slots: { customRender: "articles" },
+					key: "articles",
 				},
 				{
 					title: "categoryId",
@@ -289,11 +303,19 @@ export default {
         .validate()
         .then(() => {
 					if (this.title === '新增商品') {
+						if (fileList.length == 0) {
+							message.warning('请选择一张图片');
+							return fasle;
+						}
 						let formDatas = new FormData()
 						fileList.forEach(item=> {
 							formDatas.append('images' ,item)//图片
 						})
 						this.formData.type = this.formData.type ? 1 : 0
+						this.formData.articles = {
+							id: this.formData.articles.id,
+							content: this.formData.articles.content
+						}
 						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
 						Object.keys(this.formData).forEach(item=> {
 							formDatas.append(item ,this.formData[item])//图片
@@ -311,28 +333,46 @@ export default {
 						})
 					} else if (this.title === '编辑商品') {
 						let formDatas = new FormData()
-						let imageIds = [];
+						let imageId = [];
 						console.log(this.formData)
 						this.formData.price = +this.formData.price;
 						fileList.forEach(item=> {
-							formDatas.append('images' ,item)//图片
-							imageIds.push(item.id)//图片
+							// formDatas.append('images', item)//图片
+							formDatas.append('images', this.dataURItoBlob(item.url))
+							imageId.push(item.id)//图片
 						})
-						formDatas.append('imageIds' ,imageIds.join('&'))//图片
+						formDatas.append('imageId' ,imageId.join('&'))//图片
+						formDatas.append('id' ,this.formData.id)//图片
+						this.formData.articles = {
+							id: this.formData.articles.id,
+							content: this.formData.articles.content
+						}
 						this.formData.type = this.formData.type ? 1 : 0
 						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
-						Object.keys(this.formData).forEach(item=> {
-							if (item !== 'images') {
-								formDatas.append(item,this.formData[item])//图片
-							}
-							if (item === 'articles') {
-								formDatas.append('content',this.formData[item])//图片
-							}
-						})
+						// Object.keys(this.formData).forEach(item=> {
+						// 	if (item !== 'images') {
+						// 		formDatas.append(item,this.formData[item])//图片
+						// 	}
+						// 	if (item === 'articles') {
+						// 		formDatas.append('content',this.formData[item])//图片
+						// 	}
+						// })
+						
 						let params = {
 							...productMgr.update,
+							data: {...this.formData,imageIds: imageId}
+						}
+						let updateImageParams = {
+							...productMgr.updateImage,
 							data: formDatas
 						}
+						this.$http(updateImageParams).then(res=>{
+							console.log('编辑成功')
+							// this.visible = false;
+							this.fetch()
+						}).catch(err=> {
+							console.log('编辑失败')
+						})
 						params.data.id = this.curId;
 						console.log(params)
 						this.$http(params).then(res=>{
@@ -347,6 +387,27 @@ export default {
           console.log('error', error);
 				});
 		},
+		// base64 转 blob
+		dataURItoBlob(dataURI) {
+			// convert base64/URLEncoded data component to raw binary data held in a string
+			let byteString;
+			if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+				byteString = atob(dataURI.split(',')[1]);
+			} else byteString = unescape(dataURI.split(',')[1]);
+		
+			// separate out the mime component
+			const mimeString = dataURI
+				.split(',')[0]
+				.split(':')[1]
+				.split(';')[0];
+		
+			// write the bytes of the string to a typed array
+			const ia = new Uint8Array(byteString.length);
+			for (let i = 0; i < byteString.length; i++) {
+				ia[i] = byteString.charCodeAt(i);
+			}
+			return new Blob([ia], { type: mimeString });
+		},
 		showModel() {
 			this.visible = true; 
 			this.title='新增商品';
@@ -354,7 +415,10 @@ export default {
 			this.formData = {
 				description:"",
 				name:"",
-				articles: '',
+				article:{
+					id:"",
+					content:""
+				},
 				categoryId: '',
 				type: 1,
 				detailDescriptions: [{
@@ -365,11 +429,13 @@ export default {
 			}
 		},
 		updateUser(row) {
+			console.log(row)
 			this.visible = true;
 			this.title = '编辑商品';
+			console.log(row?.articles.length > 0)
 			this.formData = {
 				...row,
-				articles: row.articles && row.articles.length > 0 ? row.articles[0].content : ''
+				articles: row?.articles.length > 0 ? row.articles[0] : {}
 			};
 			console.log(this.formData)
 			if (row.images && row.images.length > 0) {
