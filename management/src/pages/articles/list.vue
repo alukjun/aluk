@@ -2,8 +2,8 @@
 	<div>
 		<div style="marginBottom: 32px">
 			<a-form layout="inline" :model="search" @submit="handleSubmit" @submit.native.prevent>
-				<a-form-item label="name" name="name">
-					<a-input v-model:value="search.name" placeholder="name">
+				<a-form-item label="title" name="title">
+					<a-input v-model:value="search.title" placeholder="title">
 					</a-input>
 				</a-form-item>
 				<a-form-item>
@@ -22,58 +22,17 @@
 						:after-visible-change="afterVisibleChange"
 					>
 						<a-form :model="formData" layout="vertical" ref="ruleForm" :rules="rules">
-							<a-form-item label="商品名称" name="name">
-								<a-input v-model:value="formData.name" />
+							<a-form-item label="文章标题" name="title">
+								<a-input v-model:value="formData.title" />
 							</a-form-item>
-              <a-form-item label="商品描述" name="description">
+              <a-form-item label="文章描述" name="description">
 								<a-input v-model:value="formData.description" />
 							</a-form-item>
-							<a-form-item label="商品文章" name="articles">
-								<div v-if="title === '新增商品'">
-									<a-input v-model:value="formData.articles" />
-								</div>
-								<div v-if="title === '编辑商品'">
-									<a-input v-model:value="formData.articles.content" />
-								</div>
-							</a-form-item>
-							<a-form-item label="商品价格" name="price">
-								<a-input v-model:value="formData.price"/>
-							</a-form-item>
-							<a-form-item label="是否新品" name="type">
-								<a-switch v-model:checked="formData.type" @change="onChange" />
-							</a-form-item>
-							<a-form-item label="商品规格" name="detailDescriptions">
-								<div v-if="formData.detailDescriptions && formData.detailDescriptions.length > 0">
-									<div class="detailDescriptions" v-for="(item, index) in formData.detailDescriptions" :key="index">
-										<span>key:</span>&nbsp;<a-input size="small" v-model:value="item.key" />&nbsp;&nbsp;
-										<span>value:</span>&nbsp;<a-input size="small" v-model:value="item.value" />&nbsp;&nbsp;
-										<a-button type="primary" size="small" @click="addDescription">添加</a-button>&nbsp;
-										<a-button type="primary" size="small" @click="delDescription(index)">删除</a-button>
-									</div>
-								</div>
-								<div v-else>
-									<a-button type="primary" size="small" @click="addDescription">添加</a-button>&nbsp;
-								</div>
-							</a-form-item>
-							<a-form-item label="分类" name="categoryId">
-								<a-tree-select
-									v-model:value="formData.categoryId"
-									:tree-data="cateList"
-									:replaceFields="{
-										children: 'childCategory',
-										title:'name',
-										key:'id', 
-										value: 'id'
-									}"
-									style="width: 100%"
-									:dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-									placeholder="Please select"
-									allow-clear
-									tree-default-expand-all
-								>
+							<a-form-item label="图片标签" name="imageName" v-if="title === '新增文章'">
+								<a-input v-model:value="formData.imageName" />
 							</a-form-item>
 							<a-form-item label="图片" name="images">
-								<div v-if="title === '新增商品'">
+								<div v-if="title === '新增文章'">
 									<a-upload
 										:file-list="fileList"
 										list-type="picture-card"
@@ -86,9 +45,9 @@
 									
 								</div>
                 
-								<div class="clearfix" v-if="title === '编辑商品'">
+								<div class="clearfix" v-if="title === '编辑文章'">
 									<a-upload
-										action="https://api.1pinliangwei.com/product/admin/updateProductImageById.do"
+										action="https://api.1pinliangwei.com/introduce/admin/updateIntroduceImageById.do"
 										list-type="picture-card"
 										accept=".png,.jpeg,.jpg"
 										method="put"
@@ -144,9 +103,6 @@
 				<template #detailDescriptions="{record}">
 					{{record?.detailDescriptions.length > 0 ? record.detailDescriptions : ''}}
 				</template>
-				<template #articles="{record}">
-					{{record?.articles.length > 0 ? record.articles[0].content : ''}}
-				</template>
 				
 				<template #roles="{text}">
 					{{text}}
@@ -168,7 +124,7 @@
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { message } from 'ant-design-vue';
-import productMgr from '/@/http/product';
+import articleMgr from '/@/http/article';
 import categoryMgr from '/@/http/category';
 function getBase64(file) {
   return new Promise((resolve, reject) => {
@@ -189,55 +145,37 @@ export default {
 			cateList: [],
 			previewVisible: false,
 			fileList: [],
-			title: '新增商品',
+			title: '新增文章',
 			curId: null,
 			visible: false,
 			search: {
-        name: '',
+        title: '',
 			},
 			formData: {
 				description:"",
-				name:"",
-				articles: "",
-				categoryId: '',
-				type: 1,
-				detailDescriptions: [{
-					key: '',
-					value: ''
-				}],
-				price: 0,
-				images: [],
+				title:"",
+				imageName: ''
 			},
 			columns: [
         {
-					title: "name",
-					dataIndex: "name",
-					key: "name",
-				},
-				// {
-				// 	title: "description",
-				// 	dataIndex: "description",
-				// 	key: "description",
-				// },
-				{
-					title: "articles",
-					slots: { customRender: "articles" },
-					key: "articles",
+					title: "title",
+					dataIndex: "title",
+					key: "title",
 				},
 				{
-					title: "categoryId",
-					dataIndex: "categoryId",
-					key: "categoryId",
+					title: "id",
+					dataIndex: "id",
+					key: "id",
+				},
+				{
+					title: "description",
+					dataIndex: "description",
+					key: "description",
 				},
 				{
 					title: "status",
 					key: "status",
 					slots: { customRender: "status" },
-				},
-				{
-					title: "detailDescriptions",
-					key: "detailDescriptions",
-					slots: { customRender: "detailDescriptions" },
 				},
 				{
 					title: "createTime",
@@ -266,32 +204,23 @@ export default {
 			loading: false,
 			rules: {
         description: [
-          { required: true, message: '请输入描述', trigger: 'blur' },
+          { required: true, message: '请输入文章内容', trigger: 'blur' },
 				],
-				name: [
-          { required: true, message: '请输入角色名', trigger: 'blur' },
+				title: [
+          { required: true, message: '请输入文章标题', trigger: 'blur' },
 				],
       },
 		};
 	},
 	created() {
 		this.fetch()
-		this.fetchCategory()
+		// this.fetchCategory()
 	},
 	methods: {
 		onChange(checked) {
 		},
-		addDescription() {
-			this.formData.detailDescriptions.push({
-				key: '',
-				value: ''
-			})
-		},
-		delDescription(index) {
-			this.formData.detailDescriptions.splice(index,1)
-		},
 		handleSubmit(e) {
-			if (this.search.name === '') {
+			if (this.search.title === '') {
 				this.fetch()
 			} else {
 				this.fetch({...this.search})
@@ -299,7 +228,7 @@ export default {
 		},
 		updateStatus(row) {
 			let params = {
-				...productMgr.updateStatus,
+				...articleMgr.updateStatus,
 				data: {
 					id: row.id,
 					status: !row.status
@@ -315,7 +244,7 @@ export default {
 			this.$refs.ruleForm
         .validate()
         .then(() => {
-					if (this.title === '新增商品') {
+					if (this.title === '新增文章') {
 						if (fileList.length == 0) {
 							message.warning('请选择一张图片');
 							return fasle;
@@ -324,13 +253,11 @@ export default {
 						fileList.forEach(item=> {
 							formDatas.append('images' ,item)//图片
 						})
-						this.formData.type = this.formData.type ? 1 : 0
-						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
 						Object.keys(this.formData).forEach(item=> {
 							formDatas.append(item ,this.formData[item])//图片
 						})
 						let params = {
-							...productMgr.create,
+							...articleMgr.create,
 							data: formDatas
 						}
 						this.$http(params).then(res=>{
@@ -338,22 +265,15 @@ export default {
 							this.fetch()
 						}).catch(err=> {
 						})
-					} else if (this.title === '编辑商品') {
+					} else if (this.title === '编辑文章') {
 						let formDatas = new FormData()
 						let imageId = [];
 						fileList.forEach(item=> {
 							imageId.push(item.id)//图片
 						})
-						this.formData.price = +this.formData.price;
-						this.formData.articles = {
-							id: this.formData.articles.id,
-							content: this.formData.articles.content
-						}
-						this.formData.type = this.formData.type ? 1 : 0
 						this.formData.detailDescription = JSON.stringify(this.formData.detailDescriptions)
-						// this.formData.detailDescription = JSON.parse(JSON.stringify(this.formData.detailDescriptions))
 						let params = {
-							...productMgr.update,
+							...articleMgr.update,
 							data: {...this.formData,imageIds: imageId}
 						}
 						params.data.id = this.curId;
@@ -389,30 +309,22 @@ export default {
 		},
 		showModel() {
 			this.visible = true; 
-			this.title='新增商品';
+			this.title='新增文章';
 			this.fileList = [];
 			this.formData = {
 				description:"",
-				name:"",
-				articles: "",
-				categoryId: '',
-				type: 1,
-				detailDescriptions: [{
-					key: '',
-					value: ''
-				}],
-				price: 0,
+				title:"",
+				imageName: ''
 			}
 		},
 		updateUser(row) {
 			this.visible = true;
-			this.title = '编辑商品';
+			this.title = '编辑文章';
 			this.formData = {
-				...row,
-				articles: row?.articles.length > 0 ? row.articles[0] : {}
+				...row
 			};
-			if (row.images && row.images.length > 0) {
-				this.fileList = row.images.map(item=>{
+			if (row.imageVoList && row.imageVoList.length > 0) {
+				this.fileList = row.imageVoList.map(item=>{
 					return {
 						uid: item.id,
 						id: item.id,
@@ -447,7 +359,7 @@ export default {
     },
     fetch(params = {},pageNum= 1, pageSize=10) {
 			let data = {
-				...productMgr.list,
+				...articleMgr.list,
 				data: {
 					pageNum,
 					pageSize,
@@ -503,18 +415,20 @@ export default {
       });
 		},
 		handleRemove(file) {
-			let formDatas = new FormData()
-			let imageId = [];
-			imageId.push(file.id)//图片
-			formDatas.append('imageId' ,imageId.join('&'))//图片
-			formDatas.append('id' ,this.formData.id)//图片
-			let updateImageParams = {
-				...productMgr.updateImage,
-				data: formDatas
+			if (this.title === '编辑文章') {
+				let formDatas = new FormData()
+				let imageId = [];
+				imageId.push(file.id)//图片
+				formDatas.append('imageIds' ,imageId.join('&'))//图片
+				formDatas.append('id' ,this.formData.id)//图片
+				let updateImageParams = {
+					...articleMgr.updateImage,
+					data: formDatas
+				}
+				this.$http(updateImageParams).then(res=>{
+				}).catch(err=> {
+				})
 			}
-			this.$http(updateImageParams).then(res=>{
-			}).catch(err=> {
-			})
 			const index = this.fileList.indexOf(file);
 			const newFileList = this.fileList.slice();
 			newFileList.splice(index, 1);

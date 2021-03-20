@@ -31,6 +31,10 @@
 						<DesktopOutlined />
 						<span>商品管理</span>
 					</a-menu-item>
+					<a-menu-item key="/article">
+						<DesktopOutlined />
+						<span>文章管理</span>
+					</a-menu-item>
 				</a-menu>
 			</a-layout-sider>
 			<a-layout>

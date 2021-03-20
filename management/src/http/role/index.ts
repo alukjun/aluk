@@ -1,15 +1,15 @@
 const list = {
-  url: '/role/admin/pageRole',
+  url: '/role/admin/pageRole.do',
   method: 'get'
 }
 
 const update = {
-  url: '/role/admin/updateRoleById',
+  url: '/role/admin/updateRoleById.do',
   method: 'put'
 }
 
 const updateStatus = {
-  url: '/role/admin/updateRoleStatusById',
+  url: '/role/admin/updateRoleStatusById.do',
   method: 'put'
 }
 
@@ -19,12 +19,12 @@ const updateStatus = {
 // }
 
 const create = {
-  url: '/role/admin/createRole',
+  url: '/role/admin/createRole.do',
   method: 'post'
 }
 
 const detail = {
-  url: '/role/admin/selectRoleById',
+  url: '/role/admin/selectRoleById.do',
   method: 'get'
 }
 export default {

@@ -46,7 +46,7 @@
 								>
 							</a-form-item>
               <a-form-item label="分类图片" name="image">
-                <div v-if="title === '新增分类'">
+                <div>
 									<a-upload
 										:file-list="fileList"
 										list-type="picture-card"
@@ -57,26 +57,6 @@
 										<a-button v-if="fileList && fileList.length === 0"> 选择图片 </a-button>
 									</a-upload>
 									
-								</div>
-                
-								<div class="clearfix" v-if="title === '编辑分类'">
-									<a-upload
-										action="https://api.1pinliangwei.com/category/admin/updateCategoryImagesById.do"
-										list-type="picture-card"
-										accept=".png,.jpeg,.jpg"
-										method="put"
-										name="image"
-										:file-list="fileList"
-										:remove="handleRemove"
-										@preview="handlePreview"
-										@change="handleChange"
-										:data="{'id': formData.id,'isUpdate': false}"
-									>
-									<a-button v-if="fileList && fileList.length === 0"> 选择图片 </a-button>
-									</a-upload>
-									<a-modal :visible="previewVisible" :footer="null" @cancel="handleCancel">
-										<img alt="example" style="width: 100%" :src="previewImage" />
-									</a-modal>
 								</div>
               </a-form-item>
 							<a-form-item :wrapper-col="{ span: 24, offset: 0 }">
@@ -134,6 +114,7 @@
 <script>
 import { SmileOutlined, DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import categoryMgr from '/@/http/category';
+import { message } from 'ant-design-vue';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');
@@ -216,7 +197,8 @@ export default {
 				],
 			},
 			fileList: [],
-			flag: false
+			flag: false,
+			isUpdate: false
 		};
 	},
 	created() {
@@ -278,17 +260,22 @@ export default {
 							console.log('新增失败')
 						})
 					} else if (this.title === '编辑分类') {
-						// let formDatas = new FormData()
-						// formDatas.append('isUpdate', fileList.length > 0 ? false: true)
-						// this.fileList.forEach(item=> {
-						// 	formDatas.append('image' ,item)//图片
-						// })
-						// Object.keys(this.formData).forEach(item=> {
-						// 	formDatas.append(item ,this.formData[item])
-						// })
+						if (fileList.length == 0) {
+							message.warning('请选择一张图片');
+							return fasle;
+						}
+						let formDatas = new FormData()
+						console.log(this.fileList)
+						this.fileList.forEach(item=> {
+							formDatas.append('image' ,item)//图片
+						})
+						formDatas.append('isUpdate' ,this.isUpdate)
+						Object.keys(this.formData).forEach(item=> {
+							formDatas.append(item ,this.formData[item])
+						})
 						let params = {
 							...categoryMgr.update,
-							data: this.formData
+							data: formDatas
 						}
 						this.$http(params).then(res=>{
 							console.log('编辑成功')
@@ -380,22 +367,24 @@ export default {
       });
     },
 		handleRemove(file) {
-			let formDatas = new FormData()
-			formDatas.append('isUpdate' ,true)//图片
-			formDatas.append('id' ,this.formData.id)//图片
-			let updateImageParams = {
-				...categoryMgr.updateImage,
-				data: formDatas
-			}
-			this.$http(updateImageParams).then(res=>{
-			}).catch(err=> {
-			})
+			// let formDatas = new FormData()
+			// formDatas.append('isUpdate' ,true)//图片
+			// formDatas.append('id' ,this.formData.id)//图片
+			// let updateImageParams = {
+			// 	...categoryMgr.updateImage,
+			// 	data: formDatas
+			// }
+			// this.$http(updateImageParams).then(res=>{
+			// }).catch(err=> {
+			// })
+			this.isUpdate = true;
 			const index = this.fileList.indexOf(file);
 			const newFileList = this.fileList.slice();
 			newFileList.splice(index, 1);
 			this.fileList = newFileList;
 		},
 		beforeUpload(file) {
+			this.isUpdate = true;
 			this.flag = true;
 			this.fileList = [...this.fileList, file];
 			return false;

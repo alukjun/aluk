@@ -1,15 +1,15 @@
 const list = {
-  url: '/menu/admin/pageMenu',
+  url: '/menu/admin/pageMenu.do',
   method: 'get'
 }
 
 const update = {
-  url: '/menu/admin/updateMenuById',
+  url: '/menu/admin/updateMenuById.do',
   method: 'put'
 }
 
 const updateStatus = {
-  url: '/menu/admin/updateMenuStatusById',
+  url: '/menu/admin/updateMenuStatusById.do',
   method: 'put'
 }
 
@@ -19,7 +19,7 @@ const updateStatus = {
 // }
 
 const create = {
-  url: '/menu/admin/createMenu',
+  url: '/menu/admin/createMenu.do',
   method: 'post'
 }
 
