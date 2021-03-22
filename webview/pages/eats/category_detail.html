@@ -168,6 +168,7 @@
       	}
       	.page {
       		margin-top: 27px;
+      		margin-bottom: 200px;
       	}
       	.page .image-item {
       		margin: auto;
@@ -219,7 +220,10 @@
       <div class="detail">
         <div class="content flex flex-row">
             <div class="left flex flex-column flex-between">
-                <img src="/webview/images/eats/detail_main.jpg" alt="">
+                <div class="main-img" style="width: 710px;height: 710px;">
+                  <img src="/webview/images/eats/detail_main.jpg" alt="">
+                </div>
+                
                 <div class="min-image flex flex-row flex-between">
                     <div><img src="/webview/images/eats/min-1.jpg" alt=""></div>
                     <div><img src="/webview/images/eats/min-2.jpg" alt=""></div>
@@ -313,7 +317,7 @@
       
     </div>
     <div class="category-min">
-      <div class="min-img">
+      <div class="min-img main-img">
         <img src="/webview/images/eats/detail_main.jpg" alt="">
       </div>
       <div class="price" style="padding: 22px 14px;">
@@ -522,9 +526,18 @@
         //jquery load方法加载公共头部
         $(".header").load("../../commonPage/header.html");
         $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
-        
-
-       
+        let id = location.search.split('=')[1]
+        $.ajax({
+          url: 'https://api.1pinliangwei.com/product/admin/selectProductById.do',
+          type: "GET",
+          data: {pageNum:1,pageSize:10,id:id},
+          dataType: "json",
+          success: function(data){
+            console.log(data)
+            $('.main-img img').attr("src", 'https://api.1pinliangwei.com/product/selectImages/' + data.data.images[0].imageUrl);
+          }
+        })
+      
       });
 
     });

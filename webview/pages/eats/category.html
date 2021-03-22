@@ -110,6 +110,7 @@
       		width: 320px;
       		height: 410px;
       		background: rgba(104, 105, 104, 0);
+      		cursor: pointer;
       	}
 
       	/*手风琴*/
@@ -155,11 +156,14 @@
       	}
       }
       @media only screen and (max-width:750px) {
+      	.content {
+      		margin-bottom: 200px;
+      	}
       	.search {
       		padding: 12px 8px;
       	}
       	.category {
-      		height: 100%;
+      		/* height: 100%; */
       	}
       	.search input {
       		border: 4px solid #ff9d02;
@@ -233,6 +237,14 @@
       		/* margin-bottom: 170px; */
       		height: 100%;
       	}
+      	.page-min-content #page-min .item {
+      		margin: 0 5px 22px 5px;
+      		padding: 10px 17px;
+      		border: 1px solid #bbb;
+      		/* width: 47%; */
+      		height: 225px;
+      		background: rgba(104, 105, 104, 0);
+      	}
       	.page-min-content #page-min .image-item {
       		margin: auto;
       		width: 140px;
@@ -244,14 +256,7 @@
       		height: 100%;
       	}
 
-      	.page-min-content #page-min .item {
-      		margin: 0 5px 22px 5px;
-      		padding: 10px 17px;
-      		border: 1px solid #bbb;
-      		width: 47%;
-      		height: 225px;
-      		background: rgba(104, 105, 104, 0);
-      	}
+
       	.page-min-content #page-min .item .text {
       		margin-top: 12px;
       		margin-bottom: 4px;
@@ -412,112 +417,111 @@
         $(".header").load("../../commonPage/header.html");
         $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
         // $('#page-item>#page-temp>div').show()
+        let promise = new Promise(function() {}, function() {});
+        console.log(promise)
+        let curId = null;
+        getImage(1,1)
         $.ajax({
           type: "GET",
-          url: "http://122.51.47.42:8081/category/admin/pageCategory.do",
+          url: "https://api.1pinliangwei.com/category/admin/pageCategory.do",
           data: {pageNum:1,pageSize:10,status:true},
           dataType: "json",
           success: function(data){
-            console.log(data.data)
             let list = data.data
             $('.left-category .parentWrap').html(template("category",list));
             $('.menuGroup .groupTitle').click(function () {
-              console.log($(this).data("flag"))
               if ($(this).data("flag")) {
                 $(this).next().slideToggle();
                 $(this).parent().siblings().find('div').slideUp();
               } else {
-                $.ajax({
-                  type: "GET",
-                  url: "http://122.51.47.42:8081/product/selectProductByCategoryId",
-                  data: {pageNum:1,pageSize:10,categoryId:$(this).data("id")},
-                  dataType: "json",
-                  success: function(data){
-                    console.log(data)
-                  }
-                })
+                getImage(1,$(this).data("id"), 'image')
               }
               
             })
             $('.menuGroup li').click(function () {
               console.log($(this).data("id"))
-              $.ajax({
-                type: "GET",
-                url: "http://122.51.47.42:8081/product/selectProductByCategoryId",
-                data: {pageNum:1,pageSize:10,categoryId:$(this).data("id")},
-                dataType: "json",
-                success: function(data){
-                  console.log(data)
-                }
+              $('.page-min-content .item').css({
+                "width":"45%",
+                "height":"164px",
+                "padding": "4px 17px"
               })
+              $('.page-min-content .image-item').css({
+                "width":"90px",
+                "height":"110px",
+              })
+              $('.page-min-content #page-min .item .text').css({
+                "padding":"0",
+                "margin": "0"
+              })
+              getImage(1,$(this).data("id"), 'image')
             })
           }
         })
-        let data = {list: [[
-            {
-                url: '/webview/images/eats/category_1.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 22
-              },
-              {
-                url: '/webview/images/eats/category_2.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 22
-              },
-              {
-                url: '/webview/images/eats/category_3.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 22
-              },
-              {
-                url: '/webview/images/eats/category_4.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 22
-              }
-            ],[
-            {
-                url: '/webview/images/eats/category_1.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 19.9
-              },
-              {
-                url: '/webview/images/eats/category_2.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 19.9
-              },
-              {
-                url: '/webview/images/eats/category_3.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 19.9
-              },
-              {
-                url: '/webview/images/eats/category_4.png',
-                discript: '一品粮味开心果新米2021新小米五谷杂粮',
-                price: 19.9
-              }
-            ]
-             
-            ]};
-        $('#page-item').html(template("page-temp",data));
-        $('#page-min').html(template("page-temp",data));
-        $("#page").Page({
-          totalPages: 9,//分页总数
-          liNums: 3,//分页的数字按钮数(建议取奇数)
-          activeClass: 'activP', //active 类样式定义
-          callBack : function(page){
-            console.log(this,page)
-            
-            console.log(template("page-temp",data))
-            $('#page-item').html(template("page-temp",data));
-          }
-        });
-        $('.categorys').click(function() {
+
+        function getImage(page, id, key) {
+          $.ajax({
+                type: "GET",
+                url: "https://api.1pinliangwei.com/product/selectProductByCategoryId.do",
+                data: {pageNum:page,pageSize:8,categoryId:id},
+                dataType: "json",
+                success: function(res){
+                  let lists = {};
+                  lists['items'] = []
+                  if (res.data.items && res.data.items.length > 0) {
+                    lists['items'] = res.data.items.map(item=>{
+                      return {
+                        url: item.images[0].imageUrl,
+                        discript: item.name,
+                        price: item.price,
+                        id: item.id
+                      }
+                    });
+                    
+                    if (key === 'key') {
+                      $("#page").Page({
+                        totalPages: res.data._meta.pageCount,//分页总数
+                        liNums: res.data._meta.pageCount,//分页的数字按钮数(建议取奇数)
+                        activeClass: 'activP', //active 类样式定义
+                        callBack : function(page){
+                          console.log(page)
+                          getImage(page, id, 'key')
+                        }
+                      });
+                    } 
+                    $('#page-item').html(template("page-temp",lists));
+                    $('#page-min').html(template("page-temp",lists));
+                    console.log(key)
+                    if (key === 'image') {
+                      $('#page-min .item').css({
+                        "width":"126px",
+                        "height":"164px",
+                        "padding": "4px 17px"
+                      })
+                      $('#page-min .image-item').css({
+                        "width":"90px",
+                        "height":"110px",
+                      })
+                      $('#page-min .item .text').css({
+                        "padding":"0",
+                        "margin": "0"
+                      })
+                    }
+                  } else {
+                    $('#page-item').html(template("page-temp",lists));
+                    $('#page-min').html(template("page-temp",lists));
+                  }
+                  
+                }
+              })
+        }
+        
+        $('.categorys.item').click(function() {
           console.log($(this))
           $('.rules-tips').hide()
           console.log(111)
           $('.left-category').show()
           $('.page-min-content .item').css({
-            "width":"46%",
+            "width":"126px",
             "height":"164px",
             "padding": "4px 17px"
           })
@@ -532,9 +536,13 @@
           $('.page-min-content #page-min .item .price').hide()
         })
 
-        $('#pageList>.item').click(function(e) {
+        $('#page-min').on('click','.item',function (e) {
           console.log(e)
-          location.href ='./category_detail.html';
+          location.href ='./category_detail.html?id='+$(this).data("id");
+        })
+        $('#page-item').on('click','.item',function (e) {
+          console.log(e)
+          location.href ='./category_detail.html?id='+$(this).data("id");
         })
       });
 
@@ -544,24 +552,25 @@
   </body>
 </html>
 <script id="page-temp" type="text/html">
-  {{each data item index}}
+  
   <div id="pageList" class="flex flex-row flex-wrap">
-    {{each item el i}}
-      <div class="item" style="align-items: center;">
+    {{each items item index}}
+      <div class="item" style="align-items: center;" data-id="{{item.id}}">
         <div class="image-item">
-          <img src="{{el.url}}" alt="">
+          <img src="https://api.1pinliangwei.com/product/selectImages/{{item.url}}" alt="">
         </div>
         <div class="text">
-          {{el.discript}}
+          {{item.discript}}
         </div>
         <div class="price" style="text-align: center;">
-          ¥{{el.price}}
+          ¥{{item.price}}
         </div>
       </div>
-    {{/each}}
+      {{/each}}
   </div>
-{{/each}}
+
 </script>
+
 <script id="category" type="text/html">
   {{each items item index}}
   <li class="menuGroup">

@@ -333,11 +333,14 @@ export default {
 							...productMgr.create,
 							data: formDatas
 						}
-						this.$http(params).then(res=>{
-							this.visible = false;
-							this.fetch()
-						}).catch(err=> {
-						})
+						// for(let i = 1; i <=10; i++) {
+							this.$http(params).then(res=>{
+								this.visible = false;
+								this.fetch()
+							}).catch(err=> {
+							})
+						// }
+						
 					} else if (this.title === '编辑商品') {
 						let formDatas = new FormData()
 						let imageId = [];

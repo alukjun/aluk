@@ -41,7 +41,7 @@
 
 @media screen and (max-width: 750px) {
 	.footer {
-		/* position: absolute; */
+		position: fixed;
 		left: 0;
 		bottom: 0;
 		width: 100%;
