@@ -72,14 +72,23 @@
         	}
         	.webview-img {
         		/* margin-top: 75px; */
-        		width: auto;
-        		height: 100%;
+        		width: 100%;
         	}
-        	.section .content {
+          .webview-img img {
+            width: 100%;
+            object-fit: cover;
+          }
+        	/* .section .content {
         		height: 937px;
-        	}
+        	} */
+          .section .content>div {
+            height: 656px;
+          }
+          .text-item-title {
+            margin-bottom: 74px;
+          }
         	.section .content .text-item {
-        		padding: 24px 24px;
+        		padding: 64px 64px;
         		width: 544px;
         	}
         	.section .content .image-item {
@@ -161,22 +170,28 @@
         		height: 100%;
         	}
         	.section .content {
-        		height: 667px;
-        		font-size: 12px;
+        		/* height: 667px; */
+        		font-size: 10px;
         	}
+          .section .content>div {
+            height: 270px;
+          }
+          .text-item-title {
+            margin-bottom: 12px;
+          }
         	.section .content .text-item {
-        		padding: 16px 16px;
+        		padding: 8px 8px;
         		width: 223px;
         	}
         	.section .content .image-item {
         		width: 447px;
         	}
         	.section .content .text-item .text {
-        		line-height: 18px;
+        		line-height: 16px;
         	}
         	.section .content,
         	.section-eats {
-        		padding: 0 40px;
+        		padding: 0 20px;
         		/* height: 667px; */
         	}
         	.image-box {
@@ -220,15 +235,17 @@
         </div>
         <div class="section">
           <div class="content">
-            <div class="flex flex-row" style="height: 45%;">
+            <div class="flex flex-row">
               <div class="text-item flex flex-column flex-between" style="color: white;height: 100%;background-color: #FF8500;">
-                <div style="text-align: center;">关于我们</div>
-                <div class="text">
-                  <p style="margin-bottom: 16px;">产地直销，源头可溯</p>
-                  <p>2019年3月成立一品粮味，专做高
-                    端食品。精选全球好原料，深耕华
-                    东，辐射全国因你而生的一品粮味，
-                    事业版图正式起航。</p>
+                <div>
+                  <div class="text-item-title" style="text-align: center;">关于我们</div>
+                  <div class="text">
+                    <p style="margin-bottom: 12px;">产地直销，源头可溯</p>
+                    <p>2019年3月成立一品粮味，专做高
+                      端食品。精选全球好原料，深耕华
+                      东，辐射全国因你而生的一品粮味，
+                      事业版图正式起航。</p>
+                  </div>
                 </div>
                 <div>
                   more >
@@ -238,20 +255,22 @@
                 <img src="/webview/images/index/gift_2.jpeg" alt="" style="width: 100%;height: 100%;">
               </div>
             </div>
-            <div class="flex flex-row" style="height: 45%;">
+            <div class="flex flex-row">
               <div class="image-item" style="height: 100%;">
                 <img src="/webview/images/index/gift_1.jpg" alt="" style="width: 100%;height: 100%;">
               </div>
               <div class="text-item flex flex-column flex-between" style="color: white;height: 100%;background-color: #FF8500;">
-                <div style="text-align: center;">最新动态</div>
-                <div class="text">
-                  <p>为了做好特产食品事业，创始人从
-                    创业之初便一直致力于寻找高品质、
-                    新鲜的原材料。不断在全国各地寻
-                    找具有特色的小零食，鱼台斑马豆、
-                    济宁荞麦面、新疆红枣、沂沟粉条、
-                    苍山豆腐干......越来越多的特产被
-                    一品粮味聚在了一起。</p>
+                <div>
+                  <div class="text-item-title" style="text-align: center;">最新动态</div>
+                  <div class="text">
+                    <p>为了做好特产食品事业，创始人从
+                      创业之初便一直致力于寻找高品质、
+                      新鲜的原材料。不断在全国各地寻
+                      找具有特色的小零食，鱼台斑马豆、
+                      济宁荞麦面、新疆红枣、沂沟粉条、
+                      苍山豆腐干......越来越多的特产被
+                      一品粮味聚在了一起。</p>
+                  </div>
                 </div>
                 <div>
                   more >

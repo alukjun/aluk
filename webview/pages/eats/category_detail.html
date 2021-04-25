@@ -1,547 +1,605 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <title>Bootstrap 101 Template</title>
-    <!-- <link rel="stylesheet" href="./styles/base.css"> -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css" rel="stylesheet">
-    <!-- Bootstrap -->
-     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css">
-    <!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
-    <link rel="stylesheet" href="http://at.alicdn.com/t/font_2242864_w7vbld6no4h.css">
-    <link rel="stylesheet" href="/webview/commonPage/header.css">
-    <link rel="stylesheet" href="/webview/commonPage/footer.css">
-    <link rel="stylesheet" href="/webview/plugin/8-jiandanshiyong/src/jquery.page.css">
-    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
-    <script type="text/javascript" src="/webview/plugin/8-jiandanshiyong/src/jquery.page.js"></script>
-    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
-      
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
-    <script src="/webview/plugin/template/template.js"></script> 
-    <style>
-      @media only screen and (min-width:750px) {
-      	.category-min {
-      		display: none;
-      	}
-      	body {
-      		height: 300%;
-      		background: white;
-      		color: #ff9d02;
-      	}
-      	.search {
-      		margin-top: 66px;
-      		margin-bottom: 40px;
-      	}
-      	.search input {
-      		border: 4px solid #ff9d02;
-      		width: 655px;
-      		height: 60px;
-      		outline: none;
-      	}
-      	.search input:focus {
-      		border: 4px solid #ff9d02;
-      	}
-      	.search button {
-      		border: none;
-      		width: 200px;
-      		height: 60px;
-      		outline: none;
-      		background: #ff9d02;
-      		cursor: pointer;
-      		vertical-align: top;
-      		font-family: Source Han Sans SC;
-      		font-weight: 500;
-      		font-size: 20px;
-      		color: #fff;
-      	}
-      	.header-image {
-      		width: 100%;
-      		height: 400px;
-      	}
-      	.header-image img {
-      		width: 100%;
-      		height: 400px;
-      	}
+	<head>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+		/>
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>Bootstrap 101 Template</title>
+		<!-- <link rel="stylesheet" href="./styles/base.css"> -->
+		<link
+			href="https://cdn.bootcdn.net/ajax/libs/fullPage.js/2.9.7/jquery.fullpage.css"
+			rel="stylesheet"
+		/>
+		<!-- Bootstrap -->
 
-      	.detail {
-      		margin-top: 148px;
-      		padding: 0 146px;
-      		font-size: 20px;
-      		color: #999;
-      	}
-      	.detail .content .left {
-      		margin-right: 100px;
-      		width: 710px;
-      	}
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/css/swiper.css"
+		/>
+		<!-- <link rel="stylesheet" href="./iconfont/iconfont.css"> -->
+		<link
+			rel="stylesheet"
+			href="http://at.alicdn.com/t/font_2242864_w7vbld6no4h.css"
+		/>
+		<link rel="stylesheet" href="/webview/commonPage/header.css" />
+		<link rel="stylesheet" href="/webview/commonPage/footer.css" />
+		<link
+			rel="stylesheet"
+			href="/webview/plugin/8-jiandanshiyong/src/jquery.page.css"
+		/>
+		<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+		<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+		<script
+			type="text/javascript"
+			src="/webview/plugin/8-jiandanshiyong/src/jquery.page.js"
+		></script>
+		<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
 
-      	.detail .content .left img {
-      		margin-bottom: 40px;
-      		width: 100%;
-      		height: 710px;
-      	}
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.0.2/js/swiper.js"></script>
+		<script src="/webview/plugin/template/template.js"></script>
+		<style>
+			@media only screen and (min-width: 750px) {
+				.category-min {
+					display: none;
+				}
+				body {
+					height: 300%;
+					background: white;
+					color: #ff9d02;
+				}
+				.search {
+					margin-top: 66px;
+					margin-bottom: 40px;
+				}
+				.search input {
+					border: 4px solid #ff9d02;
+					width: 655px;
+					height: 60px;
+					outline: none;
+				}
+				.search input:focus {
+					border: 4px solid #ff9d02;
+				}
+				.search button {
+					border: none;
+					width: 200px;
+					height: 60px;
+					outline: none;
+					background: #ff9d02;
+					cursor: pointer;
+					vertical-align: top;
+					font-family: Source Han Sans SC;
+					font-weight: 500;
+					font-size: 20px;
+					color: #fff;
+				}
+				.header-image {
+					width: 100%;
+					height: 400px;
+				}
+				.header-image img {
+					width: 100%;
+					height: 400px;
+				}
 
-      	.detail .content .left .min-image {
-      		padding: 0 56px;
-      	}
+				.detail {
+					margin-top: 148px;
+					padding: 0 146px;
+					font-size: 20px;
+					color: #999;
+				}
+				.detail .content .left {
+					margin-right: 100px;
+					width: 710px;
+				}
 
-      	.detail .content .left .min-image > div {
-      		width: 100px;
-      		height: 100px;
-      	}
+				.detail .content .left img {
+					margin-bottom: 40px;
+					width: 100%;
+					height: 710px;
+				}
 
-      	.detail .content .left img {
-      		width: 100%;
-      		height: 100%;
-      	}
+				.detail .content .left .min-image {
+					padding: 0 56px;
+				}
 
-      	.detail-info {
-      		margin-top: 187px;
-      		margin-bottom: 100px;
-      		padding: 0 146px;
-      	}
+				.detail .content .left .min-image > div {
+					width: 100px;
+					height: 100px;
+				}
 
-      	.detail-info .left {
-      		margin-right: 35px;
-      		margin-top: 60px;
-      	}
+				.detail .content .left img {
+					width: 100%;
+					height: 100%;
+				}
 
-      	.detail-info .image-item {
-      		width: 254px;
-      		height: 254px;
-      	}
+				.detail-info {
+					margin-top: 187px;
+					margin-bottom: 100px;
+					padding: 0 146px;
+				}
 
-      	.detail-info .image-item img {
-      		width: 254px;
-      		height: 254px;
-      	}
-      	.detail-info #page-item .text {
-      		margin-top: 24px;
-      		margin-bottom: 17px;
-      		padding: 0 32px;
-      		text-align: center;
-      		color: #333;
-      	}
+				.detail-info .left {
+					margin-right: 35px;
+					margin-top: 60px;
+				}
 
-      	.detail-info .item {
-      		margin-bottom: 21px;
-      		padding: 29px 33px;
-      		border: 1px solid #bbb;
-      		width: 320px;
-      		height: 410px;
-      		background: rgba(104, 105, 104, 0);
-      	}
-      }
-      @media only screen and (max-width:750px) {
-      	body {
-      		background: white;
-      		color: #ff9d02;
-      		/* height: 500%; */
-      	}
-      	.category-web {
-      		display: none;
-      	}
+				.detail-info .image-item {
+					width: 254px;
+					height: 254px;
+				}
 
-      	.category-min {
-      		margin-top: 75px;
-      		width: 100%;
-      	}
-      	.category-min .min-img {
-      		/* width: 375px; */
-      		height: 375px;
-      	}
-      	.category-min .min-img img {
-      		width: 100%;
-      		height: 100%;
-      	}
-      	.detail-main-min {
-      		/* width: 375px; */
-      		height: 400px;
-      	}
-      	.detail-main-min img {
-      		width: 100%;
-      		height: 100%;
-      	}
-      	.page {
-      		margin-top: 27px;
-      		margin-bottom: 200px;
-      	}
-      	.page .image-item {
-      		margin: auto;
-      		width: 140px;
-      		height: 140px;
-      	}
+				.detail-info .image-item img {
+					width: 254px;
+					height: 254px;
+				}
+				.detail-info #page-item .text {
+					margin-top: 24px;
+					margin-bottom: 17px;
+					padding: 0 32px;
+					text-align: center;
+					color: #333;
+				}
 
-      	.page .image-item img {
-      		width: 100%;
-      		height: 100%;
-      	}
+				.detail-info .item {
+					margin-bottom: 21px;
+					padding: 29px 33px;
+					border: 1px solid #bbb;
+					width: 320px;
+					height: 410px;
+					background: rgba(104, 105, 104, 0);
+				}
+			}
+			@media only screen and (max-width: 750px) {
+				body {
+					background: white;
+					color: #ff9d02;
+				}
+				.category-web {
+					display: none;
+				}
 
-      	.page .item {
-      		margin: 0 5px 4px 5px;
-      		padding: 10px 0;
-      		border: 1px solid #bbb;
-      		width: 47%;
-      		height: 225px;
-      		background: rgba(104, 105, 104, 0);
-      	}
-      	.page .item .text {
-      		margin-top: 7px;
-      		margin-bottom: 6px;
-      		padding: 0 auto;
-      		padding: 0 17px;
-      		text-align: center;
-      		font-size: 12px;
-      		color: #333;
-      	}
-      }
-    </style>
-  </head>
-  <body>
-     <div class="header color-main">
+				.category-min {
+					margin-top: 75px;
+					width: 100%;
+          overflow:scroll;
+          margin-bottom: 200px;
+				}
+				.category-min .min-img {
+					/* width: 375px; */
+					height: 375px;
+				}
+				.category-min .min-img img {
+					width: 100%;
+					height: 100%;
+				}
+				.detail-main-min {
+					/* width: 375px; */
+					height: 400px;
+				}
+				.detail-main-min img {
+					width: 100%;
+					height: 100%;
+				}
+				.page {
+					margin-top: 27px;
+					margin-bottom: 200px;
+				}
+				.page .image-item {
+					margin: auto;
+					width: 140px;
+					height: 140px;
+				}
 
-    </div>
-    
-    <div class="category-web pages">
-      <div class="search flex flex-row flex-center">
-        <div>
-          <input type="text"><button>搜  索</button>
-          <div id="page2222"></div>
-        </div>
+				.page .image-item img {
+					width: 100%;
+					height: 100%;
+				}
+
+				.page .item {
+					margin: 0 5px 4px 5px;
+					padding: 10px 0;
+					border: 1px solid #bbb;
+					width: 47%;
+					height: 225px;
+					background: rgba(104, 105, 104, 0);
+				}
+				.page .item .text {
+					margin-top: 7px;
+					margin-bottom: 6px;
+					padding: 0 auto;
+					padding: 0 17px;
+					text-align: center;
+					font-size: 12px;
+					color: #333;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header color-main"></div>
+
+		<div class="category-web pages">
+			<div class="search flex flex-row flex-center">
+				<div>
+					<input type="text" /><button>搜 索</button>
+					<div id="page2222"></div>
+				</div>
+			</div>
+			<div class="header-image">
+				<img src="/webview/images/eats/header.png" alt="" />
+			</div>
+
+			<div class="detail">
+				<div class="content flex flex-row">
+					<div class="left flex flex-column flex-between" id="min-img">
+					</div>
+					<div class="right" id="right">
+						<!-- <div
+							class="flex flex-column flex-between"
+							style="margin-bottom: 77px"
+						>
+							<p style="color: #101010; font-size: 30px; margin-bottom: 27px">
+								一品粮味沂沟粉条（干粉条类）
+							</p>
+							<p style="color: #ff9d02; margin-bottom: 20px">
+								沂蒙山区优质地瓜 传统手工 质地均匀
+							</p>
+							<p>食用方法：</p>
+							<p>使用前先用开水浸泡至柔软后洗净，可热炒、闷炖、涮火锅等。</p>
+						</div>
+						<div
+							class="flex flex-column flex-between"
+							style="line-height: 36px"
+						>
+							<p>产品参数：</p>
+							<p>品名：沂沟粉条（干粉条类）</p>
+							<p>配料： 红薯粉、饮用水</p>
+							<p>执行标准：GB/T23587-2009</p>
+							<p>生产许可：SC12337132400787</p>
+							<p>保质期：18 个月</p>
+							<p>生产日期：见袋体</p>
+							<p>储存方法：置阴凉干燥处</p>
+							<p>制造商：兰陵县沂沟粉业有限公司</p>
+							<p>地址：大仲村镇后沂沟村</p>
+							<p>委托方：临沂兰陵鑫玮食品有限公司</p>
+							<p>产地：山东省临沂市</p>
+							<p>电话：400-080-8838</p>
+						</div> -->
+					</div>
+				</div>
+			</div>
+
+			<!-- <div class="detail-info flex flex-row">
+				<div class="left flex flex-column flex-wrap pageItem" id="page2">
+					<div class="item" style="align-items: center">
+						<div class="image-item">
+							<img src="/webview/images/eats/category_1.png" alt="" />
+						</div>
+						<div
+							style="
+								padding: 0 32px;
+								color: #333333;
+								text-align: center;
+								margin-top: 24px;
+								margin-bottom: 17px;
+							"
+						>
+							一品粮味开心果新米 2021新小米五谷杂粮
+						</div>
+						<div style="text-align: center">¥20</div>
+					</div>
+					<div class="item" style="align-items: center">
+						<div class="image-item">
+							<img src="/webview/images/eats/category_2.png" alt="" />
+						</div>
+						<div
+							style="
+								padding: 0 32px;
+								color: #333333;
+								text-align: center;
+								margin-top: 24px;
+								margin-bottom: 17px;
+							"
+						>
+							一品粮味开心果新米 2021新小米五谷杂粮
+						</div>
+						<div style="text-align: center">¥20</div>
+					</div>
+					<div class="item" style="align-items: center">
+						<div class="image-item">
+							<img src="/webview/images/eats/category_3.png" alt="" />
+						</div>
+						<div
+							style="
+								padding: 0 32px;
+								color: #333333;
+								text-align: center;
+								margin-top: 24px;
+								margin-bottom: 17px;
+							"
+						>
+							一品粮味开心果新米 2021新小米五谷杂粮
+						</div>
+						<div style="text-align: center">¥20</div>
+					</div>
+					<div class="item" style="align-items: center">
+						<div class="image-item">
+							<img src="/webview/images/eats/category_4.png" alt="" />
+						</div>
+						<div
+							style="
+								padding: 0 32px;
+								color: #333333;
+								text-align: center;
+								margin-top: 24px;
+								margin-bottom: 17px;
+							"
+						>
+							一品粮味开心果新米 2021新小米五谷杂粮
+						</div>
+						<div style="text-align: center">¥20</div>
+					</div>
+				</div>
+				<div class="right">
+					<div
+						style="
+							color: #ff9d02;
+							font-size: 20px;
+							margin-bottom: 34px;
+							margin-left: 17px;
+						"
+					>
+						商品详情
+					</div>
+					<div style="width: 1294px; height: 1617px">
+						<img
+							src="/webview/images/eats/detail_big.jpg"
+							style="width: 100%; height: 100%"
+							alt=""
+						/>
+					</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="category-min" id="category-min">
+			
+			<!-- <div
+				class="detail-text flex flex-row flex-between flex-align-center"
+				style="
+					height: 40px;
+					color: #333333;
+					padding: 0 116px;
+					background-color: #f2f2f2;
+				"
+			>
+				<div style="border-top: 2px solid #333333; width: 42px"></div>
+				<div>详情</div>
+				<div style="border-top: 2px solid #333333; width: 42px"></div>
+			</div>
+			<div class="detail-main-min">
+				<img src="/webview/images/eats/detail_main_min.jpg" alt="" />
+			</div>
+			<div class="detail-main-min">
+				<img src="/webview/images/eats/detail_main_min.jpg" alt="" />
+			</div>
+			<div class="detail-main-min">
+				<img src="/webview/images/eats/detail_main_min.jpg" alt="" />
+			</div>
+			<div
+				class="detail-text flex flex-row flex-between flex-align-center"
+				style="
+					height: 40px;
+					color: #333333;
+					padding: 0 116px;
+					background-color: #f2f2f2;
+				"
+			>
+				<div style="border-top: 2px solid #333333; width: 42px"></div>
+				<div>推荐</div>
+				<div style="border-top: 2px solid #333333; width: 42px"></div>
+			</div>
+			<div class="page flex flex-row flex-wrap flex-between pageItem">
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+				<div class="item" style="align-items: center">
+					<div class="image-item">
+						<img src="/webview/images/eats/category_1.png" alt="" />
+					</div>
+					<div class="text" style="color: #333333; text-align: center">
+						一品粮味黄小米新米2021新小米五谷杂粮
+					</div>
+					<div style="text-align: center">¥20</div>
+				</div>
+			</div> -->
+		</div>
+		<div class="footer"></div>
+
+    <script type="text/html" id="min-img-temp">
+      <div class="main-img" style="width: 710px; height: 710px">
+        <img src="https://api.1pinliangwei.com/product/selectImages/{{mainImgs}}" alt="" />
       </div>
-      <div class="header-image">
-        <img src="/webview/images/eats/header.png" alt="">
-      </div>
-      
-      <div class="detail">
-        <div class="content flex flex-row">
-            <div class="left flex flex-column flex-between">
-                <div class="main-img" style="width: 710px;height: 710px;">
-                  <img src="/webview/images/eats/detail_main.jpg" alt="">
-                </div>
-                
-                <div class="min-image flex flex-row flex-between">
-                    <div><img src="/webview/images/eats/min-1.jpg" alt=""></div>
-                    <div><img src="/webview/images/eats/min-2.jpg" alt=""></div>
-                    <div><img src="/webview/images/eats/min-3.jpg" alt=""></div>
-                    <div><img src="/webview/images/eats/min-4.jpg" alt=""></div>
-                    <div><img src="/webview/images/eats/min-5.jpg" alt=""></div>
-                </div>
-            </div>
-            <div class="right">
-                <div class="flex flex-column flex-between" style="margin-bottom: 77px;">
-                    <p style="color: #101010;font-size: 30px;margin-bottom: 27px;">一品粮味沂沟粉条（干粉条类）</p>
-                    <p style="color: #FF9D02;margin-bottom: 20px;">沂蒙山区优质地瓜  传统手工  质地均匀</p>
-                    <p>食用方法：</p>
-                    <p>使用前先用开水浸泡至柔软后洗净，可热炒、闷炖、涮火锅等。</p>
-                </div>
-                <div class="flex flex-column flex-between" style="line-height: 36px;">
-                    <p>产品参数：</p>
-                    <p>品名：沂沟粉条（干粉条类）</p>
-                    <p>配料： 红薯粉、饮用水 </p>
-                    <p>执行标准：GB/T23587-2009</p>
-                    <p>生产许可：SC12337132400787 </p>
-                    <p>保质期：18 个月</p>
-                    <p>生产日期：见袋体</p>
-                    <p>储存方法：置阴凉干燥处</p>
-                    <p>制造商：兰陵县沂沟粉业有限公司</p>
-                    <p>地址：大仲村镇后沂沟村</p>
-                    <p>委托方：临沂兰陵鑫玮食品有限公司</p>
-                    <p>产地：山东省临沂市</p>
-                    <p>电话：400-080-8838</p>
-                </div>
-            </div>
-        </div>
-      </div>
-
-      <div class="detail-info flex flex-row">
-        <div class="left flex flex-column flex-wrap pageItem" id="page2">
-            <div class="item" style="align-items: center;">
-              <div class="image-item">
-                <img src="/webview/images/eats/category_1.png" alt="">
-              </div>
-                <div style="padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;">
-                    一品粮味开心果新米 2021新小米五谷杂粮
-                </div>
-                <div style="text-align: center;">
-                    ¥20
-                </div>
-            </div>
-            <div class="item" style="align-items: center;">
-                <div class="image-item">
-                  <img src="/webview/images/eats/category_2.png" alt="">
-                </div>
-                  <div style="padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;">
-                      一品粮味开心果新米 2021新小米五谷杂粮
-                  </div>
-                  <div style="text-align: center;">
-                      ¥20
-                  </div>
-              </div>
-              <div class="item" style="align-items: center;">
-                <div class="image-item">
-                  <img src="/webview/images/eats/category_3.png" alt="">
-                </div>
-                  <div style="padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;">
-                      一品粮味开心果新米 2021新小米五谷杂粮
-                  </div>
-                  <div style="text-align: center;">
-                      ¥20
-                  </div>
-              </div>
-              <div class="item" style="align-items: center;">
-                <div class="image-item">
-                  <img src="/webview/images/eats/category_4.png" alt="">
-                </div>
-                  <div style="padding: 0 32px;color: #333333;text-align: center;margin-top: 24px;margin-bottom: 17px;">
-                      一品粮味开心果新米 2021新小米五谷杂粮
-                  </div>
-                  <div style="text-align: center;">
-                      ¥20
-                  </div>
-              </div>
-        </div>
-        <div class="right">
-            <div style="color: #FF9D02; font-size: 20px; margin-bottom: 34px;margin-left: 17px;">
-                商品详情
-            </div>
-            <div style="width: 1294px;height: 1617px;">
-                <img src="/webview/images/eats/detail_big.jpg" style="width: 100%;height: 100%;" alt="">
-            </div>
-        </div>
-      </div>
-      
-    </div>
-    <div class="category-min">
-      <div class="min-img main-img">
-        <img src="/webview/images/eats/detail_main.jpg" alt="">
-      </div>
-      <div class="price" style="padding: 22px 14px;">
-        <p style="margin-bottom: 17px;">￥<span style="font-size: 24px;">9.8-19.9</span></p>
-        <p style="font-size: 20px;color: #333333;">一品粮味沂沟粉条（干粉条类） </p>
-      </div>
-      <div style="border-top: 2.5px solid #FAFAFA;"></div>
-      <div style="padding: 13px 15px">
-        沂蒙山区优质地瓜  传统手工  质地均匀
-      </div>
-      <div style="border-top: 2.5px solid #FAFAFA;"></div>
-      <div class="flex flex-row flex-between" style="padding: 13px 15px">
-        <div class="label" style="color: #333333; font-size: 14px;width: 85px;margin-right: 30px;">
-          使用方法
-        </div>
-        <div class="descript" style="color: #999999; font-size: 14px">
-          使用前先用开水浸泡至柔软后洗净,可热炒、闷炖、涮火锅等。
-        </div>
-      </div>
-      <div class="info">
-        <div class="title flex flex-row flex-between" style="padding: 13px 15px">
-          <div class="label" style="color: #333333; font-size: 14px;width: 85px;margin-right: 30px;">
-            产品参数
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            品名
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            沂沟粉条（干粉条类）
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            配料
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            红薯粉、饮用水
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            执行标准
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            GB/T23587-2009
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            生产许可
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            SC12337132400787 
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            保质期
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            见袋体
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            储存方法
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            置阴凉干燥处
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            制造商
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            兰陵县沂沟粉业有限公司
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            地址
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            大仲村镇后沂沟村
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            委托方
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            临沂兰陵鑫玮食品有限公司
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            产地
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            山东省临沂市
-          </div>
-        </div>
-        <div class="item flex flex-row flex-between" style="padding: 13px 15px;border-bottom: 1px solid #F0F0F0;">
-          <div class="label" style="color: #999999; font-size: 14px;width: 85px;margin-right: 30px;">
-            电话
-          </div>
-          <div class="descript" style="color: #999999; font-size: 14px">
-            400-080-8838
-          </div>
-        </div>
-      </div>
-      <div class="detail-text flex flex-row flex-between flex-align-center" style="height: 40px;color: #333333;padding: 0 116px;background-color: #F2F2F2;">
-        <div style="border-top: 2px solid #333333;width: 42px;"></div>  <div>详情</div>  <div style="border-top: 2px solid #333333;width: 42px;"></div>
-      </div>
-      <div class="detail-main-min">
-        <img src="/webview/images/eats/detail_main_min.jpg" alt="">
-      </div>
-      <div class="detail-main-min">
-        <img src="/webview/images/eats/detail_main_min.jpg" alt="">
-      </div>
-      <div class="detail-main-min">
-        <img src="/webview/images/eats/detail_main_min.jpg" alt="">
-      </div>
-      <div class="detail-text flex flex-row flex-between flex-align-center" style="height: 40px;color: #333333;padding: 0 116px;background-color: #F2F2F2;">
-        <div style="border-top: 2px solid #333333;width: 42px;"></div>  <div>推荐</div>  <div style="border-top: 2px solid #333333;width: 42px;"></div>
-      </div>
-      <div class="page flex flex-row flex-wrap flex-between pageItem">
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        <div class="item" style="align-items: center;">
-          <div class="image-item">
-            <img src="/webview/images/eats/category_1.png" alt="">
-          </div>
-          <div class="text" style="color: #333333;text-align: center;">
-            一品粮味黄小米新米2021新小米五谷杂粮
-          </div>
-          <div style="text-align: center;">
-             ¥20
-          </div>
-        </div>
-        
-      </div>
-    </div>
-    <div class="footer">
-
-    </div>
-    
-    <script>
-      $(document).ready(function(){
-        //jquery load方法加载公共头部
-        $(".header").load("../../commonPage/header.html");
-        $(".footer").load("../../commonPage/footer.html",function(){//加载完成后设置高亮
-        let id = location.search.split('=')[1]
-        $.ajax({
-          url: 'https://api.1pinliangwei.com/product/admin/selectProductById.do',
-          type: "GET",
-          data: {pageNum:1,pageSize:10,id:id},
-          dataType: "json",
-          success: function(data){
-            console.log(data)
-            $('.main-img img').attr("src", 'https://api.1pinliangwei.com/product/selectImages/' + data.data.images[0].imageUrl);
-          }
-        })
-      
-      });
-
-    });
+      <!-- <div class="min-image flex flex-row flex-between">
+				{{each minImgs}}
+          <div><img src="https://api.1pinliangwei.com/product/selectImages/{{$value.imageUrl}}" alt="" /></div>
+        {{/each}}		
+      </div> -->
     </script>
-    
-  </body>
+
+		<script type="text/html" id="right-temp">
+			<div class="flex flex-column flex-between" style="margin-bottom: 77px;">
+				<p style="color: #101010;font-size: 30px;margin-bottom: 27px;">
+					{{name}}
+				</p>
+				<p style="color: #FF9D02;margin-bottom: 20px;">
+					{{description}}
+				</p>
+				<p>食用方法：</p>
+				<p>使用前先用开水浸泡至柔软后洗净，可热炒、闷炖、涮火锅等。</p>
+			</div>
+			<div class="flex flex-column flex-between" style="line-height: 36px;">
+				<p>产品参数：</p>
+        {{each productKeys}}
+				  <p>{{$value.key}}:{{$value.value}}</p>
+        {{/each}}
+			</div>
+		</script>
+
+    <script type="text/html" id="min-temp">
+      <div class="min-img main-img">
+				<img src="https://api.1pinliangwei.com/product/selectImages/{{mainImgs}}" alt="" />
+			</div>
+			<div class="price" style="padding: 22px 14px">
+				<p style="margin-bottom: 17px">
+					￥<span style="font-size: 24px">{{price}}</span>
+				</p>
+				<p style="font-size: 20px; color: #333333">
+					{{name}}
+				</p>
+			</div>
+			<div style="border-top: 2.5px solid #fafafa"></div>
+			<div style="padding: 13px 15px">{{description}}</div>
+			<div style="border-top: 2.5px solid #fafafa"></div>
+			<div class="flex flex-row flex-between" style="padding: 13px 15px">
+				<div
+					class="label"
+					style="
+						color: #333333;
+						font-size: 14px;
+						width: 85px;
+						margin-right: 30px;
+					"
+				>
+					使用方法
+				</div>
+				<div class="descript" style="color: #999999; font-size: 14px">
+					使用前先用开水浸泡至柔软后洗净,可热炒、闷炖、涮火锅等。
+				</div>
+			</div>
+			<div class="info">
+				<div
+					class="title flex flex-row flex-between"
+					style="padding: 13px 15px"
+				>
+					<div
+						class="label"
+						style="
+							color: #333333;
+							font-size: 14px;
+							width: 85px;
+							margin-right: 30px;
+						"
+					>
+						产品参数
+					</div>
+				</div>
+        {{each productKeys}}
+          <div
+            class="item flex flex-row flex-between"
+            style="padding: 13px 15px; border-bottom: 1px solid #f0f0f0"
+          >
+            <div
+              class="label"
+              style="
+                color: #999999;
+                font-size: 14px;
+                width: 85px;
+                margin-right: 30px;
+              "
+            >
+              {{$value.key}}
+            </div>
+            <div class="descript" style="color: #999999; font-size: 14px">
+              {{$value.value}}
+            </div>
+          </div>
+				{{/each}}
+			</div>
+    </script>
+
+		<script>
+			$(document).ready(function () {
+				//jquery load方法加载公共头部
+				$(".header").load("../../commonPage/header.html");
+				$(".footer").load("../../commonPage/footer.html", function () {
+					//加载完成后设置高亮
+					let id = location.search.split("=")[1];
+					$.ajax({
+						url:
+							"https://api.1pinliangwei.com/product/admin/selectProductById.do",
+						type: "GET",
+						data: { id: id },
+						dataType: "json",
+						success: function (data) {
+							console.log(data);
+              let productKeys = [];
+              productKeys = JSON.parse(data.data.detailDescription);
+              console.log(productKeys)
+              let lists = {
+                name: data.data.name,
+                price: data.data.price,
+                description: data.data.description,
+                mainImgs: data.data.images[0].imageUrl,
+                productKeys,
+              }
+              let minList = {
+                minImgs: data.data.images,
+                mainImgs: data.data.images[0].imageUrl
+              }
+              $('#right').html(template("right-temp", lists));
+              $('#min-img').html(template("min-img-temp", minList));
+              $('#category-min').html(template("min-temp", lists));
+						},
+					});
+				});
+			});
+		</script>
+	</body>
 </html>
