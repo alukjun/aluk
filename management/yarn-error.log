@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/local/Cellar/node/12.6.0/bin/node /usr/local/bin/yarn add vue-cli-plugin-qs -D
+  /usr/local/Cellar/node/12.6.0/bin/node /usr/local/bin/yarn build
 
 PATH: 
   /Library/Frameworks/Python.framework/Versions/3.9/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/Library/Frameworks/Python.framework/Versions/2.7/bin
@@ -14,17 +14,12 @@ Platform:
   darwin x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/vue-cli-plugin-qs: Not found
-      at Request.params.callback [as _callback] (/usr/local/lib/node_modules/yarn/lib/cli.js:66988:18)
-      at Request.self.callback (/usr/local/lib/node_modules/yarn/lib/cli.js:140662:22)
-      at Request.emit (events.js:203:13)
-      at Request.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141634:10)
-      at Request.emit (events.js:203:13)
-      at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/yarn/lib/cli.js:141556:12)
-      at Object.onceWrapper (events.js:291:20)
-      at IncomingMessage.emit (events.js:208:15)
-      at endReadableNT (_stream_readable.js:1154:12)
-      at processTicksAndRejections (internal/process/task_queues.js:77:11)
+  SyntaxError: /Users/caijunjun/111/aluk/management/package.json: Unexpected token / in JSON at position 86
+      at JSON.parse (<anonymous>)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:1625:59
+      at Generator.next (<anonymous>)
+      at step (/usr/local/lib/node_modules/yarn/lib/cli.js:310:30)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:321:13
 
 npm manifest: 
   {
@@ -32,7 +27,8 @@ npm manifest:
     "version": "0.0.0",
     "scripts": {
       "dev": "vite",
-      "build": "vite build",
+      // "build": "vite build",
+      "build": "babel src -d lib",
       "lint": "lint-staged .",
       "upgrade-all": "yarn yarn-upgrade-all",
       "upgrade-next": "yarn add vue@next vue-router@next vuex@next ant-design-vue@next"

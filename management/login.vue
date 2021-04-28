@@ -61,7 +61,7 @@ export default {
 	align-items: center;
 	width: 100%;
 	height: 100%;
-	// background-image: linear-gradient(to bottom, rgba(255,255,0,.5), rgba(0,0,255,.5)), url("../../assets/login_bg.jpeg");
+	// background-image: linear-gradient(to bottom, rgba(255,255,0,.5), rgba(0,0,255,.5)), url("/@/assets/https://www.1pinliangwei.com/img/");
 	.content {
 		width: 500px;
 	}
