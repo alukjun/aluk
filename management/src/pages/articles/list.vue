@@ -124,8 +124,8 @@
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { message } from 'ant-design-vue';
-import articleMgr from '/@/http/article';
-import categoryMgr from '/@/http/category';
+import articleMgr from '../../http/article';
+import categoryMgr from '../../http/category';
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

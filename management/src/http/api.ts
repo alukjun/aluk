@@ -7,7 +7,7 @@ declare module '@vue/runtime-core' {
     $Axios: AxiosInstance;
   }
 }
-import router from "/@/router";
+import router from "../router";
 
 Axios.defaults.headers['Content-Type'] = 'application/json;charset=UTF-8'
 const service = Axios.create({

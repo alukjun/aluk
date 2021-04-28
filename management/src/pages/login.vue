@@ -18,7 +18,7 @@
 </template>
 <script>
 import { Button, Form  } from 'ant-design-vue';
-import loginMgr from '/@/http/user'
+import loginMgr from '../http/user'
 export default {
 	name: 'Login',
 	data() {

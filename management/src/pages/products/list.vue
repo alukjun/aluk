@@ -70,7 +70,7 @@
 									placeholder="Please select"
 									allow-clear
 									tree-default-expand-all
-								>
+								/>
 							</a-form-item>
 							<a-form-item label="图片" name="images">
 								<div v-if="title === '新增商品'">
@@ -168,8 +168,8 @@
 <script>
 import { UserOutlined, LockOutlined } from "@ant-design/icons-vue";
 import { message } from 'ant-design-vue';
-import productMgr from '/@/http/product';
-import categoryMgr from '/@/http/category';
+import productMgr from '../../http/product';
+import categoryMgr from '../../http/category';
 function getBase64(file) {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

@@ -99,8 +99,8 @@
 
 <script>
 import { SmileOutlined, DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import userMgr from '/@/http/user';
-import roleMgr from '/@/http/role';
+import userMgr from '../../http/user';
+import roleMgr from '../../http/role';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');

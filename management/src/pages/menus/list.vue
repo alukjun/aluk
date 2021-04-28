@@ -37,7 +37,7 @@
 									placeholder="Please select"
 									allow-clear
 									tree-default-expand-all
-								>
+								/>
 							</a-form-item>
 							<a-form-item label="菜单名字" name="name">
 								<a-input v-model:value="formData.name" />
@@ -102,7 +102,7 @@
 
 <script>
 import { SmileOutlined, DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import menuMgr from '/@/http/menu';
+import menuMgr from '../../http/menu';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
 		return Promise.reject('请选择角色');

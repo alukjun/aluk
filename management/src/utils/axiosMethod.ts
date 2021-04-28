@@ -1,4 +1,4 @@
-import server from '/@/http/api'
+import server from '../http/api'
 function http(params: any) {
   return new Promise((resolve, reject) => {
     let body = {}

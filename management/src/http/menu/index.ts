@@ -13,11 +13,6 @@ const updateStatus = {
   method: 'put'
 }
 
-// const del = {
-//   url: '/menu/admin/deleteMenuById/[id]',
-//   method: 'delete'
-// }
-
 const create = {
   url: '/menu/admin/createMenu.do',
   method: 'post'
@@ -27,6 +22,5 @@ export default {
   list,
   update,
   updateStatus,
-  // del,
   create
 }

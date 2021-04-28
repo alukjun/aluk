@@ -43,7 +43,7 @@
 									placeholder="Please select"
 									allow-clear
 									tree-default-expand-all
-								>
+								/>
 							</a-form-item>
               <a-form-item label="分类图片" name="image">
                 <div>
@@ -113,7 +113,7 @@
 
 <script>
 import { SmileOutlined, DownOutlined, UserOutlined, LockOutlined } from "@ant-design/icons-vue";
-import categoryMgr from '/@/http/category';
+import categoryMgr from '../../http/category';
 import { message } from 'ant-design-vue';
 let validateRoles = async (rule, value) => {
 	if (value.length === 0) {
